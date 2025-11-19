@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 // Quản lý sức khỏe của người chơi
-//Test Nhánh 2
+//Test Nhánh 1
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHP = 100;
