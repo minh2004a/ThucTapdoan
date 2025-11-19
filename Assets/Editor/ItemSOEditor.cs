@@ -33,6 +33,7 @@ public class ItemSOEditor : Editor
     SerializedProperty staminaMaxBonusProp;
     SerializedProperty staminaRegenBonusProp;
     SerializedProperty backpackSlotBonusProp;
+    SerializedProperty healthMaxBonusProp;
     void OnEnable()
     {
         idProp = serializedObject.FindProperty("id");
@@ -61,6 +62,7 @@ public class ItemSOEditor : Editor
         staminaMaxBonusProp = serializedObject.FindProperty("staminaMaxBonus");
         staminaRegenBonusProp = serializedObject.FindProperty("staminaRegenBonus");
         backpackSlotBonusProp = serializedObject.FindProperty("backpackSlotBonus");
+        healthMaxBonusProp = serializedObject.FindProperty("healthMaxBonus");
     }
 
     public override void OnInspectorGUI()
@@ -184,7 +186,10 @@ public class ItemSOEditor : Editor
             EditorGUILayout.PropertyField(staminaMaxBonusProp, new GUIContent("Stamina Max Bonus"));
             EditorGUILayout.PropertyField(staminaRegenBonusProp, new GUIContent("Stamina Regen Bonus (per game hour)"));
         }
-
+        if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Pants)
+        {
+            EditorGUILayout.PropertyField(healthMaxBonusProp, new GUIContent("Health Max Bonus"));
+        }
         // cho phép chỉnh giá bán
         EditorGUILayout.PropertyField(sellPriceProp, new GUIContent("Sell Price"));
     }
