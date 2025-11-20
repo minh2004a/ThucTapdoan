@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: ScytheWood
+  m_Name: SeedMaple
   m_EditorClassIdentifier: 
-  id: "R\u1EF1a"
-  icon: {fileID: -109318242, guid: 0aa5aee32af1c79419410c4e0547b04e, type: 3}
-  seedData: {fileID: 0}
-  category: 0
+  id: "H\u1EA1t gi\u1ED1ng Maple"
+  icon: {fileID: -2000527803, guid: 6a09041d4e416624e91ce9473a68511d, type: 3}
+  seedData: {fileID: 11400000, guid: 4da34836265d34742905ffc5a7dbf025, type: 2}
+  category: 5
   equipSlot: 0
-  stackable: 0
+  stackable: 1
   weaponType: 0
-  toolType: 4
+  toolType: 0
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
@@ -31,9 +31,9 @@ MonoBehaviour:
   maxStack: 999
   hitboxScale: 1
   hitboxYOffset: 0
-  hitboxForward: 0.7
+  hitboxForward: -1
   Dame: 1
-  range: 0.25
+  range: 1
   cooldown: 0.2
   projectilePrefab: {fileID: 0}
   projectileSpeed: 10
