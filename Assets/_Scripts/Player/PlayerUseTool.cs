@@ -252,19 +252,19 @@ public class PlayerUseTool : MonoBehaviour
             {
                 facing = facingFallback;
 
-                    float tileSize = soil ? Mathf.Max(0.01f, soil.GridSize) : 1f;
-                    float maxDistance = Mathf.Max(tileSize, rangeTiles * tileSize);
-                    Vector2 clamped = Vector2.ClampMagnitude(worldDelta, maxDistance);
-                    if (clamped.sqrMagnitude <= 0.0001f)
-                    {
-                        Vector2 fallbackFacing = facing.sqrMagnitude > 0.0001f ? facing : Vector2.down;
-                        clamped = fallbackFacing.normalized * Mathf.Min(maxDistance, tileSize);
-                    }
-
-                    hitPoint = playerWorld + clamped;
-                    hasHitPoint = true;
-                    return true;
+                float hitRange = ComputeHitboxReach(item);
+                Vector2 clamped = Vector2.ClampMagnitude(worldDelta, hitRange);
+                if (clamped.sqrMagnitude <= 0.0001f)
+                {
+                    Vector2 fallbackFacing = facing.sqrMagnitude > 0.0001f ? facing : Vector2.down;
+                    clamped = fallbackFacing.normalized * hitRange;
                 }
+
+                hitPoint = playerWorld + clamped;
+                hasHitPoint = true;
+                rangeTiles = 1; // giữ logic UI đơn giản, tool này dùng hitbox thay vì tile
+                return true;
+            }
 
             default:
                 if (!IsWithinRange(delta, rangeTiles))
@@ -340,6 +340,16 @@ public class PlayerUseTool : MonoBehaviour
     bool ToolUsesCellTargets(ToolType type)
     {
         return type == ToolType.Hoe || type == ToolType.WateringCan;
+    }
+
+    float ComputeHitboxReach(ItemSO item)
+    {
+        if (!item) return 1f;
+
+        float radius = Mathf.Max(0.05f, item.range) * Mathf.Max(0.05f, item.hitboxScale);
+        float forward = item.hitboxForward >= 0f ? item.hitboxForward : radius;
+        float reach = Mathf.Max(radius + forward, radius);
+        return Mathf.Max(0.05f, reach);
     }
 
     bool TryConsumeToolCost(ToolType toolType)

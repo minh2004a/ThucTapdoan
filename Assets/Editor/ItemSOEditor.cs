@@ -131,10 +131,20 @@ public class ItemSOEditor : Editor
         EditorGUILayout.HelpBox("Công cụ sẽ luôn là vật phẩm đơn, không thể xếp chồng.", MessageType.Info);
         EditorGUILayout.PropertyField(toolTypeProp);
         EditorGUILayout.PropertyField(damageProp, new GUIContent("Damage"));
-        EditorGUILayout.PropertyField(toolRangeTilesProp);
-        EditorGUILayout.PropertyField(hitboxScaleProp);
-        EditorGUILayout.PropertyField(hitboxYOffsetProp);
-        EditorGUILayout.PropertyField(hitboxForwardProp);
+
+        var toolType = (ToolType)toolTypeProp.enumValueIndex;
+
+        if (toolType == ToolType.Axe || toolType == ToolType.Pickaxe || toolType == ToolType.Scythe)
+        {
+            EditorGUILayout.PropertyField(rangeProp, new GUIContent("Hitbox Radius"));
+            EditorGUILayout.PropertyField(hitboxScaleProp);
+            EditorGUILayout.PropertyField(hitboxYOffsetProp);
+            EditorGUILayout.PropertyField(hitboxForwardProp);
+        }
+        else
+        {
+            EditorGUILayout.PropertyField(toolRangeTilesProp);
+        }
     }
 
     void DrawSeedFields()
