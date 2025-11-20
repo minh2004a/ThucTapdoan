@@ -18,6 +18,10 @@ public class PickupItem2D : MonoBehaviour
         new Keyframe(0f, 0f, 0f, 0f),
         new Keyframe(0.5f, 1f, 0f, 0f),
         new Keyframe(1f, 0f, 0f, 0f));
+    [SerializeField, Tooltip("Trọng lực giả lập cho quỹ đạo bay lên rồi rơi xuống.")]
+    float arcGravity = -18f;
+    [SerializeField, Tooltip("Thời gian bay tối thiểu để kịp thấy quỹ đạo.")]
+    float minFlightTime = 0.12f;
 
     Rigidbody2D body;
     int settleTicksRemaining;
@@ -61,7 +65,7 @@ public class PickupItem2D : MonoBehaviour
         if (flightRoutine != null)
             StopCoroutine(flightRoutine);
 
-        flightRoutine = StartCoroutine(FlightRoutine(arcHeight, Mathf.Max(0.05f, flightTime)));
+        flightRoutine = StartCoroutine(FlightRoutine(arcHeight, Mathf.Max(minFlightTime, flightTime)));
     }
 
     void FixedUpdate()
@@ -114,15 +118,41 @@ public class PickupItem2D : MonoBehaviour
         float t = 0f;
         Vector3 basePos = visual ? visual.localPosition : Vector3.zero;
         var curve = heightCurve == null || heightCurve.length == 0
-            ? AnimationCurve.EaseInOut(0, 0, 1, 0)
+            ? AnimationCurve.Linear(0, 1, 1, 1)
             : heightCurve;
+
+        // Tính vận tốc ban đầu và gia tốc để vật đạt độ cao arcHeight rồi rơi xuống trong "duration" với cảm giác trọng lực
+        float gravity = arcGravity;
+        if (Mathf.Approximately(arcGravity, 0f)) gravity = -18f; // fallback để tránh chia cho 0
+
+        // Với g âm, tính vận tốc ban đầu để đạt đỉnh ở t = duration / 2
+        // v0 = g * (duration / 2) * -1 để vận tốc tại đỉnh = 0
+        float halfTime = duration * 0.5f;
+        float v0 = -gravity * halfTime;
+
+        // Điều chỉnh g và v0 để bảo đảm độ cao đạt gần arcHeight
+        // H = v0^2 / (2 * -g) ≈ arcHeight => scale cả hai nếu cần
+        float desiredHeight = arcHeight <= 0f ? 0.01f : arcHeight;
+        float currentHeight = (v0 * v0) / (2f * -gravity);
+        if (currentHeight > 0.001f)
+        {
+            float scale = desiredHeight / currentHeight; // scale đồng thời để giữ thời gian bay nhưng đổi độ cao
+            v0 *= scale;
+            gravity *= scale;
+        }
 
         while (t < duration)
         {
-            float normalized = Mathf.Clamp01(t / duration);
-            float offset = arcHeight * curve.Evaluate(normalized);
-            if (visual) visual.localPosition = basePos + Vector3.up * offset;
             t += Time.deltaTime;
+            float normalized = Mathf.Clamp01(t / duration);
+
+            float height = v0 * t + 0.5f * gravity * t * t;
+            if (height <= 0f && t > 0f) break; // chạm đất
+
+            // Cho phép chỉnh profile (ví dụ cong đầu/cuối) nhưng vẫn dựa trên quỹ đạo trọng lực
+            height *= curve.Evaluate(normalized);
+
+            if (visual) visual.localPosition = basePos + Vector3.up * height;
             yield return null;
         }
 

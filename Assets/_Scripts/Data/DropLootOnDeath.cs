@@ -17,13 +17,13 @@ public class DropLootOnDeath : MonoBehaviour
     public bool fullCircle = true;        // văng 360°
     public PickupItem2D pickupPrefab;
     public List<DropEntry> drops = new();
-    public Vector2 scatterSpeed = new(0.8f, 1.4f);
+    public Vector2 scatterSpeed = new(0.45f, 1.1f);
     public float scatterAngle = 35f;
     [Header("Arc flight")]
     [Tooltip("Độ cao tối đa của quỹ đạo khi văng ra.")]
-    public Vector2 launchHeightRange = new(0.65f, 1.35f);
+    public Vector2 launchHeightRange = new(0.7f, 1.25f);
     [Tooltip("Thời gian bay trước khi hạ cánh.")]
-    public Vector2 flightDurationRange = new(0.28f, 0.45f);
+    public Vector2 flightDurationRange = new(0.32f, 0.55f);
 
     Vector2? pendingScatterDir;           // hướng muốn văng (ví dụ ngược hướng player)
 
