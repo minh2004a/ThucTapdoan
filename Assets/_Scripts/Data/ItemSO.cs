@@ -44,6 +44,10 @@ public class ItemSO : ScriptableObject
     public bool stackable = true;
     public WeaponType weaponType;
     public ToolType toolType = ToolType.None;
+    [Header("Luck Settings(100% = x2 khả năng rơi)")]
+    [Tooltip("% cộng thêm vào tỉ lệ rơi đồ khi trang bị(50 = +50% tỉ lệ).")]
+    [FormerlySerializedAs("dropChanceMultiplier")]
+    [Range(0f, 1000f)] public float dropChanceBonusPercent = 0f;
     [Header("Consumable Settings")]
     [Tooltip("Lượng HP hồi lại khi sử dụng vật phẩm này.")]
     public int healthRestore;

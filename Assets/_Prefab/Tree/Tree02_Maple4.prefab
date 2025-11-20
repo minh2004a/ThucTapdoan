@@ -197,7 +197,7 @@ MonoBehaviour:
     chance: 1
   - item: {fileID: 11400000, guid: 930eb438c7c5eef45b882b905367117e, type: 2}
     countRange: {x: 1, y: 2}
-    chance: 0.4
+    chance: 0.5
 --- !u!114 &7876618389654846850
 MonoBehaviour:
   m_ObjectHideFlags: 0

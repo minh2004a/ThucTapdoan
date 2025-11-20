@@ -107,4 +107,15 @@ public class PlayerEquipment : MonoBehaviour
 
         health.ApplyMaxBonus(bonus);
     }
+    public float GetDropChanceMultiplier()
+    {
+        var hat = Get(EquipSlotType.Hat);
+        if (hat)
+        {
+            float bonusPercent = Mathf.Max(0f, hat.dropChanceBonusPercent);
+            return 1f + bonusPercent * 0.01f;
+        }
+
+        return 1f;
+    }
 }
