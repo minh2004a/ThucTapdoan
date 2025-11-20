@@ -419,7 +419,7 @@ MonoBehaviour:
   pickaxeCost: 1.5
   scytheCost: 3
   moveDrainPerSecond: 0
-  regenPerGameHour: 6
+  regenPerGameHour: 0
   regenDelay: 0
   timeManager: {fileID: 0}
   faintThreshold: -15

@@ -16,15 +16,20 @@ MonoBehaviour:
   icon: {fileID: -1677888833, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
   seedData: {fileID: 0}
   category: 0
+  equipSlot: 0
   stackable: 0
   weaponType: 0
   toolType: 3
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
-  hitboxScale: 1
+  hitboxScale: 0.2
   hitboxYOffset: 0
   hitboxForward: -1
   Dame: 1
