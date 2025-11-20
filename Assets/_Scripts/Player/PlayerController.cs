@@ -127,6 +127,10 @@ public class PlayerController : MonoBehaviour
         UpdateFacingFrom(moveInput);
     }
 
+    /// <summary>
+    /// Cập nhật hướng nhìn ngay cả khi bị lock (ví dụ đang vung tool),
+    /// cho phép PlayerUseTool giữ đúng facing hiện tại thay vì xoay theo chuột.
+    /// </summary>
     public void ForceFace(Vector2 dir)
     {
         if (dir.sqrMagnitude < 1e-4f) return;
