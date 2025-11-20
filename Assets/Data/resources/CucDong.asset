@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: Mu01
+  m_Name: CucDong
   m_EditorClassIdentifier: 
-  id: "M\u0169 G\u1ED7"
-  icon: {fileID: -6314522, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
+  id: "\u0110\u1ED3ng"
+  icon: {fileID: 963985233, guid: c63bd04b0be259c4bbccd725efe1f7e7, type: 3}
   seedData: {fileID: 0}
-  category: 6
-  equipSlot: 1
-  stackable: 0
+  category: 2
+  equipSlot: 0
+  stackable: 1
   weaponType: 0
   toolType: 0
-  dropChanceBonusPercent: 50
+  dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
-  sellPrice: 100
+  sellPrice: 0
   staminaMaxBonus: 0
   healthMaxBonus: 0
   staminaRegenBonus: 0
