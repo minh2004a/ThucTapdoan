@@ -45,6 +45,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 2846356203
+    locked: 0
+  - name: Grass
+    uniqueID: 936142875
+    locked: 0
+  - name: Grass 2
+    uniqueID: 1012724759
+    locked: 0
+  - name: Path
+    uniqueID: 3786811945
+    locked: 0
+  - name: Cliff
+    uniqueID: 682319647
+    locked: 0
+  - name: Decor
+    uniqueID: 2682639627
+    locked: 0
+  - name: Building
+    uniqueID: 2938050157
+    locked: 0
   - name: FX_Back
     uniqueID: 248289295
     locked: 0
