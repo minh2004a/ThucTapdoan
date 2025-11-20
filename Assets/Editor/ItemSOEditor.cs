@@ -132,6 +132,9 @@ public class ItemSOEditor : Editor
         EditorGUILayout.PropertyField(toolTypeProp);
         EditorGUILayout.PropertyField(damageProp, new GUIContent("Damage"));
         EditorGUILayout.PropertyField(toolRangeTilesProp);
+        EditorGUILayout.PropertyField(hitboxScaleProp);
+        EditorGUILayout.PropertyField(hitboxYOffsetProp);
+        EditorGUILayout.PropertyField(hitboxForwardProp);
     }
 
     void DrawSeedFields()
