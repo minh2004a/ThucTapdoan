@@ -6,7 +6,7 @@ using UnityEngine;
 
 /// <summary>
 /// Cho phép người chơi sử dụng các công cụ (ví dụ: cuốc đất) bằng chuột.
-/// Hiện tại hỗ trợ cuốc trong bán kính 1 ô xung quanh người chơi và quay mặt theo hướng click.
+/// Hỗ trợ cuốc trong bán kính 1 ô xung quanh người chơi và giữ nguyên hướng nhìn hiện tại (không xoay theo chuột).
 /// </summary>
 [RequireComponent(typeof(PlayerInventory))]
 public class PlayerUseTool : MonoBehaviour
@@ -195,7 +195,7 @@ public class PlayerUseTool : MonoBehaviour
         Vector2Int delta = requestedCell - playerCell;
         Vector2 worldDelta = clickWorld - playerWorld;
         bool hasMouseDirection = worldDelta.sqrMagnitude > 0.0001f;
-        Vector2 facingFromMouse = DetermineFacingFromWorld(worldDelta);
+        Vector2 facingFallback = DetermineFallbackFacing();
         Vector2Int facingDelta = DetermineFacingDelta(worldDelta);
 
         switch (item.toolType)
@@ -214,7 +214,7 @@ public class PlayerUseTool : MonoBehaviour
                 }
 
                 targetCell = playerCell + delta;
-                facing = facingFromMouse;
+                facing = facingFallback;
                 rangeTiles = 1;
                 hitPoint = soil.CellToWorld(targetCell);
                 hasHitPoint = true;
@@ -229,7 +229,7 @@ public class PlayerUseTool : MonoBehaviour
                 if (delta == Vector2Int.zero)
                 {
                     targetCell = playerCell;
-                    facing = facingFromMouse;
+                    facing = facingFallback;
                     hitPoint = soil.CellToWorld(targetCell);
                     hasHitPoint = true;
                     return true;
@@ -242,7 +242,7 @@ public class PlayerUseTool : MonoBehaviour
                 }
 
                 targetCell = playerCell + delta;
-                facing = facingFromMouse;
+                facing = facingFallback;
                 hitPoint = soil.CellToWorld(targetCell);
                 hasHitPoint = true;
                 return true;
@@ -250,7 +250,7 @@ public class PlayerUseTool : MonoBehaviour
             case ToolType.Pickaxe:
             case ToolType.Scythe:
             {
-                facing = facingFromMouse;
+                facing = facingFallback;
 
                     float tileSize = soil ? Mathf.Max(0.01f, soil.GridSize) : 1f;
                     float maxDistance = Mathf.Max(tileSize, rangeTiles * tileSize);
@@ -273,7 +273,7 @@ public class PlayerUseTool : MonoBehaviour
                     return false;
                 }
 
-                facing = facingFromMouse;
+                facing = facingFallback;
                 return true;
         }
     }
@@ -282,26 +282,6 @@ public class PlayerUseTool : MonoBehaviour
     {
         if (delta == Vector2Int.zero) return false;
         return Mathf.Abs(delta.x) <= 1 && Mathf.Abs(delta.y) <= 1;
-    }
-
-    Vector2 DetermineFacing(Vector2Int delta)
-    {
-        if (delta == Vector2Int.zero)
-        {
-            if (controller)
-            {
-                var f = controller.Facing4;
-                if (f.sqrMagnitude > 0.0001f) return f;
-            }
-            return Vector2.down;
-        }
-
-        if (Mathf.Abs(delta.y) >= Mathf.Abs(delta.x))
-        {
-            return delta.y >= 0 ? Vector2.up : Vector2.down;
-        }
-
-        return delta.x >= 0 ? Vector2.right : Vector2.left;
     }
 
     Vector2Int DetermineFacingDelta(Vector2 worldDelta)
@@ -325,12 +305,6 @@ public class PlayerUseTool : MonoBehaviour
         }
 
         return new Vector2Int(fx, fy);
-    }
-
-    Vector2 DetermineFacingFromWorld(Vector2 worldDelta)
-    {
-        Vector2Int delta = DetermineFacingDelta(worldDelta);
-        return DetermineFacing(delta);
     }
 
     Vector2 DetermineFallbackFacing()
