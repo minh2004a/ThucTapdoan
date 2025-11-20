@@ -19,6 +19,11 @@ public class DropLootOnDeath : MonoBehaviour
     public List<DropEntry> drops = new();
     public Vector2 scatterSpeed = new(0.8f, 1.4f);
     public float scatterAngle = 35f;
+    [Header("Arc flight")]
+    [Tooltip("Độ cao tối đa của quỹ đạo khi văng ra.")]
+    public Vector2 launchHeightRange = new(0.65f, 1.35f);
+    [Tooltip("Thời gian bay trước khi hạ cánh.")]
+    public Vector2 flightDurationRange = new(0.28f, 0.45f);
 
     Vector2? pendingScatterDir;           // hướng muốn văng (ví dụ ngược hướng player)
 
@@ -30,6 +35,11 @@ public class DropLootOnDeath : MonoBehaviour
 
     public void Drop()
     {
+        if (!pickupPrefab)
+        {
+            Debug.LogWarning($"{name} chưa gán pickupPrefab cho DropLootOnDeath, bỏ qua rơi loot.");
+            return;
+        }
         Vector2? dir = pendingScatterDir;
         pendingScatterDir = null;
 
@@ -62,9 +72,6 @@ public class DropLootOnDeath : MonoBehaviour
         var go = Instantiate(pickupPrefab, pos, Quaternion.identity);
         go.Set(item, count);
 
-        var rb = go.GetComponent<Rigidbody2D>();
-        if (!rb) return;
-
         float angDeg;
         if (scatterDir.HasValue)
         {
@@ -85,6 +92,12 @@ public class DropLootOnDeath : MonoBehaviour
 
         float ang = angDeg * Mathf.Deg2Rad;
         Vector2 dir = new(Mathf.Cos(ang), Mathf.Sin(ang));
-        rb.velocity = dir * Random.Range(scatterSpeed.x, scatterSpeed.y);
+        float speed = Random.Range(scatterSpeed.x, scatterSpeed.y);
+        Vector2 velocity = dir * speed;
+
+        float height = Random.Range(launchHeightRange.x, launchHeightRange.y);
+        float time = Random.Range(flightDurationRange.x, flightDurationRange.y);
+
+        go.Launch(velocity, height, time);
     }
 }

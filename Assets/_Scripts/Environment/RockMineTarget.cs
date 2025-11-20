@@ -27,7 +27,6 @@ public class RockMineTarget : MonoBehaviour, IMineable
     {
         hp = Mathf.Max(1, maxHp);
         if (!dropOnBreak) dropOnBreak = GetComponent<DropLootOnDeath>();
-
         uid = GetComponent<UniqueId>();
         sceneName = gameObject.scene.IsValid() ? gameObject.scene.name : null;
 

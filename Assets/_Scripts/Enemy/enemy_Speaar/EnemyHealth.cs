@@ -17,6 +17,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private EnemyAI ai;                  // tắt khi chết
     private Rigidbody2D rb;
     private Collider2D[] colliders;      // tắt va chạm lúc chết
+    private DropLootOnDeath dropper;
+    private Vector2 lastHitDir;
 
     [Header("Animator Params")]
     // private string pDie = "Die";         // trigger "Die"
@@ -39,12 +41,15 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (!ai) ai = GetComponent<EnemyAI>();
         if (!rb) rb = GetComponent<Rigidbody2D>();
         if (colliders == null || colliders.Length == 0) colliders = GetComponentsInChildren<Collider2D>();
+        if (!dropper) dropper = GetComponent<DropLootOnDeath>();
         hp = Mathf.Max(1, maxHp);
     }
 
     public void TakeDamage(int dmg, Vector2 from)
     {
         if (IsDead) return;                 // không nhận hit nữa
+        Vector2 hitDir = ((Vector2)transform.position - from);
+        if (hitDir.sqrMagnitude > 0.001f) lastHitDir = hitDir;
         hp -= Mathf.Max(0, dmg);
         if (hp <= 0){ Die(); return; }
         animDrv?.TriggerHit(from);
@@ -84,13 +89,13 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         hp = 0;
         if (IsDead) return;
         IsDead = true;
-        GetComponent<DropLootOnDeath>()?.Drop();
-        animDrv?.CancelKnockback();   
+        if (dropper && lastHitDir.sqrMagnitude > 0.001f)
+            dropper.SetScatterDirection(lastHitDir);
+        dropper?.Drop();
+        animDrv?.CancelKnockback();
         animator.ResetTrigger("Hit");
-        animator.SetBool("Dead", true);                    
+        animator.SetBool("Dead", true);
         animator.CrossFade("Base Layer.Dead", 0.05f, 0, 0f);
-        StartCoroutine(WaitDeathAnimThenDestroy());
-
         if (ai) ai.enabled = false;
         if (rb)
         {

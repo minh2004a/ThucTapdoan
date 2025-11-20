@@ -11,7 +11,6 @@ public class PlantGrowth : MonoBehaviour
     int targetDaysForStage;     // dùng khi RandomRange
     GameObject visual;
     GameObject currentStagePrefab;
-    [SerializeField] PickupItem2D pickupPrefab;
     TimeManager time;
     SeasonManager season;
     string plantId;
@@ -144,7 +143,7 @@ public class PlantGrowth : MonoBehaviour
 
             if (delivery.remaining > 0)
             {
-                SpawnPickup(item, delivery.remaining);
+                Debug.LogWarning($"PlantGrowth: Không thể thêm đủ {item.name} vào kho, phần dư sẽ bị bỏ qua.");
             }
         }
 
@@ -180,7 +179,7 @@ public class PlantGrowth : MonoBehaviour
 
             if (delivery.remaining > 0)
             {
-                SpawnPickup(item, delivery.remaining);
+                Debug.LogWarning($"PlantGrowth: Không thể thêm đủ {item.name} vào kho, phần dư sẽ bị bỏ qua.");
             }
         }
 
@@ -374,18 +373,6 @@ public class PlantGrowth : MonoBehaviour
         lastWateredDay = RequiresWatering ? Mathf.Max(0, today - 1) : today;
         SpawnStage();
         PersistState();
-    }
-
-    void SpawnPickup(ItemSO item, int count)
-    {
-        if (!item || count <= 0) return;
-        if (!pickupPrefab)
-        {
-            Debug.LogWarning("PlantGrowth: Thiếu pickupPrefab, không thể spawn vật phẩm thu hoạch.");
-            return;
-        }
-        var pickup = Instantiate(pickupPrefab, transform.position, Quaternion.identity);
-        pickup.Set(item, count);
     }
 
     string SceneName => gameObject.scene.IsValid() ? gameObject.scene.name : null;
