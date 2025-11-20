@@ -130,6 +130,7 @@ public class ItemSOEditor : Editor
         EditorGUILayout.LabelField("Tool Settings", EditorStyles.boldLabel);
         EditorGUILayout.HelpBox("Công cụ sẽ luôn là vật phẩm đơn, không thể xếp chồng.", MessageType.Info);
         EditorGUILayout.PropertyField(toolTypeProp);
+        EditorGUILayout.PropertyField(damageProp, new GUIContent("Damage"));
         EditorGUILayout.PropertyField(toolRangeTilesProp);
     }
 
