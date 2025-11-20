@@ -48,7 +48,6 @@ public class TreeChopTarget : MonoBehaviour, IDamageable
         if (sTag)
         {
             SaveStore.MarkStumpClearedPending(gameObject.scene.name, sTag.treeId);
-            if (scatterDir != Vector2.zero) drop?.SetScatterDirection(scatterDir);
             drop?.Drop();
             Destroy(gameObject);
             return;
@@ -58,9 +57,6 @@ public class TreeChopTarget : MonoBehaviour, IDamageable
         var uid = GetComponent<UniqueId>();
         var plant = GetComponentInParent<PlantGrowth>();
         if (uid) SaveStore.MarkTreeChoppedPending(gameObject.scene.name, uid.Id);
-
-        if (scatterDir != Vector2.zero) drop?.SetScatterDirection(scatterDir);
-
         if (stumpPrefab)
         {
             var parent = plant ? plant.transform.parent : transform.parent;

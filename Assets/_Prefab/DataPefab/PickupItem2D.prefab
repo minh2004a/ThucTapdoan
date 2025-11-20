@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 419432099498450197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.86, y: -5.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,7 +100,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 4
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -164,7 +164,11 @@ MonoBehaviour:
   iconRenderer: {fileID: 2906587178447297865}
   item: {fileID: 0}
   count: 1
-  impactDamping: 0.3
-  settleDeceleration: 8
-  stopSpeed: 0.05
-  settleFrames: 12
+  flightDuration: 0.5
+  arcHeight: 1
+  minBounces: 1
+  maxBounces: 3
+  firstBounceHeight: 0.4
+  bounceHeightDamp: 0.5
+  bounceDuration: 0.18
+  groundJitter: 0.1

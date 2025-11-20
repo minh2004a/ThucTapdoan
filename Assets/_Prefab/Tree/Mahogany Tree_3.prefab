@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4727816312907318885}
   - component: {fileID: 1354164612263477610}
   - component: {fileID: -7732844622613761045}
+  - component: {fileID: 6244494952137005538}
   m_Layer: 8
   m_Name: Mahogany Tree_3
   m_TagString: Untagged
@@ -187,3 +188,26 @@ MonoBehaviour:
   summerSprite: {fileID: 1597499210, guid: 0b0cebf61d73780428eee4d6577587eb, type: 3}
   fallSprite: {fileID: 1371043089, guid: 0b0cebf61d73780428eee4d6577587eb, type: 3}
   winterSprite: {fileID: 957819770, guid: 0b0cebf61d73780428eee4d6577587eb, type: 3}
+--- !u!114 &6244494952137005538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198663450485891303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c7e31939b210246ba66546be40daa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnSingles: 1
+  maxSinglesPerDrop: 12
+  pickupPrefab: {fileID: 938829867024995739, guid: 5eaff2eda499336428801cbfe7172d32, type: 3}
+  flingForceMin: 1
+  flingForceMax: 2
+  flingAwayFromPlayer: 1
+  randomAngle: 25
+  drops:
+  - item: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
+    countRange: {x: 5, y: 10}
+    chance: 1

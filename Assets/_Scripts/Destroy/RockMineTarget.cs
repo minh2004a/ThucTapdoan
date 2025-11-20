@@ -57,7 +57,6 @@ public class RockMineTarget : MonoBehaviour, IMineable
         if (dropOnBreak)
         {
             if (hitDir.sqrMagnitude > 0.001f)
-                dropOnBreak.SetScatterDirection(hitDir);
             dropOnBreak.Drop();
         }
 
