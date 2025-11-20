@@ -52,5 +52,6 @@ public class DropLootOnDeath : MonoBehaviour
         if (!rb) return;
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
+        rb.gravityScale = 0f;
     }
 }

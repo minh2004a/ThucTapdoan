@@ -30,6 +30,13 @@ public class PickupItem2D : MonoBehaviour
     void OnEnable()
     {
         settleTicksRemaining = 0;
+
+        if (body)
+        {
+            body.velocity = Vector2.zero;
+            body.angularVelocity = 0f;
+            body.gravityScale = 0f;
+        }
     }
 
     public void Set(ItemSO i, int c)
