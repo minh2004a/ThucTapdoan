@@ -14,25 +14,31 @@ public class DropLootOnDeath : MonoBehaviour
 {
     public bool spawnSingles = true;      // rơi tách từng cục
     public int maxSinglesPerDrop = 12;    // giới hạn số cục sinh ra
-    public bool fullCircle = true;        // văng 360°
     public PickupItem2D pickupPrefab;
+    [Header("Hiệu ứng văng loot")]
+
+    [Tooltip("Khoảng văng tối thiểu của item khi rơi ra")]
+    [SerializeField] float flingForceMin = 1.5f;
+
+    [Tooltip("Khoảng văng tối đa của item khi rơi ra")]
+    [SerializeField] float flingForceMax = 3.5f;
+
+    [Tooltip("Nếu bật, loot sẽ văng ngược hướng player")]
+    [SerializeField] bool flingAwayFromPlayer = true;
+
+    [Tooltip("Độ lệch góc ngẫu nhiên khi văng")]
+    [SerializeField] float randomAngle = 25f;
+
+    Transform player;
     public List<DropEntry> drops = new();
-    public Vector2 scatterSpeed = new(0.8f, 1.4f);
-    public float scatterAngle = 35f;
-
-    Vector2? pendingScatterDir;           // hướng muốn văng (ví dụ ngược hướng player)
-
-    public void SetScatterDirection(Vector2 dir)
+    void Awake()
     {
-        if (dir.sqrMagnitude < 0.001f) return;
-        pendingScatterDir = dir.normalized;
+        var playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+            player = playerObj.transform;
     }
-
     public void Drop()
     {
-        Vector2? dir = pendingScatterDir;
-        pendingScatterDir = null;
-
         Vector2 pos = transform.position;
         foreach (var d in drops)
         {
@@ -45,46 +51,44 @@ public class DropLootOnDeath : MonoBehaviour
             {
                 int pieces = Mathf.Min(cnt, maxSinglesPerDrop);
                 for (int k = 0; k < pieces; k++)
-                    Spawn(d.item, 1, pos, dir);        // mỗi pickup = 1 cục
+                    Spawn(d.item, 1, pos);        // mỗi pickup = 1 cục
 
                 int rest = cnt - pieces;               // phần dư thì gộp 1 cục
-                if (rest > 0) Spawn(d.item, rest, pos, dir);
+                if (rest > 0) Spawn(d.item, rest, pos);
             }
             else
             {
-                Spawn(d.item, cnt, pos, dir);          // kiểu cũ: một pickup to
+                Spawn(d.item, cnt, pos);          // kiểu cũ: một pickup to
             }
         }
     }
 
-    void Spawn(ItemSO item, int count, Vector2 pos, Vector2? scatterDir)
+    void Spawn(ItemSO item, int count, Vector2 pos)
     {
         var go = Instantiate(pickupPrefab, pos, Quaternion.identity);
         go.Set(item, count);
 
-        var rb = go.GetComponent<Rigidbody2D>();
-        if (!rb) return;
+        // --- TÍNH HƯỚNG VĂNG ---
+        Vector2 dir;
 
-        float angDeg;
-        if (scatterDir.HasValue)
+        if (flingAwayFromPlayer && player != null)
         {
-            float baseDeg = Mathf.Atan2(scatterDir.Value.y, scatterDir.Value.x) * Mathf.Rad2Deg;
-            float spread = Mathf.Max(0f, scatterAngle);
-            angDeg = spread > 0f
-                ? baseDeg + Random.Range(-spread, spread)
-                : baseDeg;
-        }
-        else if (fullCircle)
-        {
-            angDeg = Random.Range(0f, 360f);
+            // văng NGƯỢC lại phía player
+            dir = (pos - (Vector2)player.position).normalized;
         }
         else
         {
-            angDeg = Random.Range(-scatterAngle, scatterAngle);
+            dir = Random.insideUnitCircle.normalized;
         }
 
-        float ang = angDeg * Mathf.Deg2Rad;
-        Vector2 dir = new(Mathf.Cos(ang), Mathf.Sin(ang));
-        rb.velocity = dir * Random.Range(scatterSpeed.x, scatterSpeed.y);
+        // xoay random 1 chút cho tự nhiên
+        float angle = Random.Range(-randomAngle, randomAngle);
+        dir = Quaternion.Euler(0, 0, angle) * dir;
+
+        // khoảng văng (giờ dùng flingForceMin/Max như khoảng cách luôn)
+        float distance = Random.Range(flingForceMin, flingForceMax);
+
+        // --- BAY THEO VÒNG CUNG ---
+        go.Launch(dir, distance);
     }
 }

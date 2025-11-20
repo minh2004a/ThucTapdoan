@@ -898,6 +898,7 @@ MonoBehaviour:
   hp: {fileID: 1080744793}
   stamina: {fileID: 1080744791}
   inv: {fileID: 647645683}
+  equipment: {fileID: 0}
   itemDB: {fileID: 11400000, guid: 7f8a8ef0204a5dd42af57ebe24aff5b9, type: 2}
 --- !u!114 &152460044
 MonoBehaviour:
@@ -928,6 +929,7 @@ MonoBehaviour:
   hp: {fileID: 1080744793}
   stamina: {fileID: 1080744791}
   inv: {fileID: 647645683}
+  equipment: {fileID: 0}
   itemDB: {fileID: 11400000, guid: 7f8a8ef0204a5dd42af57ebe24aff5b9, type: 2}
 --- !u!114 &152460046
 MonoBehaviour:
@@ -943,6 +945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadout: {fileID: 11400000, guid: e589b598ac994ba4eb4aa0aee77f0cc9, type: 2}
   itemDB: {fileID: 0}
+  equipment: {fileID: 0}
 --- !u!114 &152460047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4628,11 +4631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d01009d0f8a64458014b6e578ef730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1080744809
+--- !u!114 &1080744809 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3930916954447435895, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
+  m_PrefabInstance: {fileID: 2116136252306584675}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158480009}
   m_Enabled: 1
@@ -4640,7 +4642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8adab58eba5f4845affe3665678bb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
 --- !u!1 &1107046408
 GameObject:
   m_ObjectHideFlags: 0
@@ -9146,14 +9147,6 @@ PrefabInstance:
       propertyPath: sleep
       value: 
       objectReference: {fileID: 152460042}
-    - target: {fileID: 1118344859087931616, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
-      propertyPath: blockMask.m_Bits
-      value: 270592
-      objectReference: {fileID: 0}
-    - target: {fileID: 1845909153704676813, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
-      propertyPath: bag.Array.size
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 2944587308785528253, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
       propertyPath: OnHpPercent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -9219,20 +9212,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 152460042}
     - target: {fileID: 9196139618529040389, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
-      propertyPath: axeCost
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9196139618529040389, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
       propertyPath: OnStamina01.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1223590759}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 936923126784610755, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
-      insertIndex: 9
-      addedObject: {fileID: 1080744809}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
 --- !u!1001 &2875196082650874940
 PrefabInstance:

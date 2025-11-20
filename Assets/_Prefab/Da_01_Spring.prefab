@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2162782639068110503}
   - component: {fileID: 7174573094674538018}
   - component: {fileID: 1178819851017951906}
-  - component: {fileID: -5068066376364089194}
   - component: {fileID: 6555091232211887035}
+  - component: {fileID: 1193824673520245271}
+  - component: {fileID: 1717255892388951583}
   m_Layer: 18
   m_Name: Da_01_Spring
   m_TagString: Untagged
@@ -135,11 +136,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c136c8958defee418bf106d3a767cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 25
+  maxHp: 2
   hitFxPrefab: {fileID: 7596021485817364188, guid: a626acb63cd20584ab7fee99a34cb4db, type: 3}
   breakFxPrefab: {fileID: 7596021485817364188, guid: a626acb63cd20584ab7fee99a34cb4db, type: 3}
-  dropOnBreak: {fileID: -5068066376364089194}
---- !u!114 &-5068066376364089194
+  dropOnBreak: {fileID: 0}
+--- !u!114 &6555091232211887035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559559962467882664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cf980f678f8a2439a482996934aecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 6f5bfa26-6557-4648-9e79-909208a1cbcf
+--- !u!114 &1193824673520245271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559559962467882664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a085f55002bb5547acf47952f627cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  springSprite: {fileID: 330627091, guid: f26f1e88fb1807943a28dbf7ea179d3f, type: 3}
+  summerSprite: {fileID: 330627091, guid: f26f1e88fb1807943a28dbf7ea179d3f, type: 3}
+  fallSprite: {fileID: 330627091, guid: f26f1e88fb1807943a28dbf7ea179d3f, type: 3}
+  winterSprite: {fileID: 960739225, guid: 83b5458011fc3ec46b49908fab63be0c, type: 3}
+--- !u!114 &1717255892388951583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,24 +183,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnSingles: 1
   maxSinglesPerDrop: 12
-  fullCircle: 1
   pickupPrefab: {fileID: 938829867024995739, guid: 5eaff2eda499336428801cbfe7172d32, type: 3}
+  flingForceMin: 1
+  flingForceMax: 2
+  flingAwayFromPlayer: 1
+  randomAngle: 25
   drops:
   - item: {fileID: 11400000, guid: eb81674bdbe916f4c9db4a6e72c45a81, type: 2}
-    countRange: {x: 1, y: 2}
+    countRange: {x: 1, y: 1}
     chance: 1
-  scatterSpeed: {x: 0.8, y: 1.4}
-  scatterAngle: 35
---- !u!114 &6555091232211887035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559559962467882664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2cf980f678f8a2439a482996934aecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
