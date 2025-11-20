@@ -3125,6 +3125,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547347146}
   m_CullTransparentMesh: 1
+--- !u!1 &547392200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547392202}
+  - component: {fileID: 547392201}
+  m_Layer: 0
+  m_Name: PlantSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &547392201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547392200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af93ef839f38b3c408d3840a7140e8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantRootPrefab: {fileID: 5994108680218134156, guid: 66821e722f60e054899df7b4b90f48b5, type: 3}
+  soilManager: {fileID: 0}
+--- !u!4 &547392202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547392200}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -43.049488, y: -11.6185, z: -0.11018129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590601743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3930,52 +3976,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!1 &848423092
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 848423093}
-  - component: {fileID: 848423094}
-  m_Layer: 0
-  m_Name: PlantGrowth
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &848423093
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848423092}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &848423094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848423092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af93ef839f38b3c408d3840a7140e8e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plantRootPrefab: {fileID: 5994108680218134156, guid: 66821e722f60e054899df7b4b90f48b5, type: 3}
-  soilManager: {fileID: 0}
 --- !u!1 &975302568
 GameObject:
   m_ObjectHideFlags: 0
@@ -8367,7 +8367,7 @@ MonoBehaviour:
   blockedSprite: {fileID: -1866939988, guid: f0afa901eab4e2c42a3eca2c6d3019e0, type: 3}
   rangeTiles: 1
   inv: {fileID: 647645683}
-  plantSystem: {fileID: 848423094}
+  plantSystem: {fileID: 547392201}
   player: {fileID: 1080744768}
 --- !u!212 &2064883286
 SpriteRenderer:
@@ -9151,6 +9151,18 @@ PrefabInstance:
       propertyPath: OnHpPercent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 207379505}
+    - target: {fileID: 3930916954447435895, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 1080744793}
+    - target: {fileID: 3930916954447435895, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
+      propertyPath: stamina
+      value: 
+      objectReference: {fileID: 1080744791}
+    - target: {fileID: 3930916954447435895, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 647645683}
     - target: {fileID: 5156360149349521347, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
       propertyPath: m_LookAt
       value: 
@@ -9158,7 +9170,7 @@ PrefabInstance:
     - target: {fileID: 7700877869166976594, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
       propertyPath: plantSystem
       value: 
-      objectReference: {fileID: 848423094}
+      objectReference: {fileID: 0}
     - target: {fileID: 7739987294089070663, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
       propertyPath: m_Camera
       value: 
@@ -9575,4 +9587,4 @@ SceneRoots:
   - {fileID: 41619979}
   - {fileID: 1643075246}
   - {fileID: 547219952}
-  - {fileID: 848423093}
+  - {fileID: 547392202}

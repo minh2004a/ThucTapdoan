@@ -1,6 +1,4 @@
 
-
-
 using UnityEditor;
 using UnityEngine;
 
@@ -130,7 +128,21 @@ public class ItemSOEditor : Editor
         EditorGUILayout.LabelField("Tool Settings", EditorStyles.boldLabel);
         EditorGUILayout.HelpBox("Công cụ sẽ luôn là vật phẩm đơn, không thể xếp chồng.", MessageType.Info);
         EditorGUILayout.PropertyField(toolTypeProp);
-        EditorGUILayout.PropertyField(toolRangeTilesProp);
+        EditorGUILayout.PropertyField(damageProp, new GUIContent("Damage"));
+
+        var toolType = (ToolType)toolTypeProp.enumValueIndex;
+
+        if (toolType == ToolType.Axe || toolType == ToolType.Pickaxe || toolType == ToolType.Scythe)
+        {
+            EditorGUILayout.PropertyField(rangeProp, new GUIContent("Hitbox Radius"));
+            EditorGUILayout.PropertyField(hitboxScaleProp);
+            EditorGUILayout.PropertyField(hitboxYOffsetProp);
+            EditorGUILayout.PropertyField(hitboxForwardProp);
+        }
+        else
+        {
+            EditorGUILayout.PropertyField(toolRangeTilesProp);
+        }
     }
 
     void DrawSeedFields()
