@@ -28,6 +28,7 @@ public class ItemSOEditor : Editor
     SerializedProperty staminaRestoreProp;
     SerializedProperty sellPriceProp;
     SerializedProperty equipSlotProp;
+    SerializedProperty dropChanceBonusPercentProp;
     SerializedProperty staminaMaxBonusProp;
     SerializedProperty staminaRegenBonusProp;
     SerializedProperty backpackSlotBonusProp;
@@ -57,6 +58,7 @@ public class ItemSOEditor : Editor
         staminaRestoreProp = serializedObject.FindProperty("staminaRestore");
         sellPriceProp = serializedObject.FindProperty("sellPrice");
         equipSlotProp = serializedObject.FindProperty("equipSlot");
+        dropChanceBonusPercentProp = serializedObject.FindProperty( "dropChanceBonusPercent" );
         staminaMaxBonusProp = serializedObject.FindProperty("staminaMaxBonus");
         staminaRegenBonusProp = serializedObject.FindProperty("staminaRegenBonus");
         backpackSlotBonusProp = serializedObject.FindProperty("backpackSlotBonus");
@@ -187,7 +189,10 @@ public class ItemSOEditor : Editor
         EditorGUILayout.HelpBox("Trang bị (mũ/áo/giày...) là item đơn, không stack.", MessageType.Info);
 
         EditorGUILayout.PropertyField(equipSlotProp); // chọn slot: Hat, Armor,...
-
+        if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Hat)
+        {
+            EditorGUILayout.PropertyField(dropChanceBonusPercentProp, new GUIContent("Drop Chance Bonus %"));
+        }
         if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Backpack)
         {
             EditorGUILayout.PropertyField(backpackSlotBonusProp, new GUIContent("Backpack Slot Bonus"));

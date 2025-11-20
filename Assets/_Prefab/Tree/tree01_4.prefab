@@ -213,4 +213,4 @@ MonoBehaviour:
     chance: 1
   - item: {fileID: 11400000, guid: 72774e75691070741bba051ce1b18a19, type: 2}
     countRange: {x: 1, y: 2}
-    chance: 0.45
+    chance: 0.5

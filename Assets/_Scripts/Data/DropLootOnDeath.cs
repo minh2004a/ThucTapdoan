@@ -30,20 +30,26 @@ public class DropLootOnDeath : MonoBehaviour
     [SerializeField] float randomAngle = 25f;
 
     Transform player;
+    PlayerEquipment playerEquipment;
     public List<DropEntry> drops = new();
     void Awake()
     {
         var playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
+        {
             player = playerObj.transform;
+            playerEquipment = playerObj.GetComponent<PlayerEquipment>();
+        }
     }
     public void Drop()
     {
         Vector2 pos = transform.position;
+        float luckMultiplier = GetDropChanceMultiplier();
         foreach (var d in drops)
         {
             if (!d.item) continue;
-            if (Random.value > d.chance) continue;
+            float chance = Mathf.Clamp01(d.chance * luckMultiplier);
+            if (Random.value > chance) continue;
 
             int cnt = Random.Range(d.countRange.x, d.countRange.y + 1);
 
@@ -90,5 +96,19 @@ public class DropLootOnDeath : MonoBehaviour
 
         // --- BAY THEO VÒNG CUNG ---
         go.Launch(dir, distance);
+    }
+    float GetDropChanceMultiplier()
+    {
+        if (!playerEquipment && player)
+        {
+            playerEquipment = player.GetComponent<PlayerEquipment>();
+        }
+
+        if (playerEquipment)
+        {
+            return playerEquipment.GetDropChanceMultiplier();
+        }
+
+        return 1f;
     }
 }
