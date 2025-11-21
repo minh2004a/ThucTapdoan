@@ -9,6 +9,7 @@ public class RestoreFromSaveAtBoot : MonoBehaviour
     [SerializeField] PlayerInventory inv;
     [SerializeField] PlayerEquipment equipment;
     [SerializeField] ItemDB itemDB;
+    [SerializeField] PlayerWallet wallet;
 
     void Start(){
         // thời gian + vitals bạn đã áp như trước
@@ -19,8 +20,10 @@ public class RestoreFromSaveAtBoot : MonoBehaviour
         if (stamina) stamina.SetPercent(sta01);
 
         if (!equipment && inv) equipment = inv.GetComponent<PlayerEquipment>();
+        if (!wallet && inv) wallet = inv.GetComponent<PlayerWallet>();
         // inventory
         if (inv && itemDB) SaveStore.ApplyInventory(inv, itemDB);
         if (equipment && itemDB) SaveStore.ApplyEquipment(equipment, itemDB);
+        if (wallet) wallet.SetMoney(SaveStore.GetMoney());
     }
 }

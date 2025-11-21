@@ -220,6 +220,72 @@ public class PlayerInventory : MonoBehaviour
             BagChanged?.Invoke();
         }
     }
+    public int CountItem(ItemSO item)
+    {
+        if (!item) return 0;
+
+        int total = 0;
+        for (int i = 0; i < hotbar.Length; i++)
+        {
+            var s = hotbar[i];
+            if (s.item == item) total += s.count;
+        }
+
+        int max = UnlockedBagSlots;
+        for (int i = 0; i < max; i++)
+        {
+            var s = bag[i];
+            if (s.item == item) total += s.count;
+        }
+
+        return total;
+    }
+    public bool HasItem(ItemSO item, int minCount = 1)
+    {
+        return CountItem(item) >= Mathf.Max(1, minCount);
+    }
+    public bool RemoveItem(ItemSO item, int count)
+    {
+        if (!item || count <= 0) return false;
+        if (!HasItem(item, count)) return false;
+
+        int remaining = count;
+        bool hotbarChanged = false;
+        bool bagChanged = false;
+        bool selectedChanged = false;
+
+        for (int i = 0; i < hotbar.Length && remaining > 0; i++)
+        {
+            var s = hotbar[i];
+            if (s.item != item) continue;
+
+            int take = Mathf.Min(remaining, s.count);
+            s.count -= take;
+            remaining -= take;
+            hotbar[i] = (s.count > 0) ? s : default;
+            hotbarChanged = true;
+            if (i == selected) selectedChanged = true;
+        }
+
+        int max = UnlockedBagSlots;
+        for (int i = 0; i < max && remaining > 0; i++)
+        {
+            var s = bag[i];
+            if (s.item != item) continue;
+
+            int take = Mathf.Min(remaining, s.count);
+            s.count -= take;
+            remaining -= take;
+            bag[i] = (s.count > 0) ? s : default;
+            bagChanged = true;
+        }
+
+        if (hotbarChanged) HotbarChanged?.Invoke();
+        if (bagChanged) BagChanged?.Invoke();
+        if (selectedChanged) SelectedChanged?.Invoke(selected);
+
+        return remaining <= 0;
+    }
     public bool ConsumeSelected(int n = 1)
     {
         if ((uint)selected >= (uint)hotbar.Length || n <= 0) return false;

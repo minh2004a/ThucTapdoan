@@ -1,4 +1,5 @@
 
+
 // SaveOnSleep.cs
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class SaveOnSleep : MonoBehaviour
     [SerializeField] PlayerInventory inv;
     [SerializeField] PlayerEquipment equipment;
     [SerializeField] ItemDB itemDB;
+    [SerializeField] PlayerWallet wallet;
 
     void Awake(){
         if (!sleep)   sleep   = FindObjectOfType<SleepManager>(true);
@@ -19,6 +21,7 @@ public class SaveOnSleep : MonoBehaviour
         if (!stamina) stamina = FindObjectOfType<PlayerStamina>(true);
         if (!inv)     inv     = FindObjectOfType<PlayerInventory>(true);
         if (!equipment && inv) equipment = inv.GetComponent<PlayerEquipment>();
+        if (!wallet && inv) wallet = inv.GetComponent<PlayerWallet>();
     }
     void OnEnable(){ if (sleep) sleep.OnSaveRequested += Handle; }
     void OnDisable(){ if (sleep) sleep.OnSaveRequested -= Handle; }
@@ -29,6 +32,7 @@ public class SaveOnSleep : MonoBehaviour
         float hp01 = hp ? (float)hp.hp / Mathf.Max(1, hp.maxHP) : 1f;
         float sta01 = stamina ? stamina.Ratio : 1f;
         SaveStore.SetVitals01(hp01, sta01);
+        SaveStore.SetMoney(wallet ? wallet.Money : SaveStore.GetMoney(), save: false);
 
         // inventory
         SaveStore.CaptureInventory(inv, itemDB);

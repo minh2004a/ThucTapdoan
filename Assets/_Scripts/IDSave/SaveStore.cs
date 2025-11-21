@@ -1,6 +1,4 @@
 
-
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -66,6 +64,7 @@ public static class SaveStore
         public bool hasSave = false;
         public int day = 1, hour = 6, minute = 0;
         public float hp01 = 1f, sta01 = 1f;
+        public int money = 0;
         public InventoryDTO inventory = new InventoryDTO();
         public EquipmentDTO equipment = new EquipmentDTO();
     }
@@ -184,6 +183,24 @@ public static class SaveStore
     public static void SetTime(int d,int h,int m){ meta.day=d; meta.hour=h; meta.minute=m; SaveToDisk(); }
     public static void GetTime(out int d,out int h,out int m){ d=meta.day; h=meta.hour; m=meta.minute; }
     public static int PeekSavedDay(){ return meta?.day ?? 1; }
+
+    public static void SetMoney(int amount, bool save = true)
+    {
+        if (meta == null) meta = new Meta();
+        meta.money = Mathf.Max(0, amount);
+        if (save) SaveToDisk();
+    }
+
+    public static void AddMoney(int amount, bool save = true)
+    {
+        if (amount == 0) return;
+        SetMoney(GetMoney() + amount, save);
+    }
+
+    public static int GetMoney()
+    {
+        return meta?.money ?? 0;
+    }
 
     public static void SetVitals01(float hp,float sta){
     meta.hp01=Mathf.Clamp01(hp); meta.sta01=Mathf.Clamp01(sta); SaveToDisk();
@@ -759,7 +776,8 @@ public static class SaveStore
             hour = 6,
             minute = 0,
             hp01 = 1f,
-            sta01 = 1f
+            sta01 = 1f,
+            money = 0
         };
         SaveToDisk();
     }
