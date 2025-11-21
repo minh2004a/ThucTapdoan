@@ -1180,8 +1180,8 @@ TextureImporter:
         y: 98
         width: 11
         height: 8
-      alignment: 9
-      pivot: {x: 0.49999964, y: 0.22945023}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1201,8 +1201,8 @@ TextureImporter:
         y: 98
         width: 12
         height: 10
-      alignment: 9
-      pivot: {x: 0.48178482, y: 0.19672623}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1219,11 +1219,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 65
-        y: 97
-        width: 15
-        height: 12
-      alignment: 9
-      pivot: {x: 0.49429882, y: 0.17193921}
+        y: 96
+        width: 47
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1243,8 +1243,8 @@ TextureImporter:
         y: 97
         width: 14
         height: 13
-      alignment: 9
-      pivot: {x: 0.51946366, y: 0.4611576}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1844,48 +1844,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Spring Crops_82
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 96
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: 0.5310807, y: 0.51310205}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: badb4e15d150ef748a15fa29edba02be
-      internalID: 52482660
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spring Crops_83
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6e5bbddc804cb74c8278fa41eef85e9
-      internalID: 505108589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1978,8 +1936,6 @@ TextureImporter:
       Spring Crops_8: -2115064118
       Spring Crops_80: 1537363913
       Spring Crops_81: 359160736
-      Spring Crops_82: 52482660
-      Spring Crops_83: 505108589
       Spring Crops_9: 1258033184
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
