@@ -7,6 +7,7 @@ public class StartingInventoryApplier : MonoBehaviour
     public StartingLoadout loadout;
     public ItemDB itemDB;  // để tra bằng itemKey
     public PlayerEquipment equipment;
+    public PlayerWallet wallet;
 
     IEnumerator Start()
     {
@@ -15,6 +16,11 @@ public class StartingInventoryApplier : MonoBehaviour
         var inv = FindObjectOfType<PlayerInventory>(true);
         while (!inv) { yield return null; inv = FindObjectOfType<PlayerInventory>(true); }
         if (!equipment && inv) equipment = inv.GetComponent<PlayerEquipment>();
+        if (!wallet && inv) wallet = inv.GetComponent<PlayerWallet>();
+
+        int startingMoney = Mathf.Max(0, loadout ? loadout.startingMoney : 0);
+        if (wallet) wallet.SetMoney(startingMoney);
+        SaveStore.SetMoney(startingMoney, save: false);
 
         foreach (var e in loadout.items)
         {

@@ -55,6 +55,8 @@ public class ItemSO : ScriptableObject
     public float staminaRestore;
     [Tooltip("Giá bán mỗi vật phẩm khi bán.")]
     public int sellPrice;
+    [Tooltip("Giá mua mỗi vật phẩm khi mua ở cửa hàng.")]
+    public int buyPrice;
     [Header("Boots Settings")]
     [Tooltip("Tăng thể lực tối đa khi mang giày.")]
     public float staminaMaxBonus;
