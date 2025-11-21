@@ -139,7 +139,7 @@ MonoBehaviour:
   maxHp: 16
   hitFxPrefab: {fileID: 7596021485817364188, guid: a626acb63cd20584ab7fee99a34cb4db, type: 3}
   breakFxPrefab: {fileID: 7596021485817364188, guid: a626acb63cd20584ab7fee99a34cb4db, type: 3}
-  dropOnBreak: {fileID: 0}
+  dropOnBreak: {fileID: 1717255892388951583}
 --- !u!114 &6555091232211887035
 MonoBehaviour:
   m_ObjectHideFlags: 0
