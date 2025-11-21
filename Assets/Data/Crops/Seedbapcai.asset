@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
   m_Name: Seedbapcai
   m_EditorClassIdentifier: 
-  id: 
-  icon: {fileID: 0}
-  seedData: {fileID: 0}
-  category: 0
+  id: "h\u1EA1t b\u1EAFp c\u1EA3i"
+  icon: {fileID: 1611469408, guid: 2692898bf9b5f924abe32a6a5c11bbc4, type: 3}
+  seedData: {fileID: 11400000, guid: 285149140e4f14d46b74146d815ff64a, type: 2}
+  category: 5
   equipSlot: 0
-  stackable: 0
+  stackable: 1
   weaponType: 0
   toolType: 0
   dropChanceBonusPercent: 0

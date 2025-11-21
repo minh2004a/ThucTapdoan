@@ -39,7 +39,7 @@ MonoBehaviour:
     amount: 1
     equip: 0
     hotbarSlot: 4
-  - item: {fileID: 11400000, guid: 2e60ed2a2ebf9b444ac5353bda449be1, type: 2}
+  - item: {fileID: 11400000, guid: 359eb8dd852a30e409f76511971a43b9, type: 2}
     itemKey: 
     amount: 99
     equip: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
     amount: 1
     equip: 0
     hotbarSlot: 6
-  - item: {fileID: 11400000, guid: 86babdcd762c946438ec4a6c45a7f7ad, type: 2}
+  - item: {fileID: 11400000, guid: 542a16004ea20af4f9fcd4a6b3ddcea1, type: 2}
     itemKey: 
     amount: 1
     equip: 0

@@ -12,24 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610536775053218429afe582909fbba6, type: 3}
   m_Name: BapCai
   m_EditorClassIdentifier: 
-  seedId: 
-  stagePrefabs: []
+  seedId: "B\u1EAFp c\u1EA3i"
+  stagePrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   seasonalStagePrefabs: []
-  stageDays: 
+  stageDays: 0200000002000000020000000200000002000000
   growthMode: 0
-  stageAdvanceChance: []
-  stageDayRange: []
+  stageAdvanceChance:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  stageDayRange:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   blockCheckRadius: 0.35
   blockMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131328
   snapToGrid: 1
   gridSize: 1
-  requiresTilledSoil: 0
-  requiresWatering: 0
-  harvestMethod: 0
-  harvestItem: {fileID: 0}
+  requiresTilledSoil: 1
+  requiresWatering: 1
+  harvestMethod: 1
+  harvestItem: {fileID: 11400000, guid: 70561e2ae64319b4da2f1471749e34fe, type: 2}
   harvestItemCount: 1
   destroyOnHarvest: 1
-  allowedSeasons: 
+  allowedSeasons: 00000000
   surviveOutOfSeason: 0
