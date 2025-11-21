@@ -12,24 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610536775053218429afe582909fbba6, type: 3}
   m_Name: OtHien
   m_EditorClassIdentifier: 
-  seedId: 
-  stagePrefabs: []
+  seedId: "\u1EDAt hi\u1EC3m"
+  stagePrefabs:
+  - {fileID: 6244043774494535649, guid: 3e13ac24a6988d54f9aa5b7c2726dba7, type: 3}
+  - {fileID: 2323375609277650903, guid: 7e7ca83a2d45ec6429811ebf3bc7c661, type: 3}
+  - {fileID: 5372054365797476958, guid: 9c314cb1c45575a4e809b445117a0899, type: 3}
+  - {fileID: 706485875659515705, guid: 02c85f4e765da0d49a441b3e6be02fbe, type: 3}
+  - {fileID: 978129465043079448, guid: 4c4f404294219b7499ec684d14acc354, type: 3}
+  - {fileID: 6188825745070644431, guid: f832dafd5e2589d4380fe34bacf924dc, type: 3}
+  - {fileID: 5566411937174423061, guid: 7fdec3d6a74309f4bb19f6dac339026f, type: 3}
   seasonalStagePrefabs: []
-  stageDays: 
+  stageDays: 01000000010000000200000002000000020000000200000003000000
   growthMode: 0
-  stageAdvanceChance: []
-  stageDayRange: []
+  stageAdvanceChance:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  stageDayRange:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   blockCheckRadius: 0.35
   blockMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131328
   snapToGrid: 1
   gridSize: 1
-  requiresTilledSoil: 0
-  requiresWatering: 0
-  harvestMethod: 0
-  harvestItem: {fileID: 0}
+  requiresTilledSoil: 1
+  requiresWatering: 1
+  harvestMethod: 2
+  harvestItem: {fileID: 11400000, guid: 74a41e0631e8a4e499eda6a05229e457, type: 2}
   harvestItemCount: 1
   destroyOnHarvest: 1
-  allowedSeasons: 
+  allowedSeasons: 01000000
   surviveOutOfSeason: 0
