@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1453bcd7fa32341bb544cb880f479b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swayRoot: {fileID: 0}
+  swayRoot: {fileID: 8066846574221459507}
   playerTag: Player
   maxAngle: 6
   swayDuration: 1
