@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
   m_Name: HatDauTay
   m_EditorClassIdentifier: 
-  id: DauTay
+  id: "D\xE2u t\xE2y"
   icon: {fileID: -1204345679, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
+  displayName: 
+  baseDescription: 
   seedData: {fileID: 11400000, guid: db79f31e44e8dc64aa4fd25e6691f0eb, type: 2}
   category: 5
+  equipSlot: 0
   stackable: 1
   weaponType: 0
   toolType: 0
+  dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  buyPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1

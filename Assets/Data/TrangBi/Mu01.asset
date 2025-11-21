@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
   m_Name: Mu01
   m_EditorClassIdentifier: 
-  id: "M\u0169 G\u1ED7"
+  id: "M\u0169 th\xF4"
   icon: {fileID: -6314522, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
+  displayName: "M\u0169 th\xF4"
+  baseDescription: "N\xF3 s\u1EBD gi\xFAp b\u1EA1n g\u1EB7p may m\u1EAFn \u0111\u1EA5y!!!"
   seedData: {fileID: 0}
   category: 6
   equipSlot: 1
@@ -24,6 +26,7 @@ MonoBehaviour:
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 100
+  buyPrice: 0
   staminaMaxBonus: 0
   healthMaxBonus: 0
   staminaRegenBonus: 0

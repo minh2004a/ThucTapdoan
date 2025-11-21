@@ -12,13 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
   m_Name: HoeWood
   m_EditorClassIdentifier: 
-  id: HoeWood
+  id: "Cu\u1ED1c g\u1ED7"
   icon: {fileID: 1508434368, guid: 791eb7bc0f0ffb64fb4797b58f8d2767, type: 3}
+  displayName: 
+  baseDescription: 
   seedData: {fileID: 0}
   category: 0
+  equipSlot: 0
   stackable: 0
   weaponType: 0
   toolType: 2
+  dropChanceBonusPercent: 0
+  healthRestore: 0
+  staminaRestore: 0
+  sellPrice: 0
+  buyPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1

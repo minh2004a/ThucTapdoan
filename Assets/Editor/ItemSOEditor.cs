@@ -34,10 +34,14 @@ public class ItemSOEditor : Editor
     SerializedProperty staminaRegenBonusProp;
     SerializedProperty backpackSlotBonusProp;
     SerializedProperty healthMaxBonusProp;
+    SerializedProperty displayNameProp;
+    SerializedProperty baseDescriptionProp;
     void OnEnable()
     {
         idProp = serializedObject.FindProperty("id");
         iconProp = serializedObject.FindProperty("icon");
+        displayNameProp = serializedObject.FindProperty("displayName");
+        baseDescriptionProp = serializedObject.FindProperty("baseDescription");
         seedDataProp = serializedObject.FindProperty("seedData");
         categoryProp = serializedObject.FindProperty("category");
         stackableProp = serializedObject.FindProperty("stackable");
@@ -73,8 +77,9 @@ public class ItemSOEditor : Editor
 
         EditorGUILayout.PropertyField(idProp);
         EditorGUILayout.PropertyField(iconProp);
+        EditorGUILayout.PropertyField(displayNameProp, new GUIContent("Display Name"));
+        EditorGUILayout.PropertyField(baseDescriptionProp, new GUIContent("Description"));
         EditorGUILayout.Space();
-
         EditorGUILayout.PropertyField(categoryProp);
         var category = (ItemCategory)categoryProp.enumValueIndex;
 

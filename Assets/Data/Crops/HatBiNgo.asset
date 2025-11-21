@@ -17,7 +17,7 @@ MonoBehaviour:
   seedData: {fileID: 11400000, guid: 02e4d6ce0a719e24e84ff1a5ddbe52fc, type: 2}
   category: 5
   equipSlot: 0
-  stackable: 0
+  stackable: 1
   weaponType: 0
   toolType: 0
   dropChanceBonusPercent: 0

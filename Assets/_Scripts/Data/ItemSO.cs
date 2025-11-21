@@ -38,6 +38,9 @@ public class ItemSO : ScriptableObject
 {
     public string id;
     public Sprite icon;
+     [Header("UI Info")]
+    public string displayName;   // tên để hiện trên UI
+    [TextArea] public string baseDescription; // mô tả cơ bản
     public SeedSO seedData; // dùng khi type == Seed
     public ItemCategory category;
     [Header("Equipment Settings")]

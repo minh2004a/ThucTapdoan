@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMoney: 500
   items:
-  - item: {fileID: 11400000, guid: 452b8325a32bbf94fba514e316bf250e, type: 2}
+  - item: {fileID: 11400000, guid: ad665b8f02095aa499776dd97f711889, type: 2}
     itemKey: 
     amount: 1
     equip: 0
     hotbarSlot: 0
-  - item: {fileID: 11400000, guid: 2e60ed2a2ebf9b444ac5353bda449be1, type: 2}
+  - item: {fileID: 11400000, guid: aed98ae048311d84bbc8ddbed812de22, type: 2}
     itemKey: 
     amount: 1
     equip: 0
     hotbarSlot: 1
-  - item: {fileID: 11400000, guid: 6b6153a7d6c8b714d82a0bb794a7cefd, type: 2}
+  - item: {fileID: 11400000, guid: ef73d3adaf0c9b44f853f0fe0135c8db, type: 2}
     itemKey: 
     amount: 1
     equip: 0
     hotbarSlot: 2
-  - item: {fileID: 11400000, guid: 68578968ed83d694a91d1b28c2f8096a, type: 2}
+  - item: {fileID: 11400000, guid: 86babdcd762c946438ec4a6c45a7f7ad, type: 2}
     itemKey: 
     amount: 99
     equip: 0
     hotbarSlot: 3
-  - item: {fileID: 11400000, guid: 2343b77c4ff0661439282b5be616f38e, type: 2}
+  - item: {fileID: 11400000, guid: 3871afd636fbcf14c9bb9efe35b7b2fa, type: 2}
     itemKey: 
     amount: 1
     equip: 0
@@ -44,12 +44,12 @@ MonoBehaviour:
     amount: 99
     equip: 0
     hotbarSlot: 5
-  - item: {fileID: 11400000, guid: 003a037069db267468c06502c480fd5e, type: 2}
+  - item: {fileID: 11400000, guid: 581cb79b7b7443b4baaf2d03e9af133b, type: 2}
     itemKey: 
     amount: 1
     equip: 0
     hotbarSlot: 6
-  - item: {fileID: 11400000, guid: 542a16004ea20af4f9fcd4a6b3ddcea1, type: 2}
+  - item: {fileID: 11400000, guid: f1e0feec8d9ecd047b07ac04b11401ee, type: 2}
     itemKey: 
     amount: 1
     equip: 0

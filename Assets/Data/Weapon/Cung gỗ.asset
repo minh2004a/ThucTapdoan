@@ -10,18 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: RowLv1
+  m_Name: "Cung g\u1ED7"
   m_EditorClassIdentifier: 
-  id: 
+  id: "Cung g\u1ED7"
   icon: {fileID: -312610671, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
+  displayName: 
+  baseDescription: 
   seedData: {fileID: 0}
   category: 1
+  equipSlot: 0
   stackable: 0
   weaponType: 2
   toolType: 0
+  dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  buyPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1

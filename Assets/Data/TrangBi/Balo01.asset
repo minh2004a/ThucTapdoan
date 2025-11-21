@@ -12,18 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
   m_Name: Balo01
   m_EditorClassIdentifier: 
-  id: 'Balo '
+  id: "Balo th\xF4"
   icon: {fileID: 826784386, guid: 31504eb8b38760e438e56464a1faaea2, type: 3}
+  displayName: "Balo th\xF4"
+  baseDescription: "Gi\xFAp b\u1EA1n m\u1EDF r\u1ED9ng h\xE0nh trang khi mang!!!"
   seedData: {fileID: 0}
   category: 6
   equipSlot: 7
   stackable: 0
   weaponType: 0
   toolType: 0
+  dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  buyPrice: 0
   staminaMaxBonus: 0
+  healthMaxBonus: 0
   staminaRegenBonus: 0
   backpackSlotBonus: 4
   toolRangeTiles: 1

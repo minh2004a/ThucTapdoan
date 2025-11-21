@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610536775053218429afe582909fbba6, type: 3}
   m_Name: DauTay
   m_EditorClassIdentifier: 
-  seedId: DauTay
+  seedId: "D\xE2u t\xE2y"
   stagePrefabs:
   - {fileID: 8366243954199767791, guid: d30ab8b0cd9f8fa479d89955ab8d4f97, type: 3}
   - {fileID: 1366832044567619749, guid: cf1217707361b93479c911e4ef7c52e8, type: 3}

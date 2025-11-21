@@ -6,7 +6,8 @@ public class InventoryBookUI : MonoBehaviour
     [SerializeField] PlayerInventory inv;
     [SerializeField] Transform slotsParent;      // = SlotsArea
     [SerializeField] InventorySlotUI slotPrefab;
-
+    [Header("Item Info Panel")]
+    [SerializeField] ItemInfoUI infoPanel;   // <-- thêm dòng này
     InventorySlotUI[] slots;
 
     void Awake()
@@ -64,10 +65,11 @@ public class InventoryBookUI : MonoBehaviour
 
     public void OnSlotClicked(int index)
     {
-        Debug.Log($"Clicked bag slot {index}");
-        // sau này show info bên phải, drag drop,... ở đây
-    }
+        if (inv == null || infoPanel == null) return;
 
+        var stack = inv.bag[index];
+        infoPanel.ShowItem(stack.item);   // hiện info item trong túi
+    }
     public void RequestMoveOrMergeBag(int from, int to)
     {
         if (!inv) return;

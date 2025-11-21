@@ -8,7 +8,8 @@ public class HotbarUI : MonoBehaviour
     [SerializeField] PlayerInventory inv;
     [SerializeField] HotbarSlotUI[] slots;
     PlayerUseConsumable consumableUser;
-
+    [Header("Item Info Panel")]
+    [SerializeField] ItemInfoUI infoPanel;   // <--- thêm
     void Awake()
     {
         if (!inv) inv = FindObjectOfType<PlayerInventory>();
@@ -31,11 +32,31 @@ public class HotbarUI : MonoBehaviour
         inv.SelectedChanged -= OnChanged;
         inv.HotbarChanged -= OnChanged;
     }
-    void OnChanged(int _) { Refresh(); }
-    void OnChanged() { Refresh(); }
+    void OnChanged(int _) => OnChanged();
 
-    public void OnClickSlot(int i) { inv?.SelectSlot(i); }
+    void OnChanged()
+    {
+        Refresh();
 
+        // cập nhật info theo ô đang được chọn
+        if (!inv || infoPanel == null) return;
+
+        int i = inv.selected;
+        if (i < 0 || i >= inv.hotbar.Length) return;
+
+        var st = inv.hotbar[i];
+        infoPanel.ShowItem(st.item);
+    }
+
+    // click vào ô hotbar
+    public void OnClickSlot(int i)
+    {
+        inv?.SelectSlot(i);
+        // Không gọi ShowItem ở đây,
+        // vì SelectSlot sẽ bắn event SelectedChanged → OnChanged() chạy, tự update info.
+    }
+
+    // click chuột phải lên ô hotbar để dùng vật phẩm tiêu hao
     public void OnRightClickSlot(int i)
     {
         if (!inv) return;

@@ -10,15 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: SwordLv1
+  m_Name: "Ki\u1EBFm g\u1ED7"
   m_EditorClassIdentifier: 
-  id: 
+  id: "Ki\u1EBFm g\u1ED7"
   icon: {fileID: 1044218959, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
+  displayName: "Ki\u1EBFm g\u1ED7"
+  baseDescription: "\u0110\xE2y l\xE0 v\u0169 kh\xED s\u1EAFt b\xE9n n\xEAn h\xE3y
+    c\u1EA9n th\u1EADn!!!"
   seedData: {fileID: 0}
   category: 1
-  toolType: 0
+  equipSlot: 0
   stackable: 0
   weaponType: 1
+  toolType: 0
+  dropChanceBonusPercent: 0
+  healthRestore: 0
+  staminaRestore: 0
+  sellPrice: 0
+  buyPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
+  toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1
   hitboxYOffset: 0.4

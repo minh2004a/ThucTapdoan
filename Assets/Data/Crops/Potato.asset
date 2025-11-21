@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
   m_Name: Potato
   m_EditorClassIdentifier: 
-  displayName: 
-  description: 
-  id: Potato
+  id: "Khoai t\xE2y"
   icon: {fileID: -851109060, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
+  displayName: 
+  baseDescription: 
   seedData: {fileID: 0}
   category: 7
   equipSlot: 0
