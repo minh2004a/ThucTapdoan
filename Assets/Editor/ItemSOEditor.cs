@@ -27,6 +27,7 @@ public class ItemSOEditor : Editor
     SerializedProperty healthRestoreProp;
     SerializedProperty staminaRestoreProp;
     SerializedProperty sellPriceProp;
+    SerializedProperty buyPriceProp;
     SerializedProperty equipSlotProp;
     SerializedProperty dropChanceBonusPercentProp;
     SerializedProperty staminaMaxBonusProp;
@@ -57,6 +58,7 @@ public class ItemSOEditor : Editor
         healthRestoreProp = serializedObject.FindProperty("healthRestore");
         staminaRestoreProp = serializedObject.FindProperty("staminaRestore");
         sellPriceProp = serializedObject.FindProperty("sellPrice");
+        buyPriceProp = serializedObject.FindProperty("buyPrice");
         equipSlotProp = serializedObject.FindProperty("equipSlot");
         dropChanceBonusPercentProp = serializedObject.FindProperty( "dropChanceBonusPercent" );
         staminaMaxBonusProp = serializedObject.FindProperty("staminaMaxBonus");
@@ -87,6 +89,9 @@ public class ItemSOEditor : Editor
             case ItemCategory.Consumable:
                 DrawConsumableFields();
                 break;
+                case ItemCategory.FarmProduct:
+                DrawFarmProductFields();
+                break;
             case ItemCategory.Seed:
                 DrawSeedFields();
                 break;
@@ -112,7 +117,7 @@ public class ItemSOEditor : Editor
         EditorGUILayout.PropertyField(hitboxScaleProp);
         EditorGUILayout.PropertyField(hitboxYOffsetProp);
         EditorGUILayout.PropertyField(hitboxForwardProp);
-
+        DrawPriceFields();
         var weaponType = (WeaponType)weaponTypeProp.enumValueIndex;
         if (weaponType == WeaponType.Bow)
         {
@@ -145,6 +150,7 @@ public class ItemSOEditor : Editor
         {
             EditorGUILayout.PropertyField(toolRangeTilesProp);
         }
+        DrawPriceFields();
     }
 
     void DrawSeedFields()
@@ -165,7 +171,15 @@ public class ItemSOEditor : Editor
         EditorGUILayout.LabelField("Consumable Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(healthRestoreProp, new GUIContent("Health Restore"));
         EditorGUILayout.PropertyField(staminaRestoreProp, new GUIContent("Stamina Restore"));
-        EditorGUILayout.PropertyField(sellPriceProp, new GUIContent("Sell Price"));
+        DrawPriceFields();
+    }
+    void DrawFarmProductFields()
+    {
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Farm Product Settings", EditorStyles.boldLabel);
+        EditorGUILayout.HelpBox("Nông sản có thể được tiêu thụ để hồi máu/thể lực và vẫn có thể xếp chồng, bán được.", MessageType.Info);
+        EditorGUILayout.PropertyField(healthRestoreProp, new GUIContent("Health Restore"));
+        EditorGUILayout.PropertyField(staminaRestoreProp, new GUIContent("Stamina Restore"));
         DrawStackableFields();
     }
     void DrawStackableFields()
@@ -179,7 +193,7 @@ public class ItemSOEditor : Editor
             EditorGUILayout.PropertyField(maxStackProp);
             EditorGUI.indentLevel--;
         }
-        EditorGUILayout.PropertyField(sellPriceProp, new GUIContent("Sell Price"));
+        DrawPriceFields();
     }
     void DrawEquipmentFields()
     {
@@ -207,7 +221,12 @@ public class ItemSOEditor : Editor
         {
             EditorGUILayout.PropertyField(healthMaxBonusProp, new GUIContent("Health Max Bonus"));
         }
+        DrawPriceFields();
+    }
         // cho phép chỉnh giá bán
+        void DrawPriceFields()
+    {
         EditorGUILayout.PropertyField(sellPriceProp, new GUIContent("Sell Price"));
+        EditorGUILayout.PropertyField(buyPriceProp, new GUIContent("Buy Price"));
     }
 }

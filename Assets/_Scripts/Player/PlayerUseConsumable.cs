@@ -44,7 +44,7 @@ public class PlayerUseConsumable : MonoBehaviour
 
         var stack = inventory.hotbar[slot];
         var item = stack.item;
-        if (!item || item.category != ItemCategory.Consumable) return false;
+        if (!IsConsumableItem(item)) return false;
 
         if (confirmUI)
         {
@@ -89,6 +89,10 @@ public class PlayerUseConsumable : MonoBehaviour
     {
         pendingItem = null;
         pendingSlot = -1;
+    }
+    bool IsConsumableItem(ItemSO item)
+    {
+        return item && item.IsConsumableType();
     }
 
     bool ApplyEffects(ItemSO item)

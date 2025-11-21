@@ -4,7 +4,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 // Dữ liệu ScriptableObject cho một loại vật phẩm trong trò chơi
-public enum ItemCategory { Tool, Weapon, Resource, Consumable, Minerals, Seed,Equipment } // thêm loại
+public enum ItemCategory { Tool, Weapon, Resource, Consumable, Minerals, Seed, Equipment, FarmProduct } // thêm loại
 public enum WeaponType { None, Sword, Bow }
 public enum EquipSlotType
 {
@@ -95,4 +95,8 @@ public class ItemSO : ScriptableObject
 
     public float projectileMaxDistance = 8f;   // tầm bắn
     public GameObject projectileHitVFX;        // prefab hiệu ứng trúng
+    public bool IsConsumableType()
+    {
+        return category == ItemCategory.Consumable || category == ItemCategory.FarmProduct;
+    }
 }

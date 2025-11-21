@@ -10,18 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: Potato
+  m_Name: Carrot
   m_EditorClassIdentifier: 
-  id: Potato
-  icon: {fileID: -851109060, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
+  displayName: 
+  description: 
+  id: Carrot
+  icon: {fileID: -52693575, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
   seedData: {fileID: 0}
-  category: 3
+  category: 7
+  equipSlot: 0
   stackable: 1
   weaponType: 0
   toolType: 0
-  healthRestore: 50
-  staminaRestore: 100
-  sellPrice: 0
+  dropChanceBonusPercent: 0
+  healthRestore: 10
+  staminaRestore: 25
+  sellPrice: 110
+  buyPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1

@@ -15,13 +15,20 @@ MonoBehaviour:
   id: "D\xE2u T\xE2y"
   icon: {fileID: 1818305310, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
   seedData: {fileID: 0}
-  category: 3
+  category: 7
+  equipSlot: 0
   stackable: 1
   weaponType: 0
   toolType: 0
+  dropChanceBonusPercent: 0
   healthRestore: 5
   staminaRestore: 20
   sellPrice: 70
+  buyPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1
