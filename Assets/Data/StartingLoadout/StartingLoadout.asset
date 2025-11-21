@@ -29,7 +29,7 @@ MonoBehaviour:
     amount: 1
     equip: 0
     hotbarSlot: 2
-  - item: {fileID: 11400000, guid: a37599950768ac746a01b3ffbe6a9a76, type: 2}
+  - item: {fileID: 11400000, guid: 68578968ed83d694a91d1b28c2f8096a, type: 2}
     itemKey: 
     amount: 99
     equip: 0

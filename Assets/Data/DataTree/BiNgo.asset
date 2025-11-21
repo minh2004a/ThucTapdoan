@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 610536775053218429afe582909fbba6, type: 3}
-  m_Name: BapCai
+  m_Name: BiNgo
   m_EditorClassIdentifier: 
-  seedId: "B\u1EAFp c\u1EA3i"
+  seedId: "B\xED ng\xF4"
   stagePrefabs:
-  - {fileID: 152562694168956321, guid: 9eb182805e72c8346b1705983bb670ed, type: 3}
-  - {fileID: 5704197999804498457, guid: e60b4c7359d780240b5a494e65d24e18, type: 3}
-  - {fileID: 5831219811407410654, guid: 291fd7994434fa34bbba8e8b6d4bdd53, type: 3}
-  - {fileID: 276189838524107297, guid: eddeedbb9b74883469de5c62c603adb5, type: 3}
-  - {fileID: 1668008982743470592, guid: bf3e8aca2bb7dac40ae7b5ce62984e93, type: 3}
+  - {fileID: 1816671012269553921, guid: bcd06321929d1db40a5ec6ba36c470d2, type: 3}
+  - {fileID: 7716246485047011583, guid: 87b2cbda8624ae44b99bb6a0390c3404, type: 3}
+  - {fileID: 5866174724800408998, guid: 1efa04cf2f2a42a4fbbcb1dd73139c93, type: 3}
+  - {fileID: 2169149060170841045, guid: caff8b5ccc2558e40a0fdaf6584a42c9, type: 3}
+  - {fileID: 6376701062326227207, guid: 41c9042cb759aed47a6b76cec9cad612, type: 3}
   seasonalStagePrefabs: []
-  stageDays: 0200000002000000020000000200000002000000
+  stageDays: 0200000002000000030000000300000003000000
   growthMode: 0
   stageAdvanceChance:
   - 0
@@ -43,8 +43,8 @@ MonoBehaviour:
   requiresTilledSoil: 1
   requiresWatering: 1
   harvestMethod: 1
-  harvestItem: {fileID: 11400000, guid: 70561e2ae64319b4da2f1471749e34fe, type: 2}
+  harvestItem: {fileID: 11400000, guid: 834588a770d70364ab28b17957c1790e, type: 2}
   harvestItemCount: 1
   destroyOnHarvest: 1
-  allowedSeasons: 00000000
+  allowedSeasons: 02000000
   surviveOutOfSeason: 0
