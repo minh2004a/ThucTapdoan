@@ -10,18 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: SeedMahogany
+  m_Name: Mu02
   m_EditorClassIdentifier: 
-  id: SeedMahogany
-  icon: {fileID: 1329791312, guid: 0b0cebf61d73780428eee4d6577587eb, type: 3}
-  seedData: {fileID: 11400000, guid: f5472710a9f139b4aa0f600cb4a04f0d, type: 2}
-  category: 5
-  stackable: 1
+  id: "M\u0169 \u0111\u1ED3ng"
+  icon: {fileID: 1468494638, guid: c63bd04b0be259c4bbccd725efe1f7e7, type: 3}
+  displayName: "M\u0169 \u0111\u1ED3ng"
+  baseDescription: "N\xF3 s\u1EBD gi\xFAp b\u1EA1n g\u1EB7p may m\u1EAFn \u0111\u1EA5y!!!"
+  seedData: {fileID: 0}
+  category: 6
+  equipSlot: 1
+  stackable: 0
   weaponType: 0
   toolType: 0
+  dropChanceBonusPercent: 100
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  buyPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1

@@ -1754,6 +1754,7 @@ MonoBehaviour:
   - {fileID: 45225200}
   - {fileID: 371212592}
   - {fileID: 991931102}
+  infoPanel: {fileID: 610327503}
 --- !u!1001 &315910263
 PrefabInstance:
   m_ObjectHideFlags: 0

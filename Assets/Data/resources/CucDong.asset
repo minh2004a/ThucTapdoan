@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: "\u0110\u1ED3ng"
   icon: {fileID: 963985233, guid: c63bd04b0be259c4bbccd725efe1f7e7, type: 3}
+  displayName: "\u0110\u1ED3ng th\xF4"
+  baseDescription: "Gi\xFAp b\u1EA1n n\xE2ng c\u1EA5p"
   seedData: {fileID: 0}
   category: 2
   equipSlot: 0
@@ -24,6 +26,7 @@ MonoBehaviour:
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  buyPrice: 0
   staminaMaxBonus: 0
   healthMaxBonus: 0
   staminaRegenBonus: 0

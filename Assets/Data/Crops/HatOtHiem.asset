@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: Watering
+  m_Name: HatOtHiem
   m_EditorClassIdentifier: 
-  id: "B\xECnh n\u01B0\u1EDBc"
-  icon: {fileID: 1265783944, guid: 791eb7bc0f0ffb64fb4797b58f8d2767, type: 3}
-  displayName: 
-  baseDescription: 
-  seedData: {fileID: 0}
-  category: 0
+  id: "H\u1EA1t \u1EDBt hi\u1EC3n"
+  icon: {fileID: 1594054994, guid: 2692898bf9b5f924abe32a6a5c11bbc4, type: 3}
+  displayName: "H\u1EA1t \u1EDBt hi\u1EC3m"
+  baseDescription: "Ch\u1EC9 c\xF3 th\u1EC3 tr\u1ED3ng m\xF9a thu"
+  seedData: {fileID: 11400000, guid: f1ac6a368c42b5449ba37078c0e8c96f, type: 2}
+  category: 5
   equipSlot: 0
-  stackable: 0
+  stackable: 1
   weaponType: 0
-  toolType: 5
+  toolType: 0
   dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
@@ -35,10 +35,10 @@ MonoBehaviour:
   maxStack: 999
   hitboxScale: 1
   hitboxYOffset: 0
-  hitboxForward: 0.7
+  hitboxForward: -1
   Dame: 1
-  range: 0.35
-  cooldown: 0.45
+  range: 1
+  cooldown: 0.2
   projectilePrefab: {fileID: 0}
   projectileSpeed: 10
   projectileMaxDistance: 8

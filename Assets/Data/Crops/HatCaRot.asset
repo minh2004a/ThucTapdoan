@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: Potato
+  m_Name: HatCaRot
   m_EditorClassIdentifier: 
-  id: "Khoai t\xE2y"
-  icon: {fileID: -851109060, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
-  displayName: 
-  baseDescription: 
-  seedData: {fileID: 0}
-  category: 7
+  id: "H\u1EA1t c\xE0 r\u1ED1t"
+  icon: {fileID: 1004348259, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
+  displayName: "H\u1EA1t gi\u1ED1ng"
+  baseDescription: "Ch\u1EC9 c\xF3 th\u1EC3 tr\u1ED3ng m\xF9a xu\xE2n"
+  seedData: {fileID: 11400000, guid: 1c202f5408a98964ab8607f09901eab9, type: 2}
+  category: 5
   equipSlot: 0
   stackable: 1
   weaponType: 0
   toolType: 0
   dropChanceBonusPercent: 0
-  healthRestore: 50
-  staminaRestore: 100
+  healthRestore: 0
+  staminaRestore: 0
   sellPrice: 0
   buyPrice: 0
   staminaMaxBonus: 0

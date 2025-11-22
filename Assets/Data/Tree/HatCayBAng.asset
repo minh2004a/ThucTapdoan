@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: SeedMaple
+  m_Name: HatCayBAng
   m_EditorClassIdentifier: 
-  id: "H\u1EA1t gi\u1ED1ng Maple"
-  icon: {fileID: -2000527803, guid: 6a09041d4e416624e91ce9473a68511d, type: 3}
-  seedData: {fileID: 11400000, guid: 4da34836265d34742905ffc5a7dbf025, type: 2}
+  id: SeedMahogany
+  icon: {fileID: 1329791312, guid: 0b0cebf61d73780428eee4d6577587eb, type: 3}
+  displayName: "H\u1EA1t c\xE2y b\xE0ng"
+  baseDescription: "N\xF3 gi\xFAp b\u1EA1n c\xF3 g\u1ED7 \u0111\u1EA5y"
+  seedData: {fileID: 11400000, guid: f5472710a9f139b4aa0f600cb4a04f0d, type: 2}
   category: 5
   equipSlot: 0
   stackable: 1
   weaponType: 0
   toolType: 0
+  dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  buyPrice: 0
   staminaMaxBonus: 0
   healthMaxBonus: 0
   staminaRegenBonus: 0

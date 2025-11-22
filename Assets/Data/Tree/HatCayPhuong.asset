@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: Seedbapcai
+  m_Name: HatCayPhuong
   m_EditorClassIdentifier: 
-  id: "H\u1EA1t b\u1EAFp c\u1EA3i"
-  icon: {fileID: 1611469408, guid: 2692898bf9b5f924abe32a6a5c11bbc4, type: 3}
-  displayName: 
-  baseDescription: 
-  seedData: {fileID: 11400000, guid: 285149140e4f14d46b74146d815ff64a, type: 2}
+  id: "H\u1EA1t gi\u1ED1ng Maple"
+  icon: {fileID: -2000527803, guid: 6a09041d4e416624e91ce9473a68511d, type: 3}
+  displayName: "H\u1EA1t c\xE2y ph\u01B0\u1EE3ng"
+  baseDescription: "N\xF3 gi\xFAp b\u1EA1n c\xF3 g\u1ED7 \u0111\u1EA5y"
+  seedData: {fileID: 11400000, guid: 4da34836265d34742905ffc5a7dbf025, type: 2}
   category: 5
   equipSlot: 0
   stackable: 1

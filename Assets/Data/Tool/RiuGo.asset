@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: HatBiNgo
+  m_Name: RiuGo
   m_EditorClassIdentifier: 
-  id: "H\u1EA1t B\xED Ng\xF4"
-  icon: {fileID: -1315813711, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
-  displayName: "H\u1EA1t b\xED ng\xF4"
-  baseDescription: "Ch\u1EC9 c\xF3 th\u1EC3 tr\u1ED3ng m\xF9a h\u1EA1"
-  seedData: {fileID: 11400000, guid: 02e4d6ce0a719e24e84ff1a5ddbe52fc, type: 2}
-  category: 5
+  id: "R\xECu g\u1ED7"
+  icon: {fileID: 1966405731, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
+  displayName: "R\xECu g\u1ED7"
+  baseDescription: "Gi\xFAp b\u1EA1n ch\u1EB7t c\xE2y"
+  seedData: {fileID: 0}
+  category: 0
   equipSlot: 0
-  stackable: 1
+  stackable: 0
   weaponType: 0
-  toolType: 0
+  toolType: 1
   dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
@@ -34,11 +34,11 @@ MonoBehaviour:
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1
-  hitboxYOffset: 0
-  hitboxForward: -1
-  Dame: 1
-  range: 1
-  cooldown: 0.2
+  hitboxYOffset: 0.1
+  hitboxForward: 0.7
+  Dame: 2
+  range: 0.25
+  cooldown: 0.4
   projectilePrefab: {fileID: 0}
   projectileSpeed: 10
   projectileMaxDistance: 8

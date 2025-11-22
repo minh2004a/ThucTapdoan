@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: SeedOtHien
+  m_Name: CuocGo
   m_EditorClassIdentifier: 
-  id: "H\u1EA1t \u1EDBt hi\u1EC3n"
-  icon: {fileID: 1594054994, guid: 2692898bf9b5f924abe32a6a5c11bbc4, type: 3}
-  seedData: {fileID: 11400000, guid: f1ac6a368c42b5449ba37078c0e8c96f, type: 2}
-  category: 5
+  id: "Cu\u1ED1c g\u1ED7"
+  icon: {fileID: 1508434368, guid: 791eb7bc0f0ffb64fb4797b58f8d2767, type: 3}
+  displayName: "Cu\u1ED1c G\u1ED7"
+  baseDescription: "Gi\xFAp b\u1EA1n x\u1EDBi \u0111\u1EA5t"
+  seedData: {fileID: 0}
+  category: 0
   equipSlot: 0
-  stackable: 1
+  stackable: 0
   weaponType: 0
-  toolType: 0
+  toolType: 2
   dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
@@ -32,11 +34,11 @@ MonoBehaviour:
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1
-  hitboxYOffset: 0
-  hitboxForward: -1
+  hitboxYOffset: 0.2
+  hitboxForward: 0.8
   Dame: 1
-  range: 1
-  cooldown: 0.2
+  range: 0.35
+  cooldown: 0.4
   projectilePrefab: {fileID: 0}
   projectileSpeed: 10
   projectileMaxDistance: 8

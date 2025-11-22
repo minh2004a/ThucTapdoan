@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: "B\xED Ng\xF4"
   icon: {fileID: -1674511991, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
+  displayName: "B\xED ng\xF4"
+  baseDescription: "C\xF3 th\u1EC3 \u0103n \u0111\u1EC3 h\u1ED3i m\xE1u v\xE0 th\u1EC3
+    l\u1EF1c"
   seedData: {fileID: 0}
   category: 7
   equipSlot: 0

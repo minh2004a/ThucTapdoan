@@ -5,7 +5,8 @@ public class EquipmentUI : MonoBehaviour
     [SerializeField] PlayerInventory inv;
     [SerializeField] PlayerEquipment equip;
     [SerializeField] EquipmentSlotUI[] slots;
-
+    [Header("Item Info Panel")]
+    [SerializeField] ItemInfoUI infoPanel;
     public static EquipmentUI Instance { get; private set; }
 
     void Awake()
@@ -56,6 +57,13 @@ public class EquipmentUI : MonoBehaviour
                 break;
             }
         }
+    }
+    public void ShowInfo(EquipSlotType slot)
+    {
+        if (equip == null || infoPanel == null) return;
+
+        var item = equip.Get(slot);
+        infoPanel.ShowItem(item);
     }
 
     bool CanEquip(ItemSO item, EquipSlotType slot)

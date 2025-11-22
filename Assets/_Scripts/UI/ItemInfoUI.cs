@@ -70,7 +70,7 @@ public class ItemInfoUI : MonoBehaviour
             if (item.category == ItemCategory.Equipment)
             {
                 if (item.dropChanceBonusPercent > 0)
-                    sb.AppendLine($"• +{item.dropChanceBonusPercent}% may mắn rơi đồ");
+                    sb.AppendLine($"• +{item.dropChanceBonusPercent}% may mắn");
 
                 if (item.staminaMaxBonus > 0)
                     sb.AppendLine($"• +{item.staminaMaxBonus} thể lực tối đa");
@@ -79,7 +79,7 @@ public class ItemInfoUI : MonoBehaviour
                     sb.AppendLine($"• +{item.healthMaxBonus} máu tối đa");
 
                 if (item.staminaRegenBonus > 0)
-                    sb.AppendLine($"• +{item.staminaRegenBonus}hồi thể lực/giờ ");
+                    sb.AppendLine($"• +{item.staminaRegenBonus} hồi thể lực/giờ");
 
                 if (item.backpackSlotBonus > 0)
                     sb.AppendLine($"• Mở thêm {item.backpackSlotBonus} ô túi");
@@ -94,9 +94,31 @@ public class ItemInfoUI : MonoBehaviour
                 if (item.staminaRestore > 0)
                     sb.AppendLine($"• Hồi {item.staminaRestore} thể lực");
             }
+            // ====== WEAPON: hiển thị sát thương ======
+            if (item.category == ItemCategory.Weapon && item.Dame > 0)
+            {
+                sb.AppendLine($"• {item.Dame} sát thương");
+            }
+             // ====== SEED: hiển thị số ngày trưởng thành khi dùng ngày cố định ======
+            if (item.category == ItemCategory.Seed && item.seedData &&
+                item.seedData.growthMode == GrowthMode.FixedDays)
+            {
+                int totalDays = 0;
+                var stageDays = item.seedData.stageDays;
+                if (stageDays != null)
+                {
+                    for (int i = 0; i < stageDays.Length; i++)
+                    {
+                        totalDays += Mathf.Max(0, stageDays[i]);
+                    }
+                }
 
+                if (totalDays > 0)
+                {
+                    sb.AppendLine($"• Mất {totalDays} ngày để trưởng thành");
+                }
+            }
             // (tuỳ thích: thêm info vũ khí, tool range, damage,...)
-
             descText.text = sb.ToString().TrimEnd();
         }
     }

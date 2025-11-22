@@ -44,6 +44,10 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
     // nếu em có làm chuột phải để tháo đồ
     public void OnPointerClick(PointerEventData e)
     {
+        if (e.button == PointerEventData.InputButton.Left)
+        {
+            EquipmentUI.Instance?.ShowInfo(slotType);
+        }
         if (e.button == PointerEventData.InputButton.Right)
         {
             EquipmentUI.Instance?.Unequip(slotType);

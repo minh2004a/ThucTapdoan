@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: AxeWood
+  m_Name: BinhTuoi
   m_EditorClassIdentifier: 
-  id: "R\xECu g\u1ED7"
-  icon: {fileID: 1966405731, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
-  displayName: 
-  baseDescription: 
+  id: "B\xECnh n\u01B0\u1EDBc"
+  icon: {fileID: 1265783944, guid: 791eb7bc0f0ffb64fb4797b58f8d2767, type: 3}
+  displayName: "B\xECnh n\u01B0\u1EDBc"
+  baseDescription: "Gi\xFAp h\u1EA1t gi\u1ED1ng c\xF3 th\u1EC3 ph\xE1t tri\u1EC3n"
   seedData: {fileID: 0}
   category: 0
   equipSlot: 0
   stackable: 0
   weaponType: 0
-  toolType: 1
+  toolType: 5
   dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
@@ -34,11 +34,11 @@ MonoBehaviour:
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1
-  hitboxYOffset: 0.1
+  hitboxYOffset: 0
   hitboxForward: 0.7
-  Dame: 2
-  range: 0.25
-  cooldown: 0.4
+  Dame: 1
+  range: 0.35
+  cooldown: 0.45
   projectilePrefab: {fileID: 0}
   projectileSpeed: 10
   projectileMaxDistance: 8

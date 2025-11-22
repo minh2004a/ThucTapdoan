@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: ScytheWood
+  m_Name: RuaGo
   m_EditorClassIdentifier: 
   id: "R\u1EF1a"
   icon: {fileID: -109318242, guid: 0aa5aee32af1c79419410c4e0547b04e, type: 3}
+  displayName: "R\u1EF1a g\u1ED7"
+  baseDescription: "Gi\xFAp b\u1EA1n ch\u1EB7t hao c\u1ECF d\u1EA1i"
   seedData: {fileID: 0}
   category: 0
   equipSlot: 0
   stackable: 0
   weaponType: 0
   toolType: 4
+  dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  buyPrice: 0
   staminaMaxBonus: 0
   healthMaxBonus: 0
   staminaRegenBonus: 0

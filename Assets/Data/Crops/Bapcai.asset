@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: "B\u1EAFp c\u1EA3i"
   icon: {fileID: 1270886897, guid: 2692898bf9b5f924abe32a6a5c11bbc4, type: 3}
+  displayName: "B\u1EAFp c\u1EA3i"
+  baseDescription: "C\xF3 th\u1EC3 \u0103n \u0111\u1EC3 h\u1ED3i m\xE1u v\xE0 th\u1EC3
+    l\u1EF1c"
   seedData: {fileID: 0}
   category: 7
   equipSlot: 0

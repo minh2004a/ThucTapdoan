@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: "G\u1ED7"
   icon: {fileID: 1473601758, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
-  displayName: 
-  baseDescription: 
+  displayName: "G\u1ED7 th\xF4"
+  baseDescription: "Gi\xFAp b\u1EA1n n\xE2ng c\u1EA5p"
   seedData: {fileID: 0}
   category: 2
   equipSlot: 0

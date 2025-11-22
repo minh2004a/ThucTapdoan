@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: PotatoSeed
+  m_Name: CuocChimGo
   m_EditorClassIdentifier: 
-  id: "H\u1EA1t khoai t\xE2y"
-  icon: {fileID: -1623039414, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
-  displayName: 
-  baseDescription: 
-  seedData: {fileID: 11400000, guid: 9f2081d6c1b7db349840e16cb71cc8ba, type: 2}
-  category: 5
+  id: "Cu\u1ED1c Chim G\u1ED7"
+  icon: {fileID: -1677888833, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
+  displayName: "Cu\u1ED1c chim g\u1ED7"
+  baseDescription: "Gi\xFAp b\u1EA1n \u0111\u1EADp \u0111\xE1"
+  seedData: {fileID: 0}
+  category: 0
   equipSlot: 0
-  stackable: 1
+  stackable: 0
   weaponType: 0
-  toolType: 0
+  toolType: 3
   dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
@@ -33,10 +33,10 @@ MonoBehaviour:
   backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
-  hitboxScale: 1
+  hitboxScale: 0.2
   hitboxYOffset: 0
   hitboxForward: -1
-  Dame: 5
+  Dame: 2
   range: 1
   cooldown: 0.2
   projectilePrefab: {fileID: 0}

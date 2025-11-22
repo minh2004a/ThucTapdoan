@@ -14,14 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: "\u0110\xE1"
   icon: {fileID: -216494335, guid: 2e546e52fa16abc4ab307c98ee0b46e4, type: 3}
+  displayName: "\u0110\xE1 th\xF4"
+  baseDescription: "Gi\xFAp b\u1EA1n n\xE2ng c\u1EA5p"
   seedData: {fileID: 0}
   category: 2
+  equipSlot: 0
   stackable: 1
   weaponType: 0
   toolType: 0
+  dropChanceBonusPercent: 0
   healthRestore: 0
   staminaRestore: 0
   sellPrice: 0
+  buyPrice: 0
+  staminaMaxBonus: 0
+  healthMaxBonus: 0
+  staminaRegenBonus: 0
+  backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999
   hitboxScale: 1

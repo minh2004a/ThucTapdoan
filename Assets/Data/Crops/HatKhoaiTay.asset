@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: CarrotSeed
+  m_Name: HatKhoaiTay
   m_EditorClassIdentifier: 
-  id: "H\u1EA1t c\xE0 r\u1ED1t"
-  icon: {fileID: 1004348259, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
-  displayName: 
-  baseDescription: 
-  seedData: {fileID: 11400000, guid: 1c202f5408a98964ab8607f09901eab9, type: 2}
+  id: "H\u1EA1t khoai t\xE2y"
+  icon: {fileID: -1623039414, guid: 04f4eed6b8d32cc4b8fa5d816d694f1c, type: 3}
+  displayName: "H\u1EA1t khoai t\xE2y"
+  baseDescription: "Ch\u1EC9 c\xF3 th\u1EC3 tr\u1ED3ng m\xF9a xu\xE2n"
+  seedData: {fileID: 11400000, guid: 9f2081d6c1b7db349840e16cb71cc8ba, type: 2}
   category: 5
   equipSlot: 0
   stackable: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
   hitboxScale: 1
   hitboxYOffset: 0
   hitboxForward: -1
-  Dame: 1
+  Dame: 5
   range: 1
   cooldown: 0.2
   projectilePrefab: {fileID: 0}

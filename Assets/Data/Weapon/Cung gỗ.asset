@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: "Cung g\u1ED7"
   icon: {fileID: -312610671, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
-  displayName: 
-  baseDescription: 
+  displayName: "Cung g\u1ED7"
+  baseDescription: "Kh\u1EA3 n\u0103ng b\u1EAFn t\u1EA7m xa nh\u01B0ng t\u1ED1n kh\xE1
+    nhi\u1EC1u th\u1EC3 l\u1EF1c!!!"
   seedData: {fileID: 0}
   category: 1
   equipSlot: 0
