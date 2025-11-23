@@ -8,12 +8,20 @@ public struct VendorItem
     [Tooltip("Nếu >= 0 sẽ ưu tiên dùng giá này thay cho giá mua gốc của item.")]
     public int priceOverride;
 
+    [Header("Chi phí tài nguyên đi kèm")]
+    [Tooltip("Tài nguyên cần có thêm để mua trang bị này (ngoài tiền).")]
+    public ItemSO requiredResource;
+    [Tooltip("Số lượng tài nguyên cần có để mua.")]
+    public int requiredResourceAmount;
+
     public int GetPrice()
     {
         if (priceOverride >= 0) return priceOverride;
         if (item == null) return -1;
         return item.buyPrice;
     }
+
+    public bool HasResourceRequirement => requiredResource != null && requiredResourceAmount > 0;
 }
 
 // NPC đứng yên bán trang bị. Khi bấm chuột phải vào sẽ mở bảng shop.

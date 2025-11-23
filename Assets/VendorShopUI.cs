@@ -83,7 +83,13 @@ public class VendorShopUI : MonoBehaviour
     {
         if (economy == null || item.item == null) return;
 
-        if (!economy.TryBuy(item.item, 1, out var _, item.GetPrice()))
+        if (!economy.TryBuy(
+            item.item,
+            1,
+            out var _,
+            item.GetPrice(),
+            item.requiredResource,
+            item.requiredResourceAmount))
         {
             Debug.Log("Không đủ tiền hoặc túi đầy, không thể mua.");
         }
