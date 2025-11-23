@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6418489362730898482}
   - component: {fileID: 2937763644648258918}
   - component: {fileID: 2628768078407301558}
+  - component: {fileID: 5405586417064669549}
   m_Layer: 0
   m_Name: CoDai_Summer
   m_TagString: Untagged
@@ -155,3 +156,16 @@ MonoBehaviour:
   maxAngle: 6
   swayDuration: 0.6
   cooldown: 0.2
+--- !u!114 &5405586417064669549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256663986826554181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cf980f678f8a2439a482996934aecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
