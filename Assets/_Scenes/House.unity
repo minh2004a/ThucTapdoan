@@ -167,50 +167,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &444482553
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 444482554}
-  - component: {fileID: 444482555}
-  m_Layer: 0
-  m_Name: BedSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &444482554
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444482553}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1585932709}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &444482555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444482553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5182c30cf365cc468e7854bb00796a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &779047471
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,10 +2097,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BedTrigger
       objectReference: {fileID: 0}
-    - target: {fileID: 5872307218039509880, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5958111862834630085, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
       propertyPath: m_Size.x
       value: 1.0839958
@@ -2165,50 +2117,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bed
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1484598094977430102, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 841993874295263260, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 444482554}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5872307218039509880, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1585932708}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
---- !u!1 &1585932707 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5872307218039509880, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
-  m_PrefabInstance: {fileID: 1585932706}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1585932708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585932707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e093a426ea164f408f467b7a811feba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 0}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  trigger: {fileID: 1585932710}
---- !u!4 &1585932709 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 841993874295263260, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
-  m_PrefabInstance: {fileID: 1585932706}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1585932710 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 3390055792894971266, guid: ecfae2a35e10ae24eab3fc89a36bfc55, type: 3}
-  m_PrefabInstance: {fileID: 1585932706}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1796355584
 GameObject:
   m_ObjectHideFlags: 0

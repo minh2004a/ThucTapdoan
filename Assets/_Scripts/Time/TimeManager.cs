@@ -119,4 +119,30 @@ public class TimeManager : MonoBehaviour
         day++; hour = 6; minute = 0;
         OnNewDay?.Invoke();
     }
+    public float GetDayLight01()
+    {
+        int minutes = hour * 60 + minute;
+
+        // 17:00 - 19:00 : tối dần (1 -> 0)
+        if (minutes >= 17 * 60 && minutes < 19 * 60)
+        {
+            float t = (minutes - 17f * 60f) / (2f * 60f); // 0..1
+            return 1f - t; // 17h = 1, 18h = 0.5, 19h = 0
+        }
+
+        // 04:00 - 06:00 : sáng dần (0 -> 1)
+        if (minutes >= 4 * 60 && minutes < 6 * 60)
+        {
+            float t = (minutes - 4f * 60f) / (2f * 60f); // 0..1
+            return t; // 4h = 0, 5h = 0.5, 6h = 1
+        }
+
+        // 06:00 - 17:00 : ngày, sáng tối đa
+        if (minutes >= 6 * 60 && minutes < 17 * 60)
+            return 1f;
+
+        // 19:00 - 04:00 : đêm, tối full
+        return 0f;
+    }
+
 }
