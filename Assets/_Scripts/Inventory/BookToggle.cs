@@ -4,12 +4,17 @@ using UnityEngine;
 public class BookToggle : MonoBehaviour
 {
     [SerializeField] GameObject bookPanel; // BookInventoryPanel
-
+    [SerializeField] VendorShopUI vendorShopUI;
     float previousTimeScale = 1f;
     bool pausedByBook = false;
+    void Awake()
+    {
+        if (!vendorShopUI) vendorShopUI = FindObjectOfType<VendorShopUI>(true);
+    }
 
     void Update()
     {
+        if (vendorShopUI && vendorShopUI.IsVisible) return; // không mở túi khi đang mở shop
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             bool active = bookPanel.activeSelf;

@@ -77175,9 +77175,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stock:
   - item: {fileID: 11400000, guid: 86babdcd762c946438ec4a6c45a7f7ad, type: 2}
-    priceOverride: 20
+    priceOverride: 450
     requiredResource: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
-    requiredResourceAmount: 1
+    requiredResourceAmount: 10
+  - item: {fileID: 11400000, guid: f1e0feec8d9ecd047b07ac04b11401ee, type: 2}
+    priceOverride: 200
+    requiredResource: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
+    requiredResourceAmount: 60
   shopUI: {fileID: 0}
   interactDistance: 3
   player: {fileID: 0}

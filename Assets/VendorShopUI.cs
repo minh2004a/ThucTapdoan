@@ -6,6 +6,7 @@ using UnityEngine;
 public class VendorShopUI : MonoBehaviour
 {
     [SerializeField] PlayerController player;
+    [SerializeField] BookToggle bookToggle;
     [Header("UI Refs")]
     [SerializeField] GameObject root;
     [SerializeField] Transform content;
@@ -19,6 +20,7 @@ public class VendorShopUI : MonoBehaviour
     EquipmentVendor currentVendor;
 
     public EquipmentVendor CurrentVendor => currentVendor;
+    public bool IsVisible => root && root.activeSelf;
 
     void Awake()
     {
@@ -30,7 +32,7 @@ public class VendorShopUI : MonoBehaviour
     public void Show(EquipmentVendor vendor, List<VendorItem> items)
     {
         currentVendor = vendor;
-
+        bookToggle?.CloseBook();
         if (root) root.SetActive(true);
 
         // 🔒 khoá di chuyển
