@@ -258,11 +258,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnSingles: 1
   maxSinglesPerDrop: 12
-  fullCircle: 1
   pickupPrefab: {fileID: 4013689041040459867, guid: 838a5b6740444f646bd554f3877a34d3, type: 3}
+  flingForceMin: 1.5
+  flingForceMax: 3.5
+  flingAwayFromPlayer: 1
+  randomAngle: 25
   drops:
   - item: {fileID: 11400000, guid: 9c4d5aa95aed93146ae6f48eb02af92f, type: 2}
     countRange: {x: 1, y: 5}
     chance: 1
-  scatterSpeed: {x: 2, y: 4}
-  scatterAngle: 35
