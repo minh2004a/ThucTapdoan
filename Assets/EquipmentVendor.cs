@@ -2,11 +2,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public struct VendorMaterialCost
+{
+    public ItemSO item;
+    [Min(1)] public int amount;
+
+    public bool IsValid => item != null && amount > 0;
+}
+
+[System.Serializable]
 public struct VendorItem
 {
     public ItemSO item;
     [Tooltip("Nếu >= 0 sẽ ưu tiên dùng giá này thay cho giá mua gốc của item.")]
     public int priceOverride;
+    [Tooltip("Tài nguyên cần để mua vật phẩm này (ngoài tiền).")]
+    public VendorMaterialCost[] requiredMaterials;
 
     public int GetPrice()
     {

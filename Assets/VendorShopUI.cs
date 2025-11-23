@@ -18,6 +18,7 @@ public class VendorShopUI : MonoBehaviour
     EquipmentVendor currentVendor;
 
     public EquipmentVendor CurrentVendor => currentVendor;
+    public bool IsOpen => root != null ? root.activeSelf : gameObject.activeSelf;
 
     void Awake()
     {
@@ -38,7 +39,7 @@ public class VendorShopUI : MonoBehaviour
 
         Render(items);
     }
-   public void Hide(EquipmentVendor requester)
+    public void Hide(EquipmentVendor requester)
     {
         if (requester != null && requester != currentVendor) return;
 
@@ -83,9 +84,9 @@ public class VendorShopUI : MonoBehaviour
     {
         if (economy == null || item.item == null) return;
 
-        if (!economy.TryBuy(item.item, 1, out var _, item.GetPrice()))
+        if (!economy.TryBuyWithMaterials(item.item, 1, item.requiredMaterials, out var _, item.GetPrice()))
         {
-            Debug.Log("Không đủ tiền hoặc túi đầy, không thể mua.");
+            Debug.Log("Không đủ tiền, tài nguyên hoặc túi đầy, không thể mua.");
         }
     }
 }

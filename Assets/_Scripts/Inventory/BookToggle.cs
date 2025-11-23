@@ -3,12 +3,19 @@ using UnityEngine;
 public class BookToggle : MonoBehaviour
 {
     [SerializeField] GameObject bookPanel; // BookInventoryPanel
+    [SerializeField] VendorShopUI shopUI;
 
     float previousTimeScale = 1f;
     bool pausedByBook = false;
 
     void Update()
     {
+        if (shopUI != null && shopUI.IsOpen)
+        {
+            CloseBook();
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             bool active = bookPanel.activeSelf;

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -52,7 +53,9 @@ public class VendorShopItemUI : MonoBehaviour
         if (priceText)
         {
             int price = item.GetPrice();
-            priceText.text = price >= 0 ? price.ToString() : "N/A";
+            string pricePart = price >= 0 ? price.ToString() : "N/A";
+            string matPart = BuildMaterialRequirement(item.requiredMaterials);
+            priceText.text = string.IsNullOrEmpty(matPart) ? pricePart : $"{pricePart} + {matPart}";
         }
 
         if (currencyIcon)
@@ -65,5 +68,25 @@ public class VendorShopItemUI : MonoBehaviour
     {
         if (data.item == null) return;
         onClick?.Invoke(data);
+    }
+
+    string BuildMaterialRequirement(IReadOnlyList<VendorMaterialCost> costs)
+    {
+        if (costs == null || costs.Count == 0) return string.Empty;
+
+        List<string> parts = new List<string>();
+        for (int i = 0; i < costs.Count; i++)
+        {
+            var cost = costs[i];
+            if (!cost.IsValid) continue;
+
+            string resourceName = cost.item != null ? cost.item.displayName : "--";
+            if (string.IsNullOrWhiteSpace(resourceName) && cost.item != null)
+                resourceName = cost.item.name;
+
+            parts.Add($"{cost.amount}x {resourceName}");
+        }
+
+        return string.Join(" + ", parts);
     }
 }
