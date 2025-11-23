@@ -1,3 +1,4 @@
+
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +12,10 @@ public class VendorShopItemUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI itemNameText;
     [SerializeField] TextMeshProUGUI priceText;
     [SerializeField] Image currencyIcon;
+    [Header("Resource Cost UI")]
+    [SerializeField] GameObject resourceCostRoot;
+    [SerializeField] Image resourceIcon;
+    [SerializeField] TextMeshProUGUI resourceAmountText;
     [SerializeField] Button buyButton;
     [SerializeField] LayoutElement layoutElement;
 
@@ -59,6 +64,24 @@ public class VendorShopItemUI : MonoBehaviour
         {
             currencyIcon.sprite = currency;
             currencyIcon.enabled = currency != null;
+        }
+
+        bool hasResourceCost = item.HasResourceRequirement;
+
+        if (resourceCostRoot)
+        {
+            resourceCostRoot.SetActive(hasResourceCost);
+        }
+
+        if (resourceIcon)
+        {
+            resourceIcon.sprite = hasResourceCost ? item.requiredResource.icon : null;
+            resourceIcon.enabled = hasResourceCost && item.requiredResource.icon;
+        }
+
+        if (resourceAmountText)
+        {
+            resourceAmountText.text = hasResourceCost ? item.requiredResourceAmount.ToString() : string.Empty;
         }
     }
     void HandleClick()

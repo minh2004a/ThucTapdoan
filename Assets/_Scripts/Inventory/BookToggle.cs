@@ -1,3 +1,4 @@
+
 using UnityEngine;
 // Quản lý việc mở/đóng sách kho đồ
 public class BookToggle : MonoBehaviour

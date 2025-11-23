@@ -11100,30 +11100,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1695402088}
     m_Modifications:
-    - target: {fileID: 3039773267368927623, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
-      propertyPath: m_Colors.m_NormalColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3039773267368927623, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
-      propertyPath: m_Colors.m_NormalColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3039773267368927623, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
-      propertyPath: m_Colors.m_NormalColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3039773267368927623, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.b
-      value: 0.8679245
-      objectReference: {fileID: 0}
-    - target: {fileID: 3039773267368927623, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.g
-      value: 0.8679245
-      objectReference: {fileID: 0}
-    - target: {fileID: 3039773267368927623, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.r
-      value: 0.8679245
-      objectReference: {fileID: 0}
     - target: {fileID: 4611386946713819354, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11203,6 +11179,14 @@ PrefabInstance:
     - target: {fileID: 4611386946713819354, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516757230130636013, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
+      propertyPath: m_text
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516757230130636013, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8949261169093650353, guid: 0b16d82cf77dc794ca55b399c630e79c, type: 3}
       propertyPath: m_Name

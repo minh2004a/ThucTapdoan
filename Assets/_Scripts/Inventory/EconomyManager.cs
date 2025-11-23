@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class EconomyManager : MonoBehaviour
@@ -11,7 +12,13 @@ public class EconomyManager : MonoBehaviour
         if (!wallet && inventory) wallet = inventory.GetComponent<PlayerWallet>();
     }
 
-    public bool TryBuy(ItemSO item, int amount, out InventoryAddResult addResult, int pricePerUnit = -1)
+    public bool TryBuy(
+        ItemSO item,
+        int amount,
+        out InventoryAddResult addResult,
+        int pricePerUnit = -1,
+        ItemSO requiredResource = null,
+        int requiredResourceAmount = 0)
     {
         addResult = default;
         if (!item || amount <= 0 || !inventory || !wallet) return false;
@@ -22,6 +29,9 @@ public class EconomyManager : MonoBehaviour
         int totalCost = unitPrice * amount;
         if (!wallet.CanAfford(totalCost)) return false;
 
+        bool needsResource = requiredResource != null && requiredResourceAmount > 0;
+        if (needsResource && !inventory.HasItem(requiredResource, requiredResourceAmount)) return false;
+
         addResult = inventory.AddItemDetailed(item, amount);
         if (addResult.remaining > 0)
         {
@@ -29,7 +39,20 @@ public class EconomyManager : MonoBehaviour
             return false;
         }
 
-        return wallet.TrySpend(totalCost);
+        if (needsResource && !inventory.RemoveItem(requiredResource, requiredResourceAmount))
+        {
+            if (addResult.AddedTotal > 0) inventory.RemoveItem(item, addResult.AddedTotal);
+            return false;
+        }
+
+        if (!wallet.TrySpend(totalCost))
+        {
+            if (needsResource) inventory.AddItem(requiredResource, requiredResourceAmount);
+            if (addResult.AddedTotal > 0) inventory.RemoveItem(item, addResult.AddedTotal);
+            return false;
+        }
+
+        return true;
     }
 
     public bool TrySell(ItemSO item, int amount, out int payout, int pricePerUnit = -1)

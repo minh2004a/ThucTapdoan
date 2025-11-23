@@ -49793,7 +49793,6 @@ GameObject:
   - component: {fileID: 125135814}
   - component: {fileID: 125135813}
   - component: {fileID: 125135815}
-  - component: {fileID: 125135816}
   - component: {fileID: 125135817}
   m_Layer: 0
   m_Name: NpcVuKhi
@@ -49863,10 +49862,11 @@ Transform:
   m_GameObject: {fileID: 125135811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.5, y: -0.59, z: 0}
+  m_LocalPosition: {x: -18.53, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 966503992}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &125135815
@@ -49890,24 +49890,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &125135816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125135811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f4ee3b12dc26c8479b3dda9845913c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stock:
-  - item: {fileID: 11400000, guid: 5c71eecb203ca854a98b22abf64a0b72, type: 2}
-    priceOverride: 20
-  shopUI: {fileID: 0}
-  interactDistance: 3
-  player: {fileID: 0}
 --- !u!70 &125135817
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -77146,6 +77128,94 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6733866083441877529, guid: e1b5357a35e553247b80dc6df9cba407, type: 3}
   m_PrefabInstance: {fileID: 958521966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &966503991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966503992}
+  - component: {fileID: 966503994}
+  - component: {fileID: 966503993}
+  m_Layer: 0
+  m_Name: Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966503992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966503991}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 125135814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &966503993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966503991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4ee3b12dc26c8479b3dda9845913c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stock:
+  - item: {fileID: 11400000, guid: 86babdcd762c946438ec4a6c45a7f7ad, type: 2}
+    priceOverride: 20
+    requiredResource: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
+    requiredResourceAmount: 1
+  shopUI: {fileID: 0}
+  interactDistance: 3
+  player: {fileID: 0}
+--- !u!70 &966503994
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966503991}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.025903702, y: 0.49218643}
+  m_Size: {x: 0.5863495, y: 1.120888}
+  m_Direction: 0
 --- !u!1001 &972810476
 PrefabInstance:
   m_ObjectHideFlags: 0
