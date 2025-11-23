@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910ed29df5248b1429f4fccad9f8987f, type: 3}
+  m_Name: Animated Light Tile_1
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 1365639575, guid: c35c1c20e2bfe4e4ca7e89b1b755f737, type: 3}
+  - {fileID: -708698149, guid: c35c1c20e2bfe4e4ca7e89b1b755f737, type: 3}
+  - {fileID: -726825907, guid: c35c1c20e2bfe4e4ca7e89b1b755f737, type: 3}
+  - {fileID: -770608808, guid: c35c1c20e2bfe4e4ca7e89b1b755f737, type: 3}
+  - {fileID: -1366238102, guid: c35c1c20e2bfe4e4ca7e89b1b755f737, type: 3}
+  - {fileID: 928854311, guid: c35c1c20e2bfe4e4ca7e89b1b755f737, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 1
+  m_TileAnimationFlags: 0
+  lightPrefab: {fileID: 2283811837849348491, guid: 2ef0cb5e1298ad44cb04affa20f3b0e2, type: 3}
