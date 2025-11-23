@@ -28,7 +28,7 @@ TagManager:
   - TilledSoil
   - Plant
   - Block
-  - 
+  - Decor
   - 
   - 
   - 
@@ -65,6 +65,9 @@ TagManager:
     locked: 0
   - name: Building
     uniqueID: 2938050157
+    locked: 0
+  - name: Material
+    uniqueID: 4129527855
     locked: 0
   - name: FX_Back
     uniqueID: 248289295
