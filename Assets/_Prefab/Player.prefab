@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 6297676587867245985}
   - component: {fileID: 1074349766864131868}
   - component: {fileID: 7759464015838227066}
+  - component: {fileID: 7887051548352894563}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -334,9 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8adab58eba5f4845affe3665678bb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  stamina: {fileID: 0}
-  health: {fileID: 0}
+  inventory: {fileID: 1845909153704676813}
+  stamina: {fileID: 9196139618529040389}
+  health: {fileID: 2944587308785528253}
 --- !u!114 &1118344859087931616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +593,19 @@ MonoBehaviour:
   health: {fileID: 2944587308785528253}
   stamina: {fileID: 9196139618529040389}
   confirmUI: {fileID: 0}
+--- !u!114 &7887051548352894563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936923126784610755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b4d4f794052b3c43b694d36a612e30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
 --- !u!1 &3900807971405855068
 GameObject:
   m_ObjectHideFlags: 0
