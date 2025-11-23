@@ -98,20 +98,21 @@ public class MenuController : MonoBehaviour
 
     IEnumerator StartNewGameRoutine()
     {
+        // 1) Bật màn loading
         ShowLoadingScreen();
-        var loadingStartTime = Time.unscaledTime;
 
+        // 2) Fake loading ~2s
+        yield return new WaitForSecondsRealtime(2f);
+
+        // 3) Logic cũ
         SaveStore.NewGame(startMapScene);
 
         yield return SceneManager.LoadSceneAsync(persistentScene, LoadSceneMode.Single);
         yield return SceneManager.LoadSceneAsync(startMapScene, LoadSceneMode.Additive);
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(startMapScene));
-
-        yield return EnsureMinimumLoadingTime(loadingStartTime);
-        HideLoadingScreen();
+        // Không cần HideLoadingScreen vì scene MainMenu bị unload, panel tự biến luôn
     }
-
     public void OnClickContinue()
     {
         if (!SaveStore.HasAnySave())
@@ -128,9 +129,13 @@ public class MenuController : MonoBehaviour
 
     IEnumerator ContinueRoutine()
     {
+        // 1) Bật loading
         ShowLoadingScreen();
-        var loadingStartTime = Time.unscaledTime;
 
+        // 2) Fake loading ~2s
+        yield return new WaitForSecondsRealtime(2f);
+
+        // 3) Logic cũ
         SaveStore.LoadFromDisk();
 
         yield return SceneManager.LoadSceneAsync(persistentScene, LoadSceneMode.Single);
@@ -144,11 +149,7 @@ public class MenuController : MonoBehaviour
         yield return SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneToLoad));
-
-        yield return EnsureMinimumLoadingTime(loadingStartTime);
-        HideLoadingScreen();
     }
-
     public void OnClickQuit()
     {
 #if UNITY_EDITOR
