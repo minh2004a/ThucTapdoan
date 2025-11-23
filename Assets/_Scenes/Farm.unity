@@ -62306,7 +62306,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 9
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 5
       m_TileColorIndex: 8
       m_TileObjectToInstantiateIndex: 65535
@@ -71807,8 +71807,8 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: -299422169, guid: 137acbf97ee98e1449448e782745d916, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 88
@@ -71831,8 +71831,8 @@ Tilemap:
     m_Data: {fileID: 273729203, guid: 137acbf97ee98e1449448e782745d916, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: 451264944, guid: 137acbf97ee98e1449448e782745d916, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -299422169, guid: 137acbf97ee98e1449448e782745d916, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
@@ -79112,11 +79112,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stock:
   - item: {fileID: 11400000, guid: 86babdcd762c946438ec4a6c45a7f7ad, type: 2}
-    priceOverride: 450
+    priceOverride: 1000
     requiredResource: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
     requiredResourceAmount: 10
-  - item: {fileID: 11400000, guid: f1e0feec8d9ecd047b07ac04b11401ee, type: 2}
-    priceOverride: 200
+  - item: {fileID: 11400000, guid: ef73d3adaf0c9b44f853f0fe0135c8db, type: 2}
+    priceOverride: 600
     requiredResource: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
     requiredResourceAmount: 60
   shopUI: {fileID: 0}

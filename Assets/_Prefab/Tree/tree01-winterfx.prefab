@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3653788830164179470}
   - component: {fileID: 725832940621874691}
   - component: {fileID: 6072950037040212686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tree01-winterfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -276062485, guid: 9092f8c034ab9534784231a17bd639e7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

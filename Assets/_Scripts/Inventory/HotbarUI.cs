@@ -7,12 +7,16 @@ public class HotbarUI : MonoBehaviour
 { 
     [SerializeField] PlayerInventory inv;
     [SerializeField] HotbarSlotUI[] slots;
+    [SerializeField] VendorShopUI vendorShopUI;
+    [SerializeField] EconomyManager economy;
     PlayerUseConsumable consumableUser;
     [Header("Item Info Panel")]
     [SerializeField] ItemInfoUI infoPanel;   // <--- thêm
     void Awake()
     {
         if (!inv) inv = FindObjectOfType<PlayerInventory>();
+        if (!vendorShopUI) vendorShopUI = FindObjectOfType<VendorShopUI>(true);
+        if (!economy) economy = FindObjectOfType<EconomyManager>(true);
         if (inv) consumableUser = inv.GetComponent<PlayerUseConsumable>();
         if (slots == null || slots.Length == 0 || slots.Any(s => s == null))
             slots = GetComponentsInChildren<HotbarSlotUI>(true)
@@ -61,8 +65,45 @@ public class HotbarUI : MonoBehaviour
     {
         if (!inv) return;
         inv.SelectSlot(i);
+        if (TrySellInShop(i)) return;
         if (!consumableUser && inv) consumableUser = inv.GetComponent<PlayerUseConsumable>();
         consumableUser?.TryUseSelected(ignoreUiGuard: true);
+    }
+    bool TrySellInShop(int hotbarIndex)
+    {
+        if (!vendorShopUI || !vendorShopUI.IsVisible || vendorShopUI.CurrentVendor == null) return false;
+        if (!economy) return false;
+        if ((uint)hotbarIndex >= (uint)inv.hotbar.Length) return false;
+
+        var st = inv.hotbar[hotbarIndex];
+        if (st.item == null || st.item.category != ItemCategory.Equipment) return false;
+
+        int vendorPrice = GetVendorPriceForItem(st.item, vendorShopUI.CurrentVendor);
+        if (vendorPrice < 0) return false;
+
+        int sellPrice = Mathf.CeilToInt(vendorPrice / 3f);
+        if (sellPrice <= 0) return false;
+
+        return economy.TrySell(st.item, Mathf.Max(1, st.count), out _, sellPrice);
+    }
+
+    int GetVendorPriceForItem(ItemSO item, EquipmentVendor vendor)
+    {
+        if (item == null || vendor == null) return -1;
+
+        var stock = vendor.Stock;
+        if (stock != null)
+        {
+            for (int i = 0; i < stock.Count; i++)
+            {
+                if (stock[i].item == item)
+                {
+                    return stock[i].GetPrice();
+                }
+            }
+        }
+
+        return item.buyPrice;
     }
 
     public void Refresh()
@@ -76,6 +117,7 @@ public class HotbarUI : MonoBehaviour
         }
         for (int i = n; i < slots.Length; i++) slots[i]?.Render(default, false, i, this);
     }
+    
     public void RequestSwap(int a, int b)
     {
         if (!inv) return;
