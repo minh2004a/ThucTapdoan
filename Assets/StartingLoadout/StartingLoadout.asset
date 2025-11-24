@@ -44,12 +44,12 @@ MonoBehaviour:
     amount: 99
     equip: 0
     hotbarSlot: 5
-  - item: {fileID: 0}
+  - item: {fileID: 11400000, guid: 359eb8dd852a30e409f76511971a43b9, type: 2}
     itemKey: 
     amount: 1
     equip: 0
     hotbarSlot: 6
-  - item: {fileID: 0}
+  - item: {fileID: 11400000, guid: 542a16004ea20af4f9fcd4a6b3ddcea1, type: 2}
     itemKey: 
     amount: 1
     equip: 0

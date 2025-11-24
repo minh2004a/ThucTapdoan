@@ -65,7 +65,7 @@ MonoBehaviour:
     m_RuleTransform: 2
   - m_Id: 2
     m_Sprites:
-    - {fileID: 921804951, guid: c37fb894a5e09e340abe4d6bc1cd9364, type: 3}
+    - {fileID: -494909022, guid: c37fb894a5e09e340abe4d6bc1cd9364, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -100,5 +100,7 @@ MonoBehaviour:
     m_OverrideSprite: {fileID: 2010774386, guid: c37fb894a5e09e340abe4d6bc1cd9364, type: 3}
   - m_OriginalSprite: {fileID: -812015832, guid: c37fb894a5e09e340abe4d6bc1cd9364, type: 3}
     m_OverrideSprite: {fileID: 1669801095, guid: c37fb894a5e09e340abe4d6bc1cd9364, type: 3}
+  - m_OriginalSprite: {fileID: 921804951, guid: c37fb894a5e09e340abe4d6bc1cd9364, type: 3}
+    m_OverrideSprite: {fileID: -494909022, guid: c37fb894a5e09e340abe4d6bc1cd9364, type: 3}
   m_GameObjects: []
   m_InstanceTile: {fileID: -6589725054198362778}
