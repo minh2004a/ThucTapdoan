@@ -69,9 +69,15 @@ TagManager:
   - name: Material
     uniqueID: 4129527855
     locked: 0
-  - name: FX_Back
-    uniqueID: 248289295
+  - name: DatXoi
+    uniqueID: 4133818705
+    locked: 0
+  - name: Hatgiong
+    uniqueID: 3424158353
     locked: 0
   - name: Characters
     uniqueID: 2396452051
+    locked: 0
+  - name: FX_Back
+    uniqueID: 248289295
     locked: 0
