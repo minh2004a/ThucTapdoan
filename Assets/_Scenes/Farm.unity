@@ -105360,9 +105360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcVuKhi
       objectReference: {fileID: 0}
-    - target: {fileID: 424545228025097301, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
-      propertyPath: m_Layer
-      value: 20
+    - target: {fileID: 575315856749524139, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
+      propertyPath: thankYouText
+      value: "C\u1EA3m \u01A1n \u0111\xE3 gi\xFAp t\xF4i nh\xE9! m\u1EDDi b\u1EA1n
+        v\xF4 shop xem nh\u1EEFng trang b\u1ECB m\u1EA1nh m\u1EBD nh\u1EA5t nh\xE9"
       objectReference: {fileID: 0}
     - target: {fileID: 1523809823548694964, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
       propertyPath: m_LocalPosition.x
@@ -105403,10 +105404,6 @@ PrefabInstance:
     - target: {fileID: 1523809823548694964, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4464654450033559729, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
-      propertyPath: m_Layer
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

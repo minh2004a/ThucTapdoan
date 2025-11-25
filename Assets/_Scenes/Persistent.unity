@@ -2335,6 +2335,8 @@ MonoBehaviour:
   typewriter: {fileID: 1847587916}
   yesButton: {fileID: 401071811}
   noButton: {fileID: 1474297644}
+  thankYouText: "C\u1EA3m \u01A1n \u0111\xE3 gi\xFAp t\xF4i! V\xE0o shop xem th\u1EED
+    nh\xE9."
 --- !u!1 &347347811
 GameObject:
   m_ObjectHideFlags: 0
@@ -6008,7 +6010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1110650983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9923,8 +9925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textLabel: {fileID: 1847587917}
   charsPerSecond: 40
-  debugTextOnAwake: "T\xF4i \u0111ang c\u1EA7n t\xECm c\xE1i g\xEC \u0111\xF3\u2026
-    gi\xFAp t\xF4i \u0111\u01B0\u1EE3c kh\xF4ng?"
+  debugTextOnAwake: 
 --- !u!114 &1847587917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11454,7 +11455,7 @@ RectTransform:
   m_Father: {fileID: 1000866365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: -1.875061}
   m_SizeDelta: {x: 20, y: 4.350106}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -14,7 +14,7 @@ public struct VendorItem
     public ItemSO requiredResource;
     [Tooltip("Số lượng tài nguyên cần có để mua.")]
     public int requiredResourceAmount;
-
+    
     public int GetPrice()
     {
         if (priceOverride >= 0) return priceOverride;
@@ -28,6 +28,7 @@ public struct VendorItem
 // NPC đứng yên bán trang bị. Khi bấm chuột phải vào sẽ mở bảng shop.
 public class EquipmentVendor : MonoBehaviour
 {
+    [SerializeField] PlayerInventory playerInventory;
     [Header("Cửa hàng trang bị")]
     [SerializeField] List<VendorItem> stock = new List<VendorItem>();
     [SerializeField] VendorShopUI shopUI;
@@ -37,16 +38,28 @@ public class EquipmentVendor : MonoBehaviour
     public IReadOnlyList<VendorItem> Stock => stock;
     [Header("Quest mở đầu")]
     [SerializeField] bool offerQuestOnFirstTalk = true;
+    [Header("Text nhiệm vụ")]
     [TextArea]
     [SerializeField] string firstQuestText = "Tôi đang cần tìm cái gì đó... giúp tôi được không?";
+    [TextArea]
+    [SerializeField] string thankYouText = "Cảm ơn đã giúp tôi! Vào shop xem thử nhé.";
+    [Header("Quest đơn giản")]
+    [Tooltip("Người chơi phải mang item này tới.")]
+    [SerializeField] ItemSO questRequiredItem;
 
-    // KHÔNG cần SerializeField nữa, để script tự tìm
+    [SerializeField] int questRequiredAmount = 10;
+
+    [Header("Thưởng khi hoàn thành")]
+    [SerializeField] ItemSO questRewardItem;
+    [SerializeField] int questRewardAmount = 1;
     VendorQuestUI questUI;
 
     bool hasOfferedQuest = false;
     bool questAccepted = false;
-
+    bool questCompleted = false;
     public bool QuestAccepted => questAccepted;
+    public string FirstQuestText => firstQuestText;
+    public string ThankYouText => thankYouText;
     void Reset()
     {
         shopUI = FindObjectOfType<VendorShopUI>(true);
@@ -57,13 +70,23 @@ public class EquipmentVendor : MonoBehaviour
     void Awake()
     {
         if (!shopUI) shopUI = FindObjectOfType<VendorShopUI>(true);
+
         if (!player)
         {
             var pc = FindObjectOfType<PlayerController>(true);
             if (pc) player = pc.transform;
         }
-    }
 
+        // Tìm PlayerInventory nếu chưa gán
+        if (!playerInventory)
+        {
+            if (player)
+                playerInventory = player.GetComponent<PlayerInventory>();
+
+            if (!playerInventory)
+                playerInventory = FindObjectOfType<PlayerInventory>(true);
+        }
+    }
     void OnDisable()
     {
         if (shopUI)
@@ -81,21 +104,69 @@ public class EquipmentVendor : MonoBehaviour
         if (!shopUI || UIInputGuard.BlockInputNow()) return;
         if (!IsInRange()) return;
 
+        // Nếu đã nhận quest và chưa completed -> thử hoàn thành
+        if (questAccepted && !questCompleted)
+        {
+            // Nếu trả về true nghĩa là đã mở UI hoàn thành -> dừng lại, không mở shop nữa
+            if (TryCompleteQuest())
+                return;
+        }
+
+        // Nếu chưa từng offer quest => show UI nhận nhiệm vụ
         if (offerQuestOnFirstTalk && !hasOfferedQuest)
         {
             ShowQuestDialogue();
         }
         else
         {
+            // Còn lại thì mở shop luôn
             OpenShop();
         }
     }
+    bool TryCompleteQuest()
+    {
+        // 1. Đã hoàn thành / chưa nhận thì thôi
+        if (!questAccepted || questCompleted) return false;
+        if (questRequiredItem == null || questRequiredAmount <= 0) return false;
 
+        // 2. Đảm bảo có inventory
+        if (!playerInventory)
+        {
+            playerInventory = FindObjectOfType<PlayerInventory>(true);
+            if (!playerInventory)
+            {
+                Debug.LogWarning($"Vendor {name}: không tìm thấy PlayerInventory.");
+                return false;
+            }
+        }
+
+        // 3. Check đủ item chưa
+        if (!playerInventory.HasItem(questRequiredItem, questRequiredAmount))
+        {
+            // Có thể log cho debug
+            int have = playerInventory.CountItem(questRequiredItem);
+            Debug.Log($"Vendor {name}: mới có {have}/{questRequiredAmount}, chưa đủ để hoàn thành quest.");
+            return false;
+        }
+
+        // 4. Đủ đồ -> mở UI hoàn thành
+        if (questUI == null)
+            questUI = FindObjectOfType<VendorQuestUI>(true);
+
+        if (questUI != null)
+        {
+            // tí nữa mình sẽ thêm hàm này trong VendorQuestUI
+            questUI.ShowQuestCompleted(this, "Cảm ơn đã mang đồ tới giúp tôi!");
+        }
+
+        // CHƯA trừ đồ, CHƯA thưởng ở đây
+        // Đợi lúc player bấm YES trong UI mới trừ/ thưởng
+        return true;
+    }
     void ShowQuestDialogue()
     {
         hasOfferedQuest = true;
 
-        // Nếu chưa có ref thì tự tìm trong scene (kể cả object đang inactive)
         if (questUI == null)
         {
             questUI = FindObjectOfType<VendorQuestUI>(true);
@@ -103,7 +174,8 @@ public class EquipmentVendor : MonoBehaviour
 
         if (questUI != null)
         {
-            questUI.Show(this, firstQuestText);
+            // đổi ở đây
+            questUI.Show(this, firstQuestText); // hoặc sau này nếu muốn có thể rút gọn còn Show(this)
         }
         else
         {
@@ -117,18 +189,26 @@ public class EquipmentVendor : MonoBehaviour
 
         if (accept)
         {
+            // Người chơi ĐỒNG Ý -> lần sau KHÔNG hỏi lại nữa
+            hasOfferedQuest = true;
             Debug.Log($"Vendor {name}: player đã NHẬN quest.");
-            // TODO: sau này nối vào hệ thống nhiệm vụ thật
+            questCompleted = false;   // đang làm quest
         }
         else
         {
+            // Người chơi BẤM NO -> coi như từ chối tạm thời
+            // Lần sau nói chuyện -> vẫn cho hiện lại quest
+            hasOfferedQuest = false;
             Debug.Log($"Vendor {name}: player từ chối quest.");
         }
 
-        // Dù Yes hay No đều mở shop
+        // Tạm thời vẫn mở shop sau khi trả lời
         OpenShop();
     }
-
+    public void OpenShopFromQuestUI()
+    {
+        OpenShop();
+    }
     void ShowQuestDialogueTemp()
     {
         hasOfferedQuest = true;  // đánh dấu là đã hỏi 1 lần
@@ -143,5 +223,47 @@ public class EquipmentVendor : MonoBehaviour
     {
         if (!player) return true;
         return Vector2.Distance(player.position, transform.position) <= interactDistance;
+    }
+    public void FinishQuestAndGiveReward()
+    {
+        if (questCompleted) return; // cho chắc, tránh double reward
+
+        if (!playerInventory)
+        {
+            playerInventory = FindObjectOfType<PlayerInventory>(true);
+            if (!playerInventory)
+            {
+                Debug.LogWarning($"Vendor {name}: không tìm thấy PlayerInventory để phát thưởng.");
+                return;
+            }
+        }
+
+        // 1. Trừ đồ nhiệm vụ
+        if (questRequiredItem && questRequiredAmount > 0)
+        {
+            bool removed = playerInventory.RemoveItem(questRequiredItem, questRequiredAmount);
+            if (!removed)
+            {
+                Debug.LogWarning($"Vendor {name}: lạ nha, lúc nãy đủ đồ mà giờ RemoveItem fail.");
+            }
+        }
+
+        // 2. Thưởng item
+        if (questRewardItem && questRewardAmount > 0)
+        {
+            int remaining = playerInventory.AddItem(questRewardItem, questRewardAmount);
+            if (remaining > 0)
+            {
+                Debug.LogWarning($"Vendor {name}: túi đầy, còn {remaining} món không add được.");
+                // sau này có thể drop xuống đất, gửi vào rương, v.v.
+            }
+        }
+
+        // 3. Đánh dấu quest đã hoàn thành
+        questCompleted = true;
+        Debug.Log($"Vendor {name}: QUEST HOÀN THÀNH, đã phát thưởng.");
+
+        // 4. Mở shop như bình thường
+        OpenShop();
     }
 }
