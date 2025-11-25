@@ -43,6 +43,8 @@ public class QuestData : ScriptableObject
 
     [Tooltip("Số lượng item thưởng.")]
     public int rewardAmount = 1;
+    [Tooltip("Số tiền thưởng thêm khi hoàn thành nhiệm vụ.")]
+    public int moneyReward = 0;
 
     [Header("Tuỳ chọn")]
     [Tooltip("Nếu bật, sau này có thể cho phép reset / làm lại nhiệm vụ này (logic chưa code, dùng cho tương lai).")]

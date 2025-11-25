@@ -1280,7 +1280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bookPanel: {fileID: 1271030761}
-  vendorShopUI: {fileID: 0}
+  vendorShopUI: {fileID: 1110650984}
 --- !u!114 &152460048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2335,6 +2335,8 @@ MonoBehaviour:
   typewriter: {fileID: 1847587916}
   yesButton: {fileID: 401071811}
   noButton: {fileID: 1474297644}
+  player: {fileID: 2116136252306584676}
+  bookToggle: {fileID: 152460047}
 --- !u!1 &347347811
 GameObject:
   m_ObjectHideFlags: 0
@@ -11450,6 +11452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 647645683}
+  playerWallet: {fileID: 0}
 --- !u!4 &2117053214
 Transform:
   m_ObjectHideFlags: 0

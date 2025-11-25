@@ -7,7 +7,7 @@ public class VendorQuestUI : MonoBehaviour
     [SerializeField] TypewriterText typewriter;
     [SerializeField] Button yesButton;
     [SerializeField] Button noButton;
-
+    
     enum Mode
     {
         OfferAsk,      // Hỏi: nhận nhiệm vụ không?

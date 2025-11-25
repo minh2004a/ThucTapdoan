@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f32939fd5046c40ac26e4f8a5f218e, type: 3}
-  m_Name: Giay01
+  m_Name: Quan04
   m_EditorClassIdentifier: 
-  id: "Gi\xE0y th\xF4"
-  icon: {fileID: 1778525718, guid: 475e04379a921dc44a312b2dfc0809f4, type: 3}
-  displayName: "Gi\xE0y th\xF4"
-  baseDescription: "Gi\xFAp b\u1EA1n t\u0103ng th\u1EC3 l\u1EF1c!!!"
+  id: "Qu\u1EA7n V\xE0ng"
+  icon: {fileID: 869530262, guid: dda2253b45559e043b5d475ffc2ad06e, type: 3}
+  displayName: "Qu\u1EA7n v\xE0ng"
+  baseDescription: "Khi mang v\xE0o s\u1EBD t\u0103ng m\xE1u cho b\u1EA1n!!!"
   seedData: {fileID: 0}
   category: 6
-  equipSlot: 3
+  equipSlot: 5
   stackable: 0
   weaponType: 0
   toolType: 0
@@ -27,9 +27,9 @@ MonoBehaviour:
   staminaRestore: 0
   sellPrice: 0
   buyPrice: 0
-  staminaMaxBonus: 30
-  healthMaxBonus: 0
-  staminaRegenBonus: 3
+  staminaMaxBonus: 0
+  healthMaxBonus: 80
+  staminaRegenBonus: 0
   backpackSlotBonus: 0
   toolRangeTiles: 1
   maxStack: 999

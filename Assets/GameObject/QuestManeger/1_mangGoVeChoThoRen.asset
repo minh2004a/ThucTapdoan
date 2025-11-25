@@ -25,4 +25,5 @@ MonoBehaviour:
   requiredAmount: 5
   rewardItem: {fileID: 11400000, guid: 3871afd636fbcf14c9bb9efe35b7b2fa, type: 2}
   rewardAmount: 1
+  moneyReward: 300
   repeatable: 0

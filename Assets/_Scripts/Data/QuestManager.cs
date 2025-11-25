@@ -7,6 +7,7 @@ public class QuestManager : MonoBehaviour
 
     [Header("Refs")]
     [SerializeField] PlayerInventory playerInventory;
+    [SerializeField] PlayerWallet playerWallet;
 
     // key = questData.id
     readonly Dictionary<string, QuestInstance> activeQuests = new();
@@ -25,7 +26,8 @@ public class QuestManager : MonoBehaviour
 
         if (!playerInventory)
             playerInventory = FindObjectOfType<PlayerInventory>(true);
-
+        if (!playerWallet)
+            playerWallet = FindObjectOfType<PlayerWallet>(true);
         // THÊM: load quest từ SaveStore
         loadedStates.Clear();
         foreach (var dto in SaveStore.GetQuestStates())
@@ -97,7 +99,11 @@ public class QuestManager : MonoBehaviour
         if (!playerInventory)
             playerInventory = FindObjectOfType<PlayerInventory>(true);
     }
-
+    void EnsureWallet()
+    {
+        if (!playerWallet)
+            playerWallet = FindObjectOfType<PlayerWallet>(true);
+    }
     void UpdateProgressFromInventory(QuestInstance inst)
     {
         if (inst == null || inst.data == null) return;
@@ -166,6 +172,13 @@ public class QuestManager : MonoBehaviour
                 Debug.LogWarning($"QuestManager: túi đầy, còn {remaining} reward chưa add được.");
                 // sau này có thể drop xuống đất
             }
+            // 3. Thưởng tiền
+        EnsureWallet();
+        if (playerWallet != null && q.moneyReward > 0)
+        {
+            playerWallet.AddMoney(q.moneyReward);
+            Debug.Log($"QuestManager: thưởng thêm {q.moneyReward} tiền cho quest {q.id}.");
+        }
         }
 
         // 3. Đánh dấu hoàn thành
