@@ -5,6 +5,7 @@ public class BookToggle : MonoBehaviour
 {
     [SerializeField] GameObject bookPanel; // BookInventoryPanel
     [SerializeField] VendorShopUI vendorShopUI;
+    [SerializeField] VendorQuestUI vendorQuestUI;
     float previousTimeScale = 1f;
     bool pausedByBook = false;
     void Awake()
@@ -14,7 +15,9 @@ public class BookToggle : MonoBehaviour
 
     void Update()
     {
-        if (vendorShopUI && vendorShopUI.IsVisible) return; // không mở túi khi đang mở shop
+        // không mở túi khi đang mở shop hoặc bảng quest
+        if ((vendorShopUI && vendorShopUI.IsVisible) ||
+            (vendorQuestUI && vendorQuestUI.IsVisible)) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             bool active = bookPanel.activeSelf;

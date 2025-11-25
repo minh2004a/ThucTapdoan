@@ -7,7 +7,9 @@ public class VendorQuestUI : MonoBehaviour
     [SerializeField] TypewriterText typewriter;
     [SerializeField] Button yesButton;
     [SerializeField] Button noButton;
-    
+    [SerializeField] PlayerController player;
+    [SerializeField] BookToggle bookToggle;
+    [SerializeField] VendorShopUI vendorShopUI;
     enum Mode
     {
         OfferAsk,      // Hỏi: nhận nhiệm vụ không?
@@ -19,10 +21,13 @@ public class VendorQuestUI : MonoBehaviour
 
     EquipmentVendor currentVendor;
     QuestData currentQuest;
-
+    public bool IsVisible => root != null && root.activeSelf;
     void Awake()
     {
         if (!root) root = gameObject;
+        if (!player) player = FindObjectOfType<PlayerController>(true);
+        if (!bookToggle) bookToggle = FindObjectOfType<BookToggle>(true);
+        if (!vendorShopUI) vendorShopUI = FindObjectOfType<VendorShopUI>(true);
         root.SetActive(false);
     }
 
@@ -33,6 +38,7 @@ public class VendorQuestUI : MonoBehaviour
         currentVendor = vendor;
         currentQuest = quest;
 
+        LockPlayer();
         root.SetActive(true);
 
         yesButton.onClick.RemoveAllListeners();
@@ -53,6 +59,7 @@ public class VendorQuestUI : MonoBehaviour
         currentVendor = vendor;
         currentQuest = quest;
 
+        LockPlayer();
         root.SetActive(true);
 
         yesButton.onClick.RemoveAllListeners();
@@ -130,5 +137,20 @@ public class VendorQuestUI : MonoBehaviour
         root.SetActive(false);
         currentVendor = null;
         currentQuest = null;
+        UnlockPlayerIfNoOtherUI();
+    }
+     void LockPlayer()
+    {
+        bookToggle?.CloseBook();
+        if (player != null)
+            player.SetMoveLock(true);
+    }
+
+    void UnlockPlayerIfNoOtherUI()
+    {
+        if (player == null) return;
+        bool otherUILocked = vendorShopUI != null && vendorShopUI.IsVisible;
+        if (!otherUILocked)
+            player.SetMoveLock(false);
     }
 }
