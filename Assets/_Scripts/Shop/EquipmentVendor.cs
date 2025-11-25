@@ -35,7 +35,18 @@ public class EquipmentVendor : MonoBehaviour
     [SerializeField] Transform player;
 
     public IReadOnlyList<VendorItem> Stock => stock;
+    [Header("Quest mở đầu")]
+    [SerializeField] bool offerQuestOnFirstTalk = true;
+    [TextArea]
+    [SerializeField] string firstQuestText = "Tôi đang cần tìm cái gì đó... giúp tôi được không?";
 
+    // KHÔNG cần SerializeField nữa, để script tự tìm
+    VendorQuestUI questUI;
+
+    bool hasOfferedQuest = false;
+    bool questAccepted = false;
+
+    public bool QuestAccepted => questAccepted;
     void Reset()
     {
         shopUI = FindObjectOfType<VendorShopUI>(true);
@@ -60,26 +71,74 @@ public class EquipmentVendor : MonoBehaviour
             shopUI.Hide(this);
         }
     }
-
-    void OnMouseOver()
+    void OpenShop()
     {
-        Debug.Log("OnMouseOver running on " + gameObject.name);
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("Right click on vendor " + gameObject.name);
-            TryOpenShop();
-        }
+        if (!shopUI) return;
+        shopUI.Show(this, stock);
     }
-
     public void TryOpenShop()
     {
         if (!shopUI || UIInputGuard.BlockInputNow()) return;
         if (!IsInRange()) return;
 
-        shopUI.Show(this, stock);
+        if (offerQuestOnFirstTalk && !hasOfferedQuest)
+        {
+            ShowQuestDialogue();
+        }
+        else
+        {
+            OpenShop();
+        }
     }
 
+    void ShowQuestDialogue()
+    {
+        hasOfferedQuest = true;
+
+        // Nếu chưa có ref thì tự tìm trong scene (kể cả object đang inactive)
+        if (questUI == null)
+        {
+            questUI = FindObjectOfType<VendorQuestUI>(true);
+        }
+
+        if (questUI != null)
+        {
+            questUI.Show(this, firstQuestText);
+        }
+        else
+        {
+            Debug.LogWarning($"Vendor {name}: không tìm thấy VendorQuestUI, mở shop luôn.");
+            OpenShop();
+        }
+    }
+    public void OnQuestAnswer(bool accept)
+    {
+        questAccepted = accept;
+
+        if (accept)
+        {
+            Debug.Log($"Vendor {name}: player đã NHẬN quest.");
+            // TODO: sau này nối vào hệ thống nhiệm vụ thật
+        }
+        else
+        {
+            Debug.Log($"Vendor {name}: player từ chối quest.");
+        }
+
+        // Dù Yes hay No đều mở shop
+        OpenShop();
+    }
+
+    void ShowQuestDialogueTemp()
+    {
+        hasOfferedQuest = true;  // đánh dấu là đã hỏi 1 lần
+
+        // Sau này sẽ gọi UI yes/no, giờ test tạm bằng log
+        Debug.Log($"[Vendor {name}] ĐANG HỎI QUEST LẦN ĐẦU");
+
+        // Giả lập: tạm coi như player bấm No → mở shop luôn
+        OpenShop();
+    }
     bool IsInRange()
     {
         if (!player) return true;
