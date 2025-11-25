@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2812bcffc5eb68c4c94c5da3c418ea6d, type: 3}
+  m_Name: 1_mangGoVeChoThoRen
+  m_EditorClassIdentifier: 
+  id: Mang_Go_Cho_Tho_Ren_01
+  title: "T\xF4i c\u1EA7n nguy\xEAn li\u1EC7u g\u1ED7"
+  description: 
+  giverId: 
+  offerText: "T\xF4i c\u1EA7n 5 kh\xFAc g\u1ED7 nh\xF3c con gi\xFAp ch\u1ECB \u0111\u01B0\u1EE3c
+    ch\u1EE9??"
+  completeText: "Nhanh th\u1EADt \u0111\u1EA5y, c\u1EA3m \u01A1n nh\xF3c con nh\xE9!"
+  acceptThanksText: "C\u1EA3m \u01A1n nh\xF3c \u0111\xE3 gi\xFAp ch\u1ECB nh\xE9!
+    g\xE1ng l\xE0m nhanh nh\xE9 ch\u1ECB c\u1EA7n g\u1ED7 g\u1EA5p!"
+  requiredItem: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
+  requiredAmount: 5
+  rewardItem: {fileID: 11400000, guid: 3871afd636fbcf14c9bb9efe35b7b2fa, type: 2}
+  rewardAmount: 1
+  repeatable: 0

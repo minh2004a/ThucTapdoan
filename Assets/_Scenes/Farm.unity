@@ -103224,9 +103224,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -8
+  m_SortingLayerID: -1898515245
+  m_SortingLayer: 12
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -105360,6 +105360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcVuKhi
       objectReference: {fileID: 0}
+    - target: {fileID: 575315856749524139, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
+      propertyPath: quest
+      value: 
+      objectReference: {fileID: 11400000, guid: 81e66d10a87d9aa41beb8ef9b227d0cd, type: 2}
     - target: {fileID: 575315856749524139, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
       propertyPath: thankYouText
       value: "C\u1EA3m \u01A1n \u0111\xE3 gi\xFAp t\xF4i nh\xE9! m\u1EDDi b\u1EA1n

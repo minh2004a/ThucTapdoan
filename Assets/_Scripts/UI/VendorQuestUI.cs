@@ -3,38 +3,37 @@ using UnityEngine.UI;
 
 public class VendorQuestUI : MonoBehaviour
 {
-    enum QuestDialogMode
-    {
-        Offer,      // hỏi nhận nhiệm vụ (Yes/No)
-        Complete    // báo hoàn thành (chỉ Yes)
-    }
-    [Header("UI Refs")]
-    [SerializeField] GameObject root;          // Panel VendorQuestDialog
+    [SerializeField] GameObject root;
     [SerializeField] TypewriterText typewriter;
     [SerializeField] Button yesButton;
     [SerializeField] Button noButton;
-    [Header("Text")]
-    [SerializeField, TextArea] string thankYouText = "Cảm ơn đã giúp tôi! Vào shop xem thử nhé.";
-    QuestDialogMode mode;
-    EquipmentVendor currentVendor;
-    bool isInThankYouPhase;
-    void Awake()
-    {
-        if (!root)
-            root = gameObject;
 
-        root.SetActive(false);   // ẩn sẵn
+    enum Mode
+    {
+        OfferAsk,      // Hỏi: nhận nhiệm vụ không?
+        OfferThanks,   // Đã nhận: hiện lời cảm ơn
+        Complete       // Đã đủ đồ: hiện hoàn thành nhiệm vụ
     }
 
-    public void Show(EquipmentVendor vendor, string message)
+    Mode mode;
+
+    EquipmentVendor currentVendor;
+    QuestData currentQuest;
+
+    void Awake()
     {
-        mode = QuestDialogMode.Offer;
+        if (!root) root = gameObject;
+        root.SetActive(false);
+    }
+
+    // --- Phase 1: hỏi nhận nhiệm vụ ---
+    public void ShowOffer(EquipmentVendor vendor, QuestData quest)
+    {
+        mode = Mode.OfferAsk;
         currentVendor = vendor;
+        currentQuest = quest;
 
         root.SetActive(true);
-
-        if (typewriter != null)
-            typewriter.ShowText(message);
 
         yesButton.onClick.RemoveAllListeners();
         noButton.onClick.RemoveAllListeners();
@@ -42,11 +41,28 @@ public class VendorQuestUI : MonoBehaviour
         yesButton.onClick.AddListener(OnClickYes);
         noButton.onClick.AddListener(OnClickNo);
         noButton.gameObject.SetActive(true);
+
+        if (typewriter != null)
+            typewriter.ShowText(quest != null ? quest.offerText : "");
     }
-    void Close()
+
+    // --- Hoàn thành nhiệm vụ ---
+    public void ShowComplete(EquipmentVendor vendor, QuestData quest)
     {
-        root.SetActive(false);
-        currentVendor = null;
+        mode = Mode.Complete;
+        currentVendor = vendor;
+        currentQuest = quest;
+
+        root.SetActive(true);
+
+        yesButton.onClick.RemoveAllListeners();
+        noButton.onClick.RemoveAllListeners();
+
+        yesButton.onClick.AddListener(OnClickYes);
+        noButton.gameObject.SetActive(false); // không có nút No khi trả nhiệm vụ
+
+        if (typewriter != null)
+            typewriter.ShowText(quest != null ? quest.completeText : "");
     }
 
     void OnClickYes()
@@ -57,43 +73,62 @@ public class VendorQuestUI : MonoBehaviour
             return;
         }
 
-        if (mode == QuestDialogMode.Offer)
+        switch (mode)
         {
-            // Nhận quest như cũ
-            currentVendor.OnQuestAnswer(true);
-            Close();
-        }
-        else if (mode == QuestDialogMode.Complete)
-        {
-            // Gọi vendor xử lý thưởng + mở shop
-            currentVendor.FinishQuestAndGiveReward();
-            Close();
+            case Mode.OfferAsk:
+                // Người chơi mới bấm YES “nhận nhiệm vụ”
+                // Nếu có text cảm ơn -> chuyển sang Phase 2
+                if (currentQuest != null &&
+                    !string.IsNullOrWhiteSpace(currentQuest.acceptThanksText))
+                {
+                    mode = Mode.OfferThanks;
+                    if (noButton != null)
+                        noButton.gameObject.SetActive(false);
+
+                    if (typewriter != null)
+                        typewriter.ShowText(currentQuest.acceptThanksText);
+
+                    // CHƯA gọi vendor, chưa mở shop
+                    return;
+                }
+                else
+                {
+                    // Không set text cảm ơn thì giữ behaviour cũ:
+                    // nhận nhiệm vụ + mở shop luôn
+                    currentVendor.OnQuestOfferAnswer(true);
+                    Close();
+                }
+                break;
+
+            case Mode.OfferThanks:
+                // Đây là lần YES thứ 2 sau khi hiện lời cảm ơn
+                currentVendor.OnQuestOfferAnswer(true);
+                Close();
+                break;
+
+            case Mode.Complete:
+                // YES khi trả nhiệm vụ
+                currentVendor.OnQuestCompleteConfirmed();
+                Close();
+                break;
         }
     }
+
     void OnClickNo()
     {
-        if (currentVendor != null)
+        if (currentVendor != null && mode == Mode.OfferAsk)
         {
-            currentVendor.OnQuestAnswer(false);
-            currentVendor.OpenShopFromQuestUI();
+            // Từ chối nhiệm vụ nhưng vẫn mở shop
+            currentVendor.OnQuestOfferAnswer(false);
         }
 
         Close();
     }
-    public void ShowQuestCompleted(EquipmentVendor vendor, string message)
+
+    public void Close()
     {
-        mode = QuestDialogMode.Complete;
-        currentVendor = vendor;
-
-        root.SetActive(true);
-
-        if (typewriter != null)
-            typewriter.ShowText(message);
-
-        yesButton.onClick.RemoveAllListeners();
-        noButton.onClick.RemoveAllListeners();
-
-        yesButton.onClick.AddListener(OnClickYes);
-        noButton.gameObject.SetActive(false); // ẩn nút No
+        root.SetActive(false);
+        currentVendor = null;
+        currentQuest = null;
     }
 }

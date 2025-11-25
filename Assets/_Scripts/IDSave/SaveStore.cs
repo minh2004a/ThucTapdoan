@@ -14,9 +14,17 @@ public static class SaveStore
     public ItemStackDTO[] bag;
     public int selected;
 }
-    [System.Serializable] public class EquipmentDTO {
+    [System.Serializable] 
+    public class EquipmentDTO {
     public string[] keys;
     public string[] ids;
+}
+[System.Serializable]
+public class QuestStateDTO
+{
+    public string id;          // QuestData.id
+    public QuestState state;   // NotAccepted / InProgress / ReadyToTurnIn / Completed
+    public int currentAmount;  // nếu sau này cần
 }
     static Meta meta = new Meta();
     [System.Serializable]
@@ -67,6 +75,7 @@ public static class SaveStore
         public int money = 0;
         public InventoryDTO inventory = new InventoryDTO();
         public EquipmentDTO equipment = new EquipmentDTO();
+        public List<QuestStateDTO> quests = new List<QuestStateDTO>();
     }
     public static void CaptureInventory(PlayerInventory inv, ItemDB db)
     {
@@ -227,6 +236,20 @@ public static class SaveStore
         public List<SoilSceneRecord> soils = new();
         public List<WateredSoilSceneRecord> wateredSoils = new();
         public Meta meta = new Meta();
+        public QuestSaveData quests = new QuestSaveData();
+    }
+    [Serializable]
+    public class QuestSaveData
+    {
+        public List<QuestSaveEntry> entries = new();
+    }
+
+    [Serializable]
+    public class QuestSaveEntry
+    {
+        public string questId;
+        public QuestState state;
+        public int currentAmount;
     }
     // Hỗ trợ file cũ (chỉ có "scenes")
     [Serializable] class Legacy { public List<SceneRecord> scenes = new(); }
@@ -732,6 +755,19 @@ public static class SaveStore
         pendingSoil.Clear(); pendingClearedSoil.Clear();
         pendingSoilInfo.Clear();
         pendingWateredSoil.Clear(); pendingDriedSoil.Clear();
+    }
+    public static List<QuestStateDTO> GetQuestStates()
+    {
+        if (meta == null || meta.quests == null)
+            return new List<QuestStateDTO>();
+        return new List<QuestStateDTO>(meta.quests); // trả bản copy cho an toàn
+    }
+
+    public static void SetQuestStates(List<QuestStateDTO> list, bool save = true)
+    {
+        if (meta == null) meta = new Meta();
+        meta.quests = list ?? new List<QuestStateDTO>();
+        if (save) SaveToDisk();
     }
     // =============== MENU SUPPORT ===============
     public static bool HasAnySave()
