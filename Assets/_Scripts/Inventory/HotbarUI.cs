@@ -71,41 +71,21 @@ public class HotbarUI : MonoBehaviour
     }
     bool TrySellInShop(int hotbarIndex)
     {
-        if (!vendorShopUI || !vendorShopUI.IsVisible || vendorShopUI.CurrentVendor == null) return false;
+        // chỉ cho bán khi shop đang mở
+        if (!vendorShopUI || !vendorShopUI.IsVisible) return false;
         if (!economy) return false;
-        if ((uint)hotbarIndex >= (uint)inv.hotbar.Length) return false;
+        if (!inv || (uint)hotbarIndex >= (uint)inv.hotbar.Length) return false;
 
         var st = inv.hotbar[hotbarIndex];
-        if (st.item == null || st.item.category != ItemCategory.Equipment) return false;
+        if (st.item == null) return false;
 
-        int vendorPrice = GetVendorPriceForItem(st.item, vendorShopUI.CurrentVendor);
-        if (vendorPrice < 0) return false;
+        // dùng trực tiếp sellPrice trong ItemSO
+        if (st.item.sellPrice <= 0) return false; // món này không cho bán
 
-        int sellPrice = Mathf.CeilToInt(vendorPrice / 3f);
-        if (sellPrice <= 0) return false;
-
-        return economy.TrySell(st.item, Mathf.Max(1, st.count), out _, sellPrice);
+        // bán toàn bộ stack, hoặc muốn 1 món thì sửa Max(1, st.count) -> 1
+        return economy.TrySell(st.item, Mathf.Max(1, st.count), out _, -1);
+        // truyền -1 => EconomyManager sẽ tự dùng item.sellPrice
     }
-
-    int GetVendorPriceForItem(ItemSO item, EquipmentVendor vendor)
-    {
-        if (item == null || vendor == null) return -1;
-
-        var stock = vendor.Stock;
-        if (stock != null)
-        {
-            for (int i = 0; i < stock.Count; i++)
-            {
-                if (stock[i].item == item)
-                {
-                    return stock[i].GetPrice();
-                }
-            }
-        }
-
-        return item.buyPrice;
-    }
-
     public void Refresh()
     {
         if (!inv || slots == null) return;

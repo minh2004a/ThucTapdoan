@@ -8,6 +8,8 @@ public struct VendorItem
     public ItemSO item;
     [Tooltip("Nếu >= 0 sẽ ưu tiên dùng giá này thay cho giá mua gốc của item.")]
     public int priceOverride;
+    [Tooltip("Nếu >= 0, cửa hàng sẽ mua lại item này từ người chơi với giá cố định này mỗi cái.")]
+    public int playerSellPriceOverride;
 
     [Header("Chi phí tài nguyên đi kèm")]
     [Tooltip("Tài nguyên cần có thêm để mua trang bị này (ngoài tiền).")]
@@ -21,14 +23,30 @@ public struct VendorItem
         if (item == null) return -1;
         return item.buyPrice;
     }
+    public int GetPlayerSellPrice(float multiplier = 0.33f)
+    {
+        if (playerSellPriceOverride >= 0) return playerSellPriceOverride;
+        int basePrice = GetPrice();
+        if (basePrice < 0) basePrice = item != null ? item.buyPrice : -1;
+        if (basePrice < 0 && item != null) basePrice = item.sellPrice;
+        if (basePrice < 0) return -1;
+        return Mathf.CeilToInt(basePrice * multiplier);
+    }
 
     public bool HasResourceRequirement => requiredResource != null && requiredResourceAmount > 0;
 }
-
+public enum VendorType
+{
+    Equipment,
+    Seed
+}
 // NPC đứng yên bán trang bị. Khi bấm chuột phải vào sẽ mở bảng shop.
 public class EquipmentVendor : MonoBehaviour
 {
     [SerializeField] PlayerInventory playerInventory;
+    [Header("Loại cửa hàng")]
+    [SerializeField] VendorType vendorType = VendorType.Equipment;
+
     [Header("Cửa hàng trang bị")]
     [SerializeField] List<VendorItem> stock = new List<VendorItem>();
     [SerializeField] VendorShopUI shopUI;
@@ -217,5 +235,42 @@ public class EquipmentVendor : MonoBehaviour
     {
         if (!player) return true;
         return Vector2.Distance(player.position, transform.position) <= interactDistance;
+    }
+     public bool CanBuyFromPlayer(ItemSO item)
+    {
+        if (item == null) return false;
+
+        switch (vendorType)
+        {
+            case VendorType.Equipment:
+                return item.category == ItemCategory.Equipment;
+            case VendorType.Seed:
+                return item.category == ItemCategory.Seed || item.category == ItemCategory.FarmProduct;
+            default:
+                return false;
+        }
+    }
+
+    public int GetPlayerSellPrice(ItemSO item)
+    {
+        // 1) Nếu item nằm trong stock và có override → dùng override
+        if (stock != null)
+        {
+            foreach (var v in stock)
+            {
+                if (v.item == item)
+                {
+                    // luôn dùng override hoặc base giá không nhân % nữa
+                    if (v.playerSellPriceOverride >= 0)
+                        return v.playerSellPriceOverride;
+
+                    // fallback: dùng item.sellPrice
+                    return item.sellPrice;
+                }
+            }
+        }
+
+        // 2) Nếu không nằm trong stock → dùng item.sellPrice
+        return item.sellPrice;
     }
 }

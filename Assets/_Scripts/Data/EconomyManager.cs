@@ -1,6 +1,6 @@
 
 using UnityEngine;
-
+// Quản lý hệ thống kinh tế: mua bán trang bị với cửa hàng
 public class EconomyManager : MonoBehaviour
 {
     [SerializeField] PlayerInventory inventory;
