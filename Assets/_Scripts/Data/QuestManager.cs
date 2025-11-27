@@ -72,12 +72,18 @@ public class QuestManager : MonoBehaviour
         activeQuests[data.id] = inst;
         return inst;
     }
-    public QuestState GetState(QuestData data)
+    public bool GetState(QuestData data, out QuestState state)
     {
         var inst = GetOrCreateInstance(data);
-        return inst != null ? inst.state : QuestState.NotAccepted;
-    }
+        if (inst == null)
+        {
+            state = QuestState.NotAccepted;
+            return false;
+        }
 
+        state = inst.state;
+        return true;
+    }
     public QuestInstance AcceptQuest(QuestData data)
     {
         var inst = GetOrCreateInstance(data);
@@ -195,6 +201,13 @@ public class QuestManager : MonoBehaviour
         var inst = GetOrCreateInstance(data);
         return inst != null && inst.state == QuestState.Completed;
     }
+
+    // tiện: đã bắt đầu quest chưa (InProgress / ReadyToTurnIn / Completed)
+    public bool HasStarted(QuestData data)
+    {
+        var inst = GetOrCreateInstance(data);
+        return inst != null && inst.state != QuestState.NotAccepted;
+    }
     void SaveQuests()
     {
         var list = new List<SaveStore.QuestStateDTO>();
@@ -213,5 +226,15 @@ public class QuestManager : MonoBehaviour
         }
 
         SaveStore.SetQuestStates(list);
+    }
+    public void CompleteSimple(QuestData data)
+    {
+        var inst = GetOrCreateInstance(data);
+        if (inst == null) return;
+
+        inst.state = QuestState.Completed;
+        inst.currentAmount = inst.data != null ? inst.data.requiredAmount : 0;
+
+        SaveQuests();
     }
 }

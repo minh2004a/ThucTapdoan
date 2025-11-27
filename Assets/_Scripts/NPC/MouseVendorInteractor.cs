@@ -19,12 +19,19 @@ public class MouseVendorInteractor : MonoBehaviour
         // Lấy vị trí chuột trên thế giới 2D
         Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Vì 2D nên dùng Raycast với direction = Vector2.zero, distance = 0
         RaycastHit2D hit = Physics2D.Raycast(mouseWorld, Vector2.zero, 0f, vendorLayer);
 
         if (hit.collider != null)
         {
-            // Tìm component EquipmentVendor trên object hoặc parent
+            // 1) Thử NPCDialogue (dân làng nói chuyện)
+            var npcDialogue = hit.collider.GetComponentInParent<NPCDialogue>();
+            if (npcDialogue != null)
+            {
+                npcDialogue.Interact();
+                return;
+            }
+
+            // 2) Nếu không có NPCDialogue -> thử vendor
             EquipmentVendor vendor = hit.collider.GetComponentInParent<EquipmentVendor>();
             if (vendor != null)
             {

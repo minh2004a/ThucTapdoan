@@ -55,8 +55,11 @@ public class HotbarSlotUI : MonoBehaviour,IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData e)
     {
+        bool rightClick = e.button == PointerEventData.InputButton.Right;
+
         // Chọn ngay trên Down để không lỡ bắn bằng item cũ
-        owner?.OnClickSlot(idx);
+        if (owner != null && !rightClick)
+            owner.OnClickSlot(idx);
 
         // Chặn hành động dùng item trong frame click UI
         UIInputGuard.MarkClick();

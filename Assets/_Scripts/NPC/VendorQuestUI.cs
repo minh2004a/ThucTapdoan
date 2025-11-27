@@ -12,6 +12,7 @@ public class VendorQuestUI : MonoBehaviour
     [SerializeField] VendorShopUI vendorShopUI;
     enum Mode
     {
+        Intro,
         OfferAsk,      // Hỏi: nhận nhiệm vụ không?
         OfferThanks,   // Đã nhận: hiện lời cảm ơn
         Complete       // Đã đủ đồ: hiện hoàn thành nhiệm vụ
@@ -82,6 +83,11 @@ public class VendorQuestUI : MonoBehaviour
 
         switch (mode)
         {
+            case Mode.Intro:
+            // Lời chào vendor -> sau đó mở shop
+            currentVendor.OnIntroFinished();
+            Close();
+            break;
             case Mode.OfferAsk:
                 // Người chơi mới bấm YES “nhận nhiệm vụ”
                 // Nếu có text cảm ơn -> chuyển sang Phase 2
@@ -152,5 +158,23 @@ public class VendorQuestUI : MonoBehaviour
         bool otherUILocked = vendorShopUI != null && vendorShopUI.IsVisible;
         if (!otherUILocked)
             player.SetMoveLock(false);
+    }
+    public void ShowIntro(EquipmentVendor vendor, string text)
+    {
+        mode = Mode.Intro;
+        currentVendor = vendor;
+        currentQuest = null;
+
+        LockPlayer();
+        root.SetActive(true);
+
+        yesButton.onClick.RemoveAllListeners();
+        noButton.onClick.RemoveAllListeners();
+
+        yesButton.onClick.AddListener(OnClickYes);
+        noButton.gameObject.SetActive(false); // chỉ 1 nút "Tiếp tục"
+
+        if (typewriter != null)
+            typewriter.ShowText(text ?? "");
     }
 }
