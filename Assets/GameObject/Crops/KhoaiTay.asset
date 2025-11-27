@@ -26,7 +26,7 @@ MonoBehaviour:
   dropChanceBonusPercent: 0
   healthRestore: 50
   staminaRestore: 100
-  sellPrice: 50
+  sellPrice: 1000
   buyPrice: 0
   staminaMaxBonus: 0
   healthMaxBonus: 0

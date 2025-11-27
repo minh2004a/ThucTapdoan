@@ -101837,7 +101837,7 @@ MonoBehaviour:
   stock:
   - item: {fileID: 11400000, guid: 4f19e87cbbc6b864fb786c68ee8ce6f4, type: 2}
     priceOverride: 30
-    playerSellPriceOverride: 12
+    playerSellPriceOverride: 50
     requiredResource: {fileID: 0}
     requiredResourceAmount: 0
   shopUI: {fileID: 0}

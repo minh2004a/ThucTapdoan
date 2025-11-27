@@ -52,40 +52,76 @@ public class HotbarUI : MonoBehaviour
         infoPanel.ShowItem(st.item);
     }
 
-    // click vào ô hotbar
+    // click chuột trái lên ô hotbar
     public void OnClickSlot(int i)
     {
-        inv?.SelectSlot(i);
-        // Không gọi ShowItem ở đây,
-        // vì SelectSlot sẽ bắn event SelectedChanged → OnChanged() chạy, tự update info.
+        if (!inv) return;
+
+        int prev = inv.selected;
+        bool wasSame = (prev == i);
+
+        // luôn chọn slot trước
+        inv.SelectSlot(i);
+
+        // Nếu đang trong shop
+        if (vendorShopUI && vendorShopUI.IsVisible)
+        {
+            // click lần đầu chỉ để chọn
+            if (!wasSame)
+                return;
+
+            // click lần 2 trên cùng ô -> bán CẢ STACK
+            var st = inv.hotbar[i];
+            if (st.item != null)
+                TrySellInShop(i, st.count);  // 👈 ở đây mới dùng st.count
+        }
     }
 
-    // click chuột phải lên ô hotbar để dùng vật phẩm tiêu hao
+    // click chuột phải lên ô hotbar
     public void OnRightClickSlot(int i)
     {
         if (!inv) return;
+
+        int prev = inv.selected;
+        bool wasSame = (prev == i);
+
         inv.SelectSlot(i);
-        if (TrySellInShop(i)) return;
-        if (!consumableUser && inv) consumableUser = inv.GetComponent<PlayerUseConsumable>();
+
+        if (vendorShopUI && vendorShopUI.IsVisible)
+        {
+            // lần đầu chỉ chọn
+            if (!wasSame)
+                return;
+
+            // lần 2 -> bán 1 cái
+            if (TrySellInShop(i, 1))   // 👈 TRUYỀN 1
+                return;
+        }
+
+        // ngoài shop hoặc bán fail -> xài consumable như cũ
+        if (!consumableUser && inv)
+            consumableUser = inv.GetComponent<PlayerUseConsumable>();
+
         consumableUser?.TryUseSelected(ignoreUiGuard: true);
     }
-    bool TrySellInShop(int hotbarIndex)
+
+    bool TrySellInShop(int hotbarIndex, int amount)
     {
-        // chỉ cho bán khi shop đang mở
-        if (!vendorShopUI || !vendorShopUI.IsVisible) return false;
-        if (!economy) return false;
-        if (!inv || (uint)hotbarIndex >= (uint)inv.hotbar.Length) return false;
+        if (!vendorShopUI || !vendorShopUI.IsVisible || vendorShopUI.CurrentVendor == null) return false;
+        if (!economy || !inv) return false;
+        if ((uint)hotbarIndex >= (uint)inv.hotbar.Length) return false;
 
         var st = inv.hotbar[hotbarIndex];
-        if (st.item == null) return false;
+        if (st.item == null || !vendorShopUI.CurrentVendor.CanBuyFromPlayer(st.item)) return false;
 
-        // dùng trực tiếp sellPrice trong ItemSO
-        if (st.item.sellPrice <= 0) return false; // món này không cho bán
+        int sellPrice = vendorShopUI.CurrentVendor.GetPlayerSellPrice(st.item);
+        if (sellPrice <= 0) return false;
 
-        // bán toàn bộ stack, hoặc muốn 1 món thì sửa Max(1, st.count) -> 1
-        return economy.TrySell(st.item, Mathf.Max(1, st.count), out _, -1);
-        // truyền -1 => EconomyManager sẽ tự dùng item.sellPrice
+        int sellAmount = Mathf.Clamp(amount, 1, st.count);
+
+        return economy.TrySell(st.item, sellAmount, out _, sellPrice);
     }
+
     public void Refresh()
     {
         if (!inv || slots == null) return;

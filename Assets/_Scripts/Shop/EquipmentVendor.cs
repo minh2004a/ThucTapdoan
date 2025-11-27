@@ -6,11 +6,6 @@ using UnityEngine;
 public struct VendorItem
 {
     public ItemSO item;
-    [Tooltip("Nếu >= 0 sẽ ưu tiên dùng giá này thay cho giá mua gốc của item.")]
-    public int priceOverride;
-    [Tooltip("Nếu >= 0, cửa hàng sẽ mua lại item này từ người chơi với giá cố định này mỗi cái.")]
-    public int playerSellPriceOverride;
-
     [Header("Chi phí tài nguyên đi kèm")]
     [Tooltip("Tài nguyên cần có thêm để mua trang bị này (ngoài tiền).")]
     public ItemSO requiredResource;
@@ -19,18 +14,14 @@ public struct VendorItem
     
     public int GetPrice()
     {
-        if (priceOverride >= 0) return priceOverride;
-        if (item == null) return -1;
+        // chỉ dùng buyPrice trong ItemSO
+        if (!item) return -1;
         return item.buyPrice;
     }
-    public int GetPlayerSellPrice(float multiplier = 0.33f)
+     public int GetPlayerSellPrice()
     {
-        if (playerSellPriceOverride >= 0) return playerSellPriceOverride;
-        int basePrice = GetPrice();
-        if (basePrice < 0) basePrice = item != null ? item.buyPrice : -1;
-        if (basePrice < 0 && item != null) basePrice = item.sellPrice;
-        if (basePrice < 0) return -1;
-        return Mathf.CeilToInt(basePrice * multiplier);
+        if (!item) return -1;
+        return item.sellPrice;
     }
 
     public bool HasResourceRequirement => requiredResource != null && requiredResourceAmount > 0;
@@ -55,7 +46,7 @@ public class EquipmentVendor : MonoBehaviour
     public IReadOnlyList<VendorItem> Stock => stock;
     [Header("Quest")]
     [SerializeField] bool useQuest = true; // có dùng quest hay không
-    [SerializeField] QuestData quest; // quest để giao cho người chơi
+    [SerializeField] QuestData quest; // quest để giao cho ngườiVendorItem chơi
     [SerializeField] bool offerQuestOnFirstTalk = true; // có tự động hỏi nhận quest khi lần đầu nói chuyện không
     [SerializeField] VendorQuestUI questUI; // UI nhiệm vụ
 
@@ -250,27 +241,9 @@ public class EquipmentVendor : MonoBehaviour
                 return false;
         }
     }
-
     public int GetPlayerSellPrice(ItemSO item)
     {
-        // 1) Nếu item nằm trong stock và có override → dùng override
-        if (stock != null)
-        {
-            foreach (var v in stock)
-            {
-                if (v.item == item)
-                {
-                    // luôn dùng override hoặc base giá không nhân % nữa
-                    if (v.playerSellPriceOverride >= 0)
-                        return v.playerSellPriceOverride;
-
-                    // fallback: dùng item.sellPrice
-                    return item.sellPrice;
-                }
-            }
-        }
-
-        // 2) Nếu không nằm trong stock → dùng item.sellPrice
-        return item.sellPrice;
+        if (!item) return -1;
+        return item.sellPrice;    // luôn dùng giá bán trong ItemSO
     }
 }
