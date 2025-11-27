@@ -18,7 +18,7 @@ public struct VendorItem
         if (!item) return -1;
         return item.buyPrice;
     }
-     public int GetPlayerSellPrice()
+    public int GetPlayerSellPrice()
     {
         if (!item) return -1;
         return item.sellPrice;
@@ -34,7 +34,6 @@ public enum VendorType
 // NPC đứng yên bán trang bị. Khi bấm chuột phải vào sẽ mở bảng shop.
 public class EquipmentVendor : MonoBehaviour
 {
-    [SerializeField] PlayerInventory playerInventory;
     [Header("Loại cửa hàng")]
     [SerializeField] VendorType vendorType = VendorType.Equipment;
 
@@ -44,24 +43,11 @@ public class EquipmentVendor : MonoBehaviour
     [SerializeField] float interactDistance = 3f;
     [SerializeField] Transform player;
     public IReadOnlyList<VendorItem> Stock => stock;
-    [Header("Quest")]
-    [SerializeField] bool useQuest = true; // có dùng quest hay không
-    [SerializeField] QuestData quest; // quest để giao cho ngườiVendorItem chơi
-    [SerializeField] bool offerQuestOnFirstTalk = true; // có tự động hỏi nhận quest khi lần đầu nói chuyện không
-    [SerializeField] VendorQuestUI questUI; // UI nhiệm vụ
-
-    bool hasOfferedQuest = false;
-    bool questAccepted = false;
-    bool questCompleted = false;
-    public bool QuestAccepted => questAccepted;
     void Reset()
     {
         shopUI = FindObjectOfType<VendorShopUI>(true);
         var pc = FindObjectOfType<PlayerController>(true);
         if (pc) player = pc.transform;
-
-        if (!questUI)
-            questUI = FindObjectOfType<VendorQuestUI>(true);
     }
     void Awake()
     {
@@ -72,9 +58,6 @@ public class EquipmentVendor : MonoBehaviour
             var pc = FindObjectOfType<PlayerController>(true);
             if (pc) player = pc.transform;
         }
-
-        if (!questUI)
-            questUI = FindObjectOfType<VendorQuestUI>(true);
     }
 
     void OnDisable()
@@ -89,137 +72,11 @@ public class EquipmentVendor : MonoBehaviour
         if (!shopUI) return;
         shopUI.Show(this, stock);
     }
-        public void TryOpenShop()
+
+    public void TryOpenShop()
     {
         if (!shopUI || UIInputGuard.BlockInputNow()) return;
         if (!IsInRange()) return;
-
-        // Nếu không dùng quest hoặc không gán quest / QuestManager chưa tồn tại -> mở shop như cũ
-        var qm = QuestManager.Instance;
-        if (!useQuest || quest == null || qm == null)
-        {
-            OpenShop();
-            return;
-        }
-
-        // Hỏi trạng thái nhiệm vụ từ QuestManager
-        var state = qm.GetState(quest);
-
-        // Chưa nhận nhiệm vụ
-        if (state == QuestState.NotAccepted)
-        {
-            if (offerQuestOnFirstTalk)
-            {
-                ShowQuestOffer();
-                return;
-            }
-
-            OpenShop();
-            return;
-        }
-
-        // Đã nhận rồi -> xem thử đủ đồ để trả chưa
-        if (qm.CanTurnIn(quest))
-        {
-            ShowQuestComplete();
-            return;
-        }
-
-        // Đã nhận nhưng chưa đủ đồ hoặc đã complete -> mở shop bình thường
-        OpenShop();
-    }
-        void ShowQuestOffer()
-    {
-        if (!questUI)
-            questUI = FindObjectOfType<VendorQuestUI>(true);
-
-        if (questUI != null)
-        {
-            questUI.ShowOffer(this, quest);
-        }
-        else
-        {
-            Debug.LogWarning($"Vendor {name}: không tìm thấy VendorQuestUI, mở shop luôn.");
-            OpenShop();
-        }
-    }
-
-    void ShowQuestComplete()
-    {
-        if (!questUI)
-            questUI = FindObjectOfType<VendorQuestUI>(true);
-
-        if (questUI != null)
-        {
-            questUI.ShowComplete(this, quest);
-        }
-        else
-        {
-            Debug.LogWarning($"Vendor {name}: không tìm thấy VendorQuestUI, mở shop luôn.");
-            OpenShop();
-        }
-    }
-        // Người chơi trả lời bảng "nhận nhiệm vụ?"
-    public void OnQuestOfferAnswer(bool accept)
-    {
-        var qm = QuestManager.Instance;
-
-        if (accept && qm != null && quest != null)
-        {
-            qm.AcceptQuest(quest);
-        }
-
-        // Dù Yes hay No thì sau đó mở shop
-        OpenShop();
-    }
-
-    // Người chơi bấm Yes ở bảng "hoàn thành nhiệm vụ"
-    public void OnQuestCompleteConfirmed()
-    {
-        var qm = QuestManager.Instance;
-
-        if (qm != null && quest != null)
-        {
-            qm.TryTurnIn(quest);   // trừ đồ + thưởng + set Completed
-        }
-
-        // Sau khi nhận thưởng thì mở shop
-        OpenShop();
-    }
-    public void OnQuestAnswer(bool accept)
-    {
-        questAccepted = accept;
-
-        if (accept)
-        {
-            // Người chơi ĐỒNG Ý -> lần sau KHÔNG hỏi lại nữa
-            hasOfferedQuest = true;
-            Debug.Log($"Vendor {name}: player đã NHẬN quest.");
-            questCompleted = false;   // đang làm quest
-        }
-        else
-        {
-            // Người chơi BẤM NO -> coi như từ chối tạm thời
-            // Lần sau nói chuyện -> vẫn cho hiện lại quest
-            hasOfferedQuest = false;
-            Debug.Log($"Vendor {name}: player từ chối quest.");
-        }
-
-        // Tạm thời vẫn mở shop sau khi trả lời
-        OpenShop();
-    }
-    public void OpenShopFromQuestUI()
-    {
-        OpenShop();
-    }
-    void ShowQuestDialogueTemp()
-    {
-        hasOfferedQuest = true;  // đánh dấu là đã hỏi 1 lần
-
-        // Sau này sẽ gọi UI yes/no, giờ test tạm bằng log
-        Debug.Log($"[Vendor {name}] ĐANG HỎI QUEST LẦN ĐẦU");
-
-        // Giả lập: tạm coi như player bấm No → mở shop luôn
         OpenShop();
     }
     bool IsInRange()
@@ -227,7 +84,7 @@ public class EquipmentVendor : MonoBehaviour
         if (!player) return true;
         return Vector2.Distance(player.position, transform.position) <= interactDistance;
     }
-     public bool CanBuyFromPlayer(ItemSO item)
+    public bool CanBuyFromPlayer(ItemSO item)
     {
         if (item == null) return false;
 
