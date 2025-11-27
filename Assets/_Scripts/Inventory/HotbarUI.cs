@@ -57,23 +57,20 @@ public class HotbarUI : MonoBehaviour
     {
         if (!inv) return;
 
-        int prev = inv.selected;
-        bool wasSame = (prev == i);
-
-        // luôn chọn slot trước
+        bool wasSelected = inv.selected == i;
         inv.SelectSlot(i);
 
         // Nếu đang trong shop
         if (vendorShopUI && vendorShopUI.IsVisible)
         {
-            // click lần đầu chỉ để chọn
-            if (!wasSame)
-                return;
-
-            // click lần 2 trên cùng ô -> bán CẢ STACK
-            var st = inv.hotbar[i];
-            if (st.item != null)
-                TrySellInShop(i, st.count);  // 👈 ở đây mới dùng st.count
+            // Click lần đầu chỉ chọn, click tiếp trên ô đang chọn mới bán toàn bộ stack
+            if (wasSelected)
+            {
+                var st = inv.hotbar[i];
+                if (st.item != null)
+                    TrySellInShop(i, st.count);
+            }
+            return;
         }
     }
 
@@ -82,20 +79,15 @@ public class HotbarUI : MonoBehaviour
     {
         if (!inv) return;
 
-        int prev = inv.selected;
-        bool wasSame = (prev == i);
-
+        bool wasSelected = inv.selected == i;
         inv.SelectSlot(i);
 
         if (vendorShopUI && vendorShopUI.IsVisible)
         {
-            // lần đầu chỉ chọn
-            if (!wasSame)
+            // Click lần đầu chỉ chọn, click tiếp trên ô đang chọn mới bán từng cái
+            if (wasSelected && TrySellInShop(i, 1))
                 return;
-
-            // lần 2 -> bán 1 cái
-            if (TrySellInShop(i, 1))   // 👈 TRUYỀN 1
-                return;
+            return;
         }
 
         // ngoài shop hoặc bán fail -> xài consumable như cũ
