@@ -53,7 +53,7 @@ public class HotbarUI : MonoBehaviour
     }
 
     // click chuột trái lên ô hotbar
-    public void OnClickSlot(int i)
+    public void OnClickSlot(int i, bool allowSell = true)
     {
         if (!inv) return;
 
@@ -64,6 +64,9 @@ public class HotbarUI : MonoBehaviour
         if (vendorShopUI && vendorShopUI.IsVisible)
         {
             // Click lần đầu chỉ chọn, click tiếp trên ô đang chọn mới bán toàn bộ stack
+            if (!allowSell)
+                return;
+
             if (wasSelected)
             {
                 var st = inv.hotbar[i];
