@@ -49,11 +49,6 @@ public class EquipmentVendor : MonoBehaviour
     [SerializeField] QuestData quest; // quest để giao cho ngườiVendorItem chơi
     [SerializeField] bool offerQuestOnFirstTalk = true; // có tự động hỏi nhận quest khi lần đầu nói chuyện không
     [SerializeField] VendorQuestUI questUI; // UI nhiệm vụ
-
-    bool hasOfferedQuest = false;
-    bool questAccepted = false;
-    bool questCompleted = false;
-    public bool QuestAccepted => questAccepted;
     void Reset()
     {
         shopUI = FindObjectOfType<VendorShopUI>(true);
@@ -101,7 +96,7 @@ public class EquipmentVendor : MonoBehaviour
             OpenShop();
             return;
         }
-
+        
         // Hỏi trạng thái nhiệm vụ từ QuestManager
         var state = qm.GetState(quest);
 
@@ -117,7 +112,7 @@ public class EquipmentVendor : MonoBehaviour
             OpenShop();
             return;
         }
-
+        
         // Đã nhận rồi -> xem thử đủ đồ để trả chưa
         if (qm.CanTurnIn(quest))
         {
@@ -186,40 +181,8 @@ public class EquipmentVendor : MonoBehaviour
         // Sau khi nhận thưởng thì mở shop
         OpenShop();
     }
-    public void OnQuestAnswer(bool accept)
-    {
-        questAccepted = accept;
-
-        if (accept)
-        {
-            // Người chơi ĐỒNG Ý -> lần sau KHÔNG hỏi lại nữa
-            hasOfferedQuest = true;
-            Debug.Log($"Vendor {name}: player đã NHẬN quest.");
-            questCompleted = false;   // đang làm quest
-        }
-        else
-        {
-            // Người chơi BẤM NO -> coi như từ chối tạm thời
-            // Lần sau nói chuyện -> vẫn cho hiện lại quest
-            hasOfferedQuest = false;
-            Debug.Log($"Vendor {name}: player từ chối quest.");
-        }
-
-        // Tạm thời vẫn mở shop sau khi trả lời
-        OpenShop();
-    }
     public void OpenShopFromQuestUI()
     {
-        OpenShop();
-    }
-    void ShowQuestDialogueTemp()
-    {
-        hasOfferedQuest = true;  // đánh dấu là đã hỏi 1 lần
-
-        // Sau này sẽ gọi UI yes/no, giờ test tạm bằng log
-        Debug.Log($"[Vendor {name}] ĐANG HỎI QUEST LẦN ĐẦU");
-
-        // Giả lập: tạm coi như player bấm No → mở shop luôn
         OpenShop();
     }
     bool IsInRange()

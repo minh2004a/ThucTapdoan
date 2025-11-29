@@ -163,7 +163,7 @@ public class QuestManager : MonoBehaviour
             return false;
         }
 
-        // 2. Thưởng
+       // 2. Thưởng item
         if (q.rewardItem && q.rewardAmount > 0)
         {
             int remaining = playerInventory.AddItem(q.rewardItem, q.rewardAmount);
@@ -172,13 +172,14 @@ public class QuestManager : MonoBehaviour
                 Debug.LogWarning($"QuestManager: túi đầy, còn {remaining} reward chưa add được.");
                 // sau này có thể drop xuống đất
             }
-            // 3. Thưởng tiền
+        }
+
+        // 3. Thưởng tiền (tách block riêng)
         EnsureWallet();
         if (playerWallet != null && q.moneyReward > 0)
         {
             playerWallet.AddMoney(q.moneyReward);
             Debug.Log($"QuestManager: thưởng thêm {q.moneyReward} tiền cho quest {q.id}.");
-        }
         }
 
         // 3. Đánh dấu hoàn thành
@@ -194,7 +195,13 @@ public class QuestManager : MonoBehaviour
     {
         var inst = GetOrCreateInstance(data);
         return inst != null && inst.state == QuestState.Completed;
+    }    
+    public bool HasStarted(QuestData data)
+    {
+        var inst = GetOrCreateInstance(data);
+        return inst != null && inst.state != QuestState.NotAccepted;
     }
+
     void SaveQuests()
     {
         var list = new List<SaveStore.QuestStateDTO>();
@@ -214,4 +221,29 @@ public class QuestManager : MonoBehaviour
 
         SaveStore.SetQuestStates(list);
     }
+    public void CompleteSimple(QuestData data)
+    {
+        var inst = GetOrCreateInstance(data);
+        if (inst == null) return;
+
+        inst.state = QuestState.Completed;
+        inst.currentAmount = inst.data != null ? inst.data.requiredAmount : 0;
+
+        SaveQuests();
+    }
+    public bool ArePrerequisitesMet(QuestData quest)
+    {
+        if (quest.prerequisiteQuests == null || quest.prerequisiteQuests.Length == 0)
+            return true;
+
+        foreach (var pre in quest.prerequisiteQuests)
+        {
+            if (pre == null) continue;
+            if (GetState(pre) != QuestState.Completed)
+                return false;
+        }
+
+        return true;
+    }
+    
 }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2812bcffc5eb68c4c94c5da3c418ea6d, type: 3}
+  m_Name: gap_Truong_Lao
+  m_EditorClassIdentifier: 
+  kind: 1
+  requiredTalkCount: 1
+  id: gap_Truong_Lao
+  title: "G\u1EB7p tr\u01B0\u1EDFng l\xE3o"
+  description: 
+  giverId: 
+  prerequisiteQuests: []
+  offerText: "Xin ch\xE0o t\xF4i l\xE0 tr\u01B0\u1EDFng th\u1ECB tr\u1EA5n n\xE0y
+    c\u1EADu n\xEAn l\xE0m quen v\u1EDBi t\u1EA5t c\u1EA3 m\u1ECDi ng\u01B0\u1EDDi
+    \u1EDF \u0111\xE2y"
+  completeText: "H\xE3y \u0111i ch\xE0o h\u1ECFi m\u1ECDi ng\u01B0\u1EDDi \u1EDF
+    \u0111\xE2y m\u1ECDi ng\u01B0\u1EDDi r\u1EA5t l\xE0 th\xE2n thi\u1EC7n"
+  acceptThanksText: "Th\u1EA5y ch\u01B0a m\u1ECDi ng\u01B0\u1EDDi r\u1EA5t th\xE2n
+    thi\u1EC7n t\u1EEB gi\u1EDD c\u1EADu l\xE0 m\u1ED9t ph\u1EA7n c\u1EE7a Th\u1ECB
+    tr\u1EA5n"
+  requiredItem: {fileID: 0}
+  requiredAmount: 1
+  rewardItem: {fileID: 0}
+  rewardAmount: 1
+  moneyReward: 0
+  repeatable: 0
