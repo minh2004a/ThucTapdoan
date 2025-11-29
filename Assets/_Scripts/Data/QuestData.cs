@@ -3,6 +3,18 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Quests/Quest Data")]
 public class QuestData : ScriptableObject
 {
+    public enum QuestKind
+    {
+        FetchItems,   // như đang dùng: cần item + số lượng
+        TalkToPeople  // nhiệm vụ nói chuyện
+    }
+
+    [Header("Kiểu nhiệm vụ")]
+    public QuestKind kind = QuestKind.FetchItems;
+
+    // Cho talk quest
+    [Tooltip("Số người cần nói chuyện (cho quest làm quen).")]
+    public int requiredTalkCount = 0;
     [Header("Thông tin cơ bản")]
     [Tooltip("ID duy nhất dùng để lưu / load. KHÔNG được trùng giữa các quest.")]
     public string id;
@@ -16,6 +28,9 @@ public class QuestData : ScriptableObject
 
     [Tooltip("ID hoặc tên NPC giao nhiệm vụ (dùng cho UI hoặc logic sau này).")]
     public string giverId;
+    [Header("Chuỗi nhiệm vụ")]
+    [Tooltip("Quest phải hoàn thành trước khi quest này được mở.")]
+    public QuestData[] prerequisiteQuests;
 
     [Header("Hội thoại NPC")]
     [TextArea]
