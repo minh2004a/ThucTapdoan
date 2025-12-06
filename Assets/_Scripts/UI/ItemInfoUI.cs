@@ -83,6 +83,12 @@ public class ItemInfoUI : MonoBehaviour
 
                 if (item.backpackSlotBonus > 0)
                     sb.AppendLine($"• Mở thêm {item.backpackSlotBonus} ô túi");
+
+                if (item.weaponDamageBonusPercent > 0)
+                    sb.AppendLine($"• +{item.weaponDamageBonusPercent}% sát thương vũ khí");
+
+                if (item.damageReductionPercent > 0)
+                    sb.AppendLine($"• Giảm {item.damageReductionPercent}% sát thương nhận vào");
             }
 
             // ====== CONSUMABLE / NÔNG SẢN: hồi máu & stamina ======

@@ -1,7 +1,7 @@
 
-
 // PlayerInventory.cs
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 // Quản lý kho đồ của người chơi, bao gồm hotbar và túi đồ
 [Serializable] public struct ItemStack { public ItemSO item; public int count; }
@@ -286,6 +286,11 @@ public class PlayerInventory : MonoBehaviour
 
         return remaining <= 0;
     }
+    public bool RemoveItem(ItemStack stack)
+    {
+        if (stack.item == null || stack.count <= 0) return false;
+        return RemoveItem(stack.item, stack.count);
+    }
     public bool ConsumeSelected(int n = 1)
     {
         if ((uint)selected >= (uint)hotbar.Length || n <= 0) return false;
@@ -296,5 +301,46 @@ public class PlayerInventory : MonoBehaviour
         HotbarChanged?.Invoke();
         SelectedChanged?.Invoke(selected);
         return true;
+    }
+
+    public List<ItemStack> GetSellableItems(EquipmentVendor vendor)
+    {
+        var result = new List<ItemStack>();
+        if (vendor == null) return result;
+
+        var totals = new Dictionary<ItemSO, int>();
+
+        void AddIfSellable(ItemStack stack)
+        {
+            if (stack.item == null || stack.count <= 0) return;
+            if (!vendor.CanBuyFromPlayer(stack.item)) return;
+
+            if (totals.TryGetValue(stack.item, out var current))
+            {
+                totals[stack.item] = current + stack.count;
+            }
+            else
+            {
+                totals[stack.item] = stack.count;
+            }
+        }
+
+        for (int i = 0; i < hotbar.Length; i++)
+        {
+            AddIfSellable(hotbar[i]);
+        }
+
+        int unlocked = UnlockedBagSlots;
+        for (int i = 0; i < unlocked; i++)
+        {
+            AddIfSellable(bag[i]);
+        }
+
+        foreach (var kv in totals)
+        {
+            result.Add(new ItemStack { item = kv.Key, count = kv.Value });
+        }
+
+        return result;
     }
 }

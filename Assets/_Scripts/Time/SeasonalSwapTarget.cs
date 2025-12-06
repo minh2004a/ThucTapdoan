@@ -17,7 +17,7 @@ public class SeasonalSwapTarget : MonoBehaviour {
     public Tilemap target;
     public List<SeasonTilePair> pairs;
     SeasonManager sm;
-    SeasonManager.Season lastSeason; bool inited;
+    SeasonManager.Season lastSeason;
 
     void OnEnable(){ sm = FindFirstObjectByType<SeasonManager>(); if (sm) sm.OnSeasonChanged += OnSeasonChanged; }
     void OnDisable(){ if (sm) sm.OnSeasonChanged -= OnSeasonChanged; }
@@ -26,7 +26,7 @@ public class SeasonalSwapTarget : MonoBehaviour {
         if (!target) target = GetComponent<Tilemap>();
         if (!sm) sm = FindFirstObjectByType<SeasonManager>();
         var now = sm ? sm.CurrentSeason : SeasonManager.Season.Spring;
-        ApplyFull(now); lastSeason = now; inited = true;
+        ApplyFull(now); lastSeason = now;
     }
     void OnSeasonChanged(SeasonManager.Season newS){
         foreach (var p in pairs){

@@ -4,10 +4,6 @@ public class MouseVendorInteractor : MonoBehaviour
 {
     [Header("Layer chỉ chứa vendor")]
     [SerializeField] LayerMask vendorLayer;
-
-    [Header("Khoảng cách ray tối đa")]
-    [SerializeField] float maxDistance = 100f;
-
     void Update()
     {
         // Nếu đang bị UI block thì thôi

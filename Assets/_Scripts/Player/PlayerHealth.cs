@@ -7,17 +7,20 @@ public class PlayerHealth : MonoBehaviour
     public int maxHP = 100;
     public int hp;
      int baseMaxHP;
+    [SerializeField] PlayerEquipment equipment;
     public UnityEvent<float> OnHpPercent; // giá trị 0..1
 
      void Awake()
         {
+            if (!equipment) equipment = GetComponent<PlayerEquipment>();
             baseMaxHP = Mathf.Max(1, maxHP);
             maxHP = baseMaxHP;
             hp = maxHP;
             OnHpPercent?.Invoke(1f);
         }
     public void TakeDamage(int dmg){
-        hp = Mathf.Max(0, hp - dmg);
+        int finalDmg = ApplyDamageReduction(dmg);
+        hp = Mathf.Max(0, hp - finalDmg);
         OnHpPercent?.Invoke((float)hp / maxHP);
     }
 
@@ -49,5 +52,13 @@ public class PlayerHealth : MonoBehaviour
         maxHP = newMax;
         hp = Mathf.Clamp(Mathf.RoundToInt(percent * maxHP), 0, maxHP);
         OnHpPercent?.Invoke((float)hp / maxHP);
+    }
+
+    int ApplyDamageReduction(int dmg)
+    {
+        if (dmg <= 0) return 0;
+        float reducePercent = equipment ? Mathf.Clamp(equipment.GetDamageReductionPercent(), 0f, 100f) : 0f;
+        float factor = 1f - reducePercent * 0.01f;
+        return Mathf.Max(0, Mathf.RoundToInt(dmg * factor));
     }
 }

@@ -35,12 +35,12 @@ public class ConsumableConfirmUI : MonoBehaviour
         if (cancelButton) cancelButton.onClick.RemoveListener(OnCancelClicked);
     }
 
-    public void Show(ItemSO item, Action onConfirm, Action onCancel)
+    public void Show(ItemSO item, Action onConfirm, Action onCancel, string customMessage = null)
     {
         currentItem = item;
         confirmCallback = onConfirm;
         cancelCallback = onCancel;
-        UpdateVisuals(item);
+        UpdateVisuals(item, customMessage);
         if (!gameObject.activeSelf) gameObject.SetActive(true);
         if (group)
         {
@@ -99,13 +99,15 @@ public class ConsumableConfirmUI : MonoBehaviour
         currentItem = null;
     }
 
-    void UpdateVisuals(ItemSO item)
+    void UpdateVisuals(ItemSO item, string customMessage)
     {
         string displayName = FormatItemName(item);
         if (messageText)
         {
             string format = string.IsNullOrWhiteSpace(messageFormat) ? "Bạn có muốn sử dụng {0}?" : messageFormat;
-            messageText.text = string.Format(format, displayName);
+            messageText.text = string.IsNullOrEmpty(customMessage)
+                ? string.Format(format, displayName)
+                : customMessage;
         }
         if (itemNameText)
         {

@@ -16,6 +16,7 @@ public class PlayerUseWeapon : MonoBehaviour
     [SerializeField] SleepManager sleep;
     [SerializeField] LayerMask enemyMask;
     [SerializeField] LayerMask blockMask;   // NEW
+    [SerializeField] PlayerEquipment equipment;
     // [SerializeField] bool bowAimWithMouse = true;
     private float bowFailSafe = 10f; // thời gian khóa tối đa 1 phát
     
@@ -36,6 +37,7 @@ public class PlayerUseWeapon : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (!sprite) sprite = GetComponentInChildren<SpriteRenderer>(); 
         if (!inv) inv = GetComponent<PlayerInventory>();
+        if (!equipment) equipment = GetComponent<PlayerEquipment>();
     }
     void Update(){
     if (cd > 0) cd -= Time.deltaTime;
@@ -140,8 +142,9 @@ public class PlayerUseWeapon : MonoBehaviour
     var go = Instantiate(it.projectilePrefab, spawn, Quaternion.identity);
     go.transform.right = dir;
 
+    int damage = GetWeaponDamage(it);
     var proj = go.GetComponent<ArrowProjectile>() ?? go.AddComponent<ArrowProjectile>();
-    proj.Init(it.Dame, dir, it.projectileSpeed, enemyMask, blockMask,
+    proj.Init(damage, dir, it.projectileSpeed, enemyMask, blockMask,
           life: 3f, maxDist: it.projectileMaxDistance, hitVFXPrefab: it.projectileHitVFX);
     var sr = go.GetComponent<SpriteRenderer>();
     if (sr && sprite){
@@ -171,6 +174,7 @@ public class PlayerUseWeapon : MonoBehaviour
     public void AttackHit()
     {
         var it = inv?.CurrentItem; if (it == null) return;
+        int damage = GetWeaponDamage(it);
 
         Vector2 dir = swordLocked ? swordFacing : Facing4();
 
@@ -180,7 +184,7 @@ public class PlayerUseWeapon : MonoBehaviour
         Vector2 center = rb.position + dir * fwd + new Vector2(0f, it.hitboxYOffset);
 
         var hits = Physics2D.OverlapCircleAll(center, rad, enemyMask);
-        foreach (var c in hits) c.GetComponentInParent<IDamageable>()?.TakeHit(it.Dame);
+        foreach (var c in hits) c.GetComponentInParent<IDamageable>()?.TakeHit(damage);
     }
     public void AttackEnd()
     {
@@ -230,5 +234,10 @@ public class PlayerUseWeapon : MonoBehaviour
         Gizmos.DrawWireSphere(center, rad);
     }
 
-    
+    int GetWeaponDamage(ItemSO weapon)
+    {
+        if (weapon == null) return 0;
+        float mult = equipment ? equipment.GetWeaponDamageMultiplier() : 1f;
+        return Mathf.Max(1, Mathf.RoundToInt(weapon.Dame * mult));
+    }
 }

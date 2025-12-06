@@ -112,14 +112,10 @@ public class HotbarUI : MonoBehaviour
         if ((uint)hotbarIndex >= (uint)inv.hotbar.Length) return false;
 
         var st = inv.hotbar[hotbarIndex];
-        if (st.item == null || !vendorShopUI.CurrentVendor.CanBuyFromPlayer(st.item)) return false;
+        if (st.item == null) return false;
 
-        int sellPrice = vendorShopUI.CurrentVendor.GetPlayerSellPrice(st.item);
-        if (sellPrice <= 0) return false;
-
-        int sellAmount = Mathf.Clamp(amount, 1, st.count);
-
-        return economy.TrySell(st.item, sellAmount, out _, sellPrice);
+        st.count = Mathf.Clamp(amount, 1, st.count);
+        return vendorShopUI.CurrentVendor.TrySellToVendor(st, inv, economy);
     }
 
     public void Refresh()

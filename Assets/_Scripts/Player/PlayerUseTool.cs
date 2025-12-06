@@ -197,6 +197,7 @@ public class PlayerUseTool : MonoBehaviour
         bool hasMouseDirection = worldDelta.sqrMagnitude > 0.0001f;
         Vector2 facingFallback = DetermineFallbackFacing();
         Vector2Int facingDelta = DetermineFacingDelta(worldDelta);
+        Vector2 facingFromMouse = DetermineFacingFromMouse(worldDelta, facingFallback);
 
         switch (item.toolType)
         {
@@ -214,7 +215,7 @@ public class PlayerUseTool : MonoBehaviour
                 }
 
                 targetCell = playerCell + delta;
-                facing = facingFallback;
+                facing = DetermineFacingFromDelta(delta, facingFallback);
                 rangeTiles = 1;
                 hitPoint = soil.CellToWorld(targetCell);
                 hasHitPoint = true;
@@ -242,7 +243,7 @@ public class PlayerUseTool : MonoBehaviour
                 }
 
                 targetCell = playerCell + delta;
-                facing = facingFallback;
+                facing = DetermineFacingFromDelta(delta, facingFallback);
                 hitPoint = soil.CellToWorld(targetCell);
                 hasHitPoint = true;
                 return true;
@@ -250,7 +251,7 @@ public class PlayerUseTool : MonoBehaviour
             case ToolType.Pickaxe:
             case ToolType.Scythe:
             {
-                facing = facingFallback;
+                facing = facingFromMouse;
 
                 float hitRange = ComputeHitboxReach(item);
                 Vector2 clamped = Vector2.ClampMagnitude(worldDelta, hitRange);
@@ -273,7 +274,7 @@ public class PlayerUseTool : MonoBehaviour
                     return false;
                 }
 
-                facing = facingFallback;
+                facing = DetermineFacingFromDelta(delta, facingFallback);
                 return true;
         }
     }
@@ -282,6 +283,38 @@ public class PlayerUseTool : MonoBehaviour
     {
         if (delta == Vector2Int.zero) return false;
         return Mathf.Abs(delta.x) <= 1 && Mathf.Abs(delta.y) <= 1;
+    }
+
+    Vector2 DetermineFacingFromMouse(Vector2 worldDelta, Vector2 fallbackFacing)
+    {
+        // Chọn 1 trong 4 hướng dựa trên vector chuột so với người chơi (ưu tiên trục lớn hơn)
+        if (worldDelta.sqrMagnitude > 0.0001f)
+        {
+            return Mathf.Abs(worldDelta.y) >= Mathf.Abs(worldDelta.x)
+                ? new Vector2(0f, Mathf.Sign(worldDelta.y))
+                : new Vector2(Mathf.Sign(worldDelta.x), 0f);
+        }
+
+        if (fallbackFacing.sqrMagnitude > 0.0001f)
+        {
+            return Mathf.Abs(fallbackFacing.y) >= Mathf.Abs(fallbackFacing.x)
+                ? new Vector2(0f, Mathf.Sign(fallbackFacing.y))
+                : new Vector2(Mathf.Sign(fallbackFacing.x), 0f);
+        }
+
+        return Vector2.down;
+    }
+
+    Vector2 DetermineFacingFromDelta(Vector2Int delta, Vector2 fallbackFacing)
+    {
+        if (delta == Vector2Int.zero)
+        {
+            return DetermineFacingFromMouse(Vector2.zero, fallbackFacing);
+        }
+
+        return Mathf.Abs(delta.y) >= Mathf.Abs(delta.x)
+            ? new Vector2(0f, Mathf.Sign(delta.y))
+            : new Vector2(Mathf.Sign(delta.x), 0f);
     }
 
     Vector2Int DetermineFacingDelta(Vector2 worldDelta)
@@ -428,13 +461,7 @@ public class PlayerUseTool : MonoBehaviour
 
     void UpdateFacingWhileLocked()
     {
-        if (!controller) return;
-
-        Vector2 pending = controller.PendingFacing4();
-        if (pending.sqrMagnitude > 0.0001f)
-        {
-            activeFacing = pending;
-        }
+        // Giữ nguyên hướng lúc bắt đầu dùng tool, không bị input di chuyển xen vào
     }
 
     void TriggerToolAnimation(ToolType type)

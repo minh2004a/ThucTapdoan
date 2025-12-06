@@ -73,6 +73,12 @@ public class ItemSO : ScriptableObject
     [FormerlySerializedAs("bagSlotBonus")]
     [Tooltip("Số ô túi được mở thêm khi trang bị balo này.")]
     public int backpackSlotBonus;
+    [Header("Armor Settings")]
+    [Tooltip("Giảm % sát thương nhận vào khi trang bị áo giáp.")]
+    [Range(0f, 100f)] public float damageReductionPercent;
+    [Header("Gloves Settings")]
+    [Tooltip("% sát thương cộng thêm cho vũ khí cầm tay.")]
+    [Range(0f, 1000f)] public float weaponDamageBonusPercent;
     [Header("Tool Settings")]
     [Tooltip("Số ô tối đa tính từ người chơi đến mục tiêu khi dùng công cụ này")]
     [Min(1)] public int toolRangeTiles = 1;

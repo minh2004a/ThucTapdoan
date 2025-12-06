@@ -118,4 +118,18 @@ public class PlayerEquipment : MonoBehaviour
 
         return 1f;
     }
+
+    public float GetDamageReductionPercent()
+    {
+        var armor = Get(EquipSlotType.Armor);
+        if (!armor) return 0f;
+        return Mathf.Max(0f, armor.damageReductionPercent);
+    }
+
+    public float GetWeaponDamageMultiplier()
+    {
+        var gloves = Get(EquipSlotType.Gloves);
+        float bonus = gloves ? Mathf.Max(0f, gloves.weaponDamageBonusPercent) : 0f;
+        return 1f + bonus * 0.01f;
+    }
 }

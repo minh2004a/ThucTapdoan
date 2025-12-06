@@ -36,6 +36,8 @@ public class ItemSOEditor : Editor
     SerializedProperty healthMaxBonusProp;
     SerializedProperty displayNameProp;
     SerializedProperty baseDescriptionProp;
+    SerializedProperty damageReductionPercentProp;
+    SerializedProperty weaponDamageBonusPercentProp;
     void OnEnable()
     {
         idProp = serializedObject.FindProperty("id");
@@ -69,6 +71,8 @@ public class ItemSOEditor : Editor
         staminaRegenBonusProp = serializedObject.FindProperty("staminaRegenBonus");
         backpackSlotBonusProp = serializedObject.FindProperty("backpackSlotBonus");
         healthMaxBonusProp = serializedObject.FindProperty("healthMaxBonus");
+        damageReductionPercentProp = serializedObject.FindProperty("damageReductionPercent");
+        weaponDamageBonusPercentProp = serializedObject.FindProperty("weaponDamageBonusPercent");
     }
 
     public override void OnInspectorGUI()
@@ -212,6 +216,10 @@ public class ItemSOEditor : Editor
         {
             EditorGUILayout.PropertyField(dropChanceBonusPercentProp, new GUIContent("Drop Chance Bonus %"));
         }
+        if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Gloves)
+        {
+            EditorGUILayout.PropertyField(weaponDamageBonusPercentProp, new GUIContent("Weapon Damage Bonus %"));
+        }
         if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Backpack)
         {
             EditorGUILayout.PropertyField(backpackSlotBonusProp, new GUIContent("Backpack Slot Bonus"));
@@ -225,6 +233,10 @@ public class ItemSOEditor : Editor
         if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Pants)
         {
             EditorGUILayout.PropertyField(healthMaxBonusProp, new GUIContent("Health Max Bonus"));
+        }
+        if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Armor)
+        {
+            EditorGUILayout.PropertyField(damageReductionPercentProp, new GUIContent("Damage Reduction %"));
         }
         DrawPriceFields();
     }

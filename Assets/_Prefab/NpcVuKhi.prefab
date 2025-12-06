@@ -225,22 +225,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stock:
   - item: {fileID: 11400000, guid: 86babdcd762c946438ec4a6c45a7f7ad, type: 2}
-    priceOverride: 200
     requiredResource: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
     requiredResourceAmount: 10
   - item: {fileID: 11400000, guid: ef73d3adaf0c9b44f853f0fe0135c8db, type: 2}
-    priceOverride: 20
     requiredResource: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
     requiredResourceAmount: 10
   shopUI: {fileID: 0}
   interactDistance: 3
   player: {fileID: 0}
-  offerQuestOnFirstTalk: 1
-  firstQuestText: "T\xF4i c\u1EA7n b\u1EA1n l\u1EA5y 5 kh\xFAc g\u1ED7 b\u1EA1n gi\xFAp
-    t\xF4i \u0111\u01B0\u1EE3c kh\xF4ng??"
-  thankYouText: "C\u1EA3m \u01A1n \u0111\xE3 gi\xFAp t\xF4i nh\xE9! m\u1EDDi b\u1EA1n
-    v\xF4 shop xem nh\u1EEFng trang b\u1ECB m\u1EA1nh m\u1EBD nh\u1EA5t nh\xE9"
-  questRequiredItem: {fileID: 11400000, guid: 3691f76312940394ebff87cca83e3bfe, type: 2}
-  questRequiredAmount: 5
-  questRewardItem: {fileID: 11400000, guid: eb81674bdbe916f4c9db4a6e72c45a81, type: 2}
-  questRewardAmount: 10

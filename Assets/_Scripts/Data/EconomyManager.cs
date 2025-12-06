@@ -12,6 +12,12 @@ public class EconomyManager : MonoBehaviour
         if (!wallet && inventory) wallet = inventory.GetComponent<PlayerWallet>();
     }
 
+    public void AddMoney(int amount)
+    {
+        if (wallet == null || amount == 0) return;
+        wallet.AddMoney(amount);
+    }
+
     public bool TryBuy(
         ItemSO item,
         int amount,

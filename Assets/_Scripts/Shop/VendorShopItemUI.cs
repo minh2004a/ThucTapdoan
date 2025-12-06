@@ -21,6 +21,9 @@ public class VendorShopItemUI : MonoBehaviour
 
     VendorItem data;
     Action<VendorItem> onClick;
+    ItemStack sellStack;
+    Action<ItemStack> onSellClick;
+    bool isSellMode;
 
     void Awake()
     {
@@ -34,6 +37,8 @@ public class VendorShopItemUI : MonoBehaviour
     {
         data = item;
         onClick = onClicked;
+        onSellClick = null;
+        isSellMode = false;
 
         if (layoutElement)
         {
@@ -84,9 +89,68 @@ public class VendorShopItemUI : MonoBehaviour
             resourceAmountText.text = hasResourceCost ? item.requiredResourceAmount.ToString() : string.Empty;
         }
     }
+
+    public void RenderSell(ItemStack stack, Sprite currency, int totalPrice, Action<ItemStack> onClicked)
+    {
+        sellStack = stack;
+        onSellClick = onClicked;
+        onClick = null;
+        isSellMode = true;
+
+        if (layoutElement)
+        {
+            layoutElement.flexibleWidth = 1f;
+        }
+
+        if (itemIcon)
+        {
+            itemIcon.sprite = stack.item ? stack.item.icon : null;
+            itemIcon.enabled = stack.item && stack.item.icon;
+        }
+
+        if (itemNameText)
+        {
+            string name = stack.item ? stack.item.displayName : "--";
+            if (string.IsNullOrWhiteSpace(name) && stack.item)
+                name = stack.item.name;
+            itemNameText.text = name;
+        }
+
+        if (priceText)
+        {
+            priceText.text = $"Sell: {totalPrice}g";
+        }
+
+        if (currencyIcon)
+        {
+            currencyIcon.sprite = currency;
+            currencyIcon.enabled = currency != null;
+        }
+
+        if (resourceCostRoot) resourceCostRoot.SetActive(false);
+        if (resourceIcon)
+        {
+            resourceIcon.sprite = null;
+            resourceIcon.enabled = false;
+        }
+
+        if (resourceAmountText)
+        {
+            resourceAmountText.text = string.Empty;
+        }
+    }
+
     void HandleClick()
     {
-        if (data.item == null) return;
-        onClick?.Invoke(data);
+        if (isSellMode)
+        {
+            if (sellStack.item == null) return;
+            onSellClick?.Invoke(sellStack);
+        }
+        else
+        {
+            if (data.item == null) return;
+            onClick?.Invoke(data);
+        }
     }
 }
