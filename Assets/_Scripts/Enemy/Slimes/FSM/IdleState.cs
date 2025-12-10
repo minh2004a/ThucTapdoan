@@ -21,6 +21,9 @@ public class IdleState : SlimeState
         controller.moveDirection = Vector2.zero;
 
         controller.animator.SetFloat("Speed", 0f);
+
+        controller.aiData.currentBehaviours.Clear();
+        controller.aiData.currentBehaviours.Add(controller.wanderBehaviour);
     }
 
     public override void Update()

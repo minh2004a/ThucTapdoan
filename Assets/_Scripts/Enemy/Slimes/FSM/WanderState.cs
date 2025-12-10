@@ -18,77 +18,39 @@ public class WanderState : SlimeState
     public override void Enter()
     {
         base.Enter();
-        this.PickNewTarget();
+
+        controller.aiData.currentBehaviours.Clear();
+        controller.aiData.currentBehaviours.Add(controller.wanderBehaviour);
+        controller.aiData.currentBehaviours.Add(controller.avoidanceBehaviour);
+
+        controller.animator.SetFloat("Speed", 1f);
     }
 
     public override void Update()
     {
         base.Update();
 
-        controller.animator.SetFloat("Speed", controller.moveDirection.magnitude);
-
-        // Nếu đang chờ đợi thì không di chuyển
-        if (waiting)
+        // Nếu phát hiện player thì chuyển sang Chase
+        if (controller.aiData.currentTarget != null)
         {
-            controller.moveDirection = Vector2.zero;
-            controller.animator.SetFloat("Speed", 0f);
-
-            waitTimer += Time.deltaTime;
-            if (waitTimer >= waitTime)
-            {
-                waiting = false;
-                this.PickNewTarget();
-            }
+            controller.ChangeState(new ChaseState(controller));
             return;
         }
 
-        // Tính toán hướng di chuyển
-        Vector2 dir = (wanderTarget - (Vector2)controller.body.position).normalized;
+        // steering → context solver → movement
+        Vector2 dir = controller.contextSolver.GetDirectionToMove(
+            controller.aiData.currentBehaviours,
+            controller.aiData
+        );
 
-        // flip sprite dựa trên hướng di chuyển
-        controller.spriter.flipX = dir.x > 0;
+        controller.moveDirection = dir;
 
-        // di chuyển Slime
-        controller.moveDirection = dir * speed * Time.fixedDeltaTime;
-
-        // neu đến gần điểm đích thì chọn điểm mới
-        if (Vector2.Distance(controller.body.position, wanderTarget) <= reachThreshold)
-        {
-            this.StartWaiting();
-        }
-
-        // chuyển sang trạng thái Chase nếu phát hiện player
-        if (Vector2.Distance(controller.body.position, controller.player.position) < 3f)
-        {
-            controller.ChangeState(new ChaseState(controller));
-        }
+        controller.animator.SetFloat("Speed", dir.magnitude);
     }
-
-    public void PickNewTarget()
-    {
-        // Chọn điểm ngẫu nhiên trong bán kính 3 đơn vị từ vị trí hiện tại
-        wanderTarget = (Vector2)controller.body.position + Random.insideUnitCircle * 3f;
-
-        // cập nhật animation
-        Vector2 dirAnim = (wanderTarget - (Vector2)controller.body.position).normalized;
-        controller.animator.SetFloat("Horizontal", dirAnim.x);
-        controller.animator.SetFloat("Vertical", dirAnim.y);
-        controller.animator.SetFloat("Speed", dirAnim.magnitude);
-    }
-
-    private void StartWaiting()
-    {
-        waiting = true;
-        waitTimer = 0f;
-        waitTime = Random.Range(2f, 4f);
-
-        controller.moveDirection = Vector2.zero;
-        controller.animator.SetFloat("Speed", 0f);
-    }
-
     public override void Exit()
     {
         base.Exit();
+        controller.aiData.currentBehaviours.Clear();
         controller.moveDirection = Vector2.zero;
         controller.animator.SetFloat("Speed", 0f);
     }

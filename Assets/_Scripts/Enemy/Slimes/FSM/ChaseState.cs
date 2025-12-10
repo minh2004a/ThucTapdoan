@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Trạng thái truy đuổi cho Slime
 // SlimeController chuyển sang trạng thái này khi phát hiện player
 public class ChaseState : SlimeState
 {
-    public float speed = 40f;
+    public float speed = 2f;
     // Constructor
     public ChaseState(SlimesController slimesController) : base(slimesController) {}
     
@@ -12,24 +13,34 @@ public class ChaseState : SlimeState
     {
         base.Enter();
         controller.animator.SetFloat("Speed", speed);
+
+        controller.aiData.allowSeekReset = true;
+        controller.aiData.currentBehaviours.Clear();
+        controller.aiData.currentBehaviours.Add(controller.seekBehaviour);
+        controller.aiData.currentBehaviours.Add(controller.avoidanceBehaviour);
+
     }
 
     public override void Update()
     {
         base.Update();
 
-        Vector2 dir = controller.steering.Seek(controller.player.position);
-        controller.spriter.flipX = dir.x > 0;
+        // Lấy hướng đã được ContextSolver tính
+        Vector2 moveDir = controller.contextSolver.GetDirectionToMove(
+            controller.aiData.currentBehaviours,
+            controller.aiData
+        );
 
-        // Di Chuyển
-        controller.moveDirection = dir * speed * Time.fixedDeltaTime;
+        controller.moveDirection = moveDir * speed;
 
-        controller.animator.SetFloat("Horizontal", dir.x);
-        controller.animator.SetFloat("Vertical", dir.y);
+        // Animation
+        controller.animator.SetFloat("Horizontal", moveDir.x);
+        controller.animator.SetFloat("Vertical", moveDir.y);
+        controller.spriter.flipX = moveDir.x > 0;
 
+        // Check distance để chuyển state
         float dis = Vector2.Distance(controller.body.position, controller.player.position);
 
-        // Check cooldown tấn công
         if (dis <= 2f)
         {
             if (Time.time - controller.lastAttackTime >= controller.attackCooldown)
@@ -43,18 +54,13 @@ public class ChaseState : SlimeState
         {
             controller.ChangeState(new IdleState(controller));
         }
+    }
 
-        // // Chuyển sang trạng thái tấn công nếu trong phạm vi
-        // if (Vector2.Distance(controller.body.position, controller.player.position) <= 1f)
-        // {
-        //     controller.ChangeState(new AttackState(controller));
-        // }
-
-        // // Quay về trạng thái patrolling nếu mất player
-        // if (Vector2.Distance(controller.body.position, controller.player.position) > 5f)
-        // {
-        //     controller.ChangeState(new IdleState(controller));
-        // }
+    public override void Exit()
+    {
+        base.Exit();
+        controller.aiData.allowSeekReset = false;
+        controller.aiData.currentBehaviours.Clear();
     }
     
 }

@@ -21,6 +21,8 @@ public class AttackState : SlimeState
         controller.lastAttackTime = Time.time;
 
         controller.moveDirection = Vector2.zero;
+
+        controller.aiData.currentBehaviours.Clear();
     }
 
     public override void Update()
