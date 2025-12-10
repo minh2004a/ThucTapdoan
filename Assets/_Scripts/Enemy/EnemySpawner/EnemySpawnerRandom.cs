@@ -9,9 +9,9 @@ public class EnemySpawnerRandom : GameMonoBehaviour
     [SerializeField] protected float randomTimer = 0f;
     [SerializeField] protected float randomLimit = 4f;
 
-    protected override void LoadComponents()
+    protected override void LoadComponent()
     {
-        base.LoadComponents();
+        base.LoadComponent();
         this.LoadEnemySpawnerCtrl();
     }
 

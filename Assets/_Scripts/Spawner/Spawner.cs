@@ -11,9 +11,9 @@ public class Spawner : GameMonoBehaviour
     [SerializeField] protected List<Transform> prefabs;
     [SerializeField] protected List<Transform> poolObjs;
 
-    protected override void LoadComponents()
+    protected override void LoadComponent()
     {
-        base.LoadComponents();
+        base.LoadComponent();
         this.LoadHolder();
         this.LoadPrefabs();
     }

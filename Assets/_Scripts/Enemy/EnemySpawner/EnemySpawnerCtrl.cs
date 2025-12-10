@@ -10,9 +10,9 @@ public class EnemySpawnerCtrl : GameMonoBehaviour
     [SerializeField] protected EnemySpawnerPoints enemySpawnerPoints;
     public EnemySpawnerPoints EnemySpawnerPoints => enemySpawnerPoints;
 
-    protected override void LoadComponents()
+    protected override void LoadComponent()
     {
-        base.LoadComponents();
+        base.LoadComponent();
         this.LoadEnemySpawner();
         this.LoadEnemySpawnerPoints();
     }

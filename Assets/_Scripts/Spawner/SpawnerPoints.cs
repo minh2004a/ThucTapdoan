@@ -6,9 +6,9 @@ public class SpawnerPoints : GameMonoBehaviour
 {
     [SerializeField] protected List<Transform> points;
 
-    protected override void LoadComponents()
+    protected override void LoadComponent()
     {
-        base.LoadComponents();
+        base.LoadComponent();
         this.LoadPoints();
     }
 

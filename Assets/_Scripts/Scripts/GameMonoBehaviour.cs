@@ -6,7 +6,7 @@ public class GameMonoBehaviour : MonoBehaviour
 {
     protected virtual void Awake()
     {
-        this.LoadComponents();
+        this.LoadComponent();
     }
 
     protected virtual void Start()
@@ -15,14 +15,14 @@ public class GameMonoBehaviour : MonoBehaviour
     }
     protected virtual void Reset()
     {
-        this.LoadComponents();
+        this.LoadComponent();
         this.ResetValue();
     }
     protected virtual void ResetValue()
     {
 
     }
-    protected virtual void LoadComponents()
+    protected virtual void LoadComponent()
     {
 
     }
