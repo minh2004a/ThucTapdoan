@@ -13188,6 +13188,7 @@ GameObject:
   - component: {fileID: 1111298488}
   - component: {fileID: 1111298489}
   - component: {fileID: 1111298490}
+  - component: {fileID: 1111298491}
   m_Layer: 0
   m_Name: SLime
   m_TagString: Untagged
@@ -13400,6 +13401,21 @@ MonoBehaviour:
   allowSeekReset: 0
   currentBehaviours: []
   currentTarget: {fileID: 100902219}
+--- !u!114 &1111298491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111298482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00ef1a9c827cb24c9a3eab6ae6766fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 1111298485}
+  enemyDespawn: {fileID: 58988575}
+  enemySO: {fileID: 11400000, guid: faf6ffb1b474d9844ab84ed342175b01, type: 2}
 --- !u!1 &1132794800
 GameObject:
   m_ObjectHideFlags: 0
@@ -13638,6 +13654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1293000501}
+  - component: {fileID: 1293000502}
   m_Layer: 0
   m_Name: DamageReceiver
   m_TagString: Untagged
@@ -13660,6 +13677,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1111298485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1293000502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293000500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2a7f5f2409eeb438ddb0a3e5cdd112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 50
+  currentHp: 0
+  enemyCtrl: {fileID: 1111298491}
+  animator: {fileID: 1111298486}
 --- !u!1 &1384970936
 GameObject:
   m_ObjectHideFlags: 0
@@ -16229,6 +16262,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2113994337}
+  - component: {fileID: 2113994338}
+  - component: {fileID: 2113994339}
   m_Layer: 0
   m_Name: DamageSender
   m_TagString: Untagged
@@ -16251,6 +16286,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1111298485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2113994338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113994336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaaa2d74d8ccecd43a0526d6698a09ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCtrl: {fileID: 1111298491}
+  hitCooldown: 0.8
+--- !u!61 &2113994339
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113994336}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.015012562, y: 0.39032763}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.78982365, y: 0.4295212}
+  m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
