@@ -404,10 +404,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b128120f21b6d48a4e6ba02281e868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 1
   targetScene: MapHamMo_Level2
   targetSpawnId: Ditoihammo_lv2
-  interact: {fileID: 0}
+  interact: {fileID: 1837222338519875201, guid: 72cdbed4274e4274e92fda06cb26974b, type: 3}
 --- !u!61 &296482738
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14338,7 +14338,7 @@ Tilemap:
       - {fileID: 1200394891, guid: 51beb88c471ffee49974159e671e9c0f, type: 3}
       - {fileID: -76617676, guid: 51beb88c471ffee49974159e671e9c0f, type: 3}
       - {fileID: 332246888, guid: 51beb88c471ffee49974159e671e9c0f, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 0, z: 0}

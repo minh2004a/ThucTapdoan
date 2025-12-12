@@ -374,10 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b128120f21b6d48a4e6ba02281e868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 1
   targetScene: MapHamMo_Level1
   targetSpawnId: Ditoihammo_lv1
-  interact: {fileID: 0}
+  interact: {fileID: 1837222338519875201, guid: 72cdbed4274e4274e92fda06cb26974b, type: 3}
 --- !u!61 &686030328
 BoxCollider2D:
   m_ObjectHideFlags: 0

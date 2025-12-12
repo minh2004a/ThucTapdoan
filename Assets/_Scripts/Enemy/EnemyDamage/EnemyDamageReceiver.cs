@@ -29,6 +29,8 @@ public class EnemyDamageReceiver : MonoBehaviour, IDamageable
 
         currentHp -= damage;
 
+        DamagePopup.Create(enemyCtrl.transform.position + Vector3.up * 0.5f, damage, DamagePopup.PopupType.PlayerDamage);
+
         if (currentHp <= 0)
         {
             currentHp = 0;

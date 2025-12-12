@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         }
     public void TakeDamage(int dmg){
         hp = Mathf.Max(0, hp - dmg);
+        DamagePopup.Create(transform.position + Vector3.up * 0.5f, dmg, DamagePopup.PopupType.EnemyDamage);
         OnHpPercent?.Invoke((float)hp / maxHP);
     }
 

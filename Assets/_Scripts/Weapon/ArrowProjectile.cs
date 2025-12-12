@@ -44,7 +44,7 @@ public class ArrowProjectile : MonoBehaviour {
         // Gây sát thương cho layer địch (có thể là trigger)
         if (((1 << other.gameObject.layer) & damageMask) == 0) return;
         Vector2 p = other.ClosestPoint(transform.position);
-        other.GetComponentInParent<IDamageable>()?.TakeHit(dmg);
+        other.GetComponentInChildren<IDamageable>()?.TakeHit(dmg);
         Impact(p);
     }
 

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Slime_Blue
   m_EditorClassIdentifier: 
   enemyName: Slime_Blue
-  maxHp: 100
-  damage: 5
+  maxHp: 50
+  damage: 3
