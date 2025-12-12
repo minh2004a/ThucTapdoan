@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/MapThiTran.unity
     guid: 306a11b159d77a34fadf98ab4c35896a
+  - enabled: 1
+    path: Assets/_Scenes/MapHamMo_Level0.unity
+    guid: 59498936f40a3cf40abd01f93e38f5bd
+  - enabled: 1
+    path: Assets/_Scenes/MapHamMo_Level1.unity
+    guid: 97a78e2e7f2f09348b15abe8edbc22c3
+  - enabled: 1
+    path: Assets/_Scenes/MapHamMo_Level2.unity
+    guid: 824c53de50375d54582ca8bdf79b5180
   m_configObjects: {}

@@ -18,7 +18,7 @@ public class EnemyDamageReceiver : MonoBehaviour, IDamageable
         if (animator == null) animator = GetComponentInChildren<Animator>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         this.Reborn();
     }

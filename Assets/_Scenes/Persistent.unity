@@ -1281,6 +1281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookPanel: {fileID: 1271030761}
   vendorShopUI: {fileID: 1110650984}
+  vendorQuestUI: {fileID: 0}
 --- !u!114 &152460048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2337,6 +2338,7 @@ MonoBehaviour:
   noButton: {fileID: 1474297644}
   player: {fileID: 2116136252306584676}
   bookToggle: {fileID: 152460047}
+  vendorShopUI: {fileID: 0}
 --- !u!1 &347347811
 GameObject:
   m_ObjectHideFlags: 0
@@ -11838,6 +11840,18 @@ PrefabInstance:
       propertyPath: OnStamina01.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1223590759}
+    - target: {fileID: 9196139618529040389, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
+      propertyPath: OnStamina01.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Set01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196139618529040389, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
+      propertyPath: OnStamina01.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StaminaBarUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196139618529040389, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
+      propertyPath: OnStamina01.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

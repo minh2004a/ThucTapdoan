@@ -8,18 +8,18 @@ public class PlayerStamina : MonoBehaviour
 {
     [Header("Chỉ số")]
     [SerializeField] float baseMax = 100f;
-    public float max = 100f;
-    [SerializeField] float current = 100f;
+    public float max = 270f;
+    [SerializeField] float current = 270f;
     [SerializeField] float baseRegenPerGameHour = 6f;
 
     [Header("Chi phí")]
-    public float bowCost = 12f, swordCost = 8f, hoeCost = 4f,
-    wateringCost = 2f, axeCost = 6f, pickaxeCost = 6.5f, scytheCost = 3f;
+    public float bowCost = 0f, swordCost = 0f, hoeCost = 0f,
+    wateringCost = 2f, axeCost = 1.5f, pickaxeCost = 1.5f, scytheCost = 3f;
 
     [Header("Tiêu hao/Hồi phục")]
     public float moveDrainPerSecond = 0f;
-    public float regenPerGameHour = 6f;
-    public float regenDelay = 3f;
+    public float regenPerGameHour = 0f;
+    public float regenDelay = 0f;
     float regenPerSecond;
     float lastMinutesPerRealSecond = -1f;
 

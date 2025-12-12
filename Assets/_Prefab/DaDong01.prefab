@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1898515245
-  m_SortingLayer: 10
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 766964293, guid: b984ee57a30be56409c1b55160b7d75c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c136c8958defee418bf106d3a767cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 25
+  maxHp: 3
   hitFxPrefab: {fileID: 5192609354796545633, guid: 7c92ada91dfd249408d04a187f308d61, type: 3}
   breakFxPrefab: {fileID: 0}
   dropOnBreak: {fileID: 4996479992724547668}

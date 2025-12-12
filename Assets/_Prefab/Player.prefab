@@ -156,7 +156,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1898515245
-  m_SortingLayer: 10
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 814113676, guid: 4217febf202c2d94db0a4e4bf6ee78ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -412,9 +412,9 @@ MonoBehaviour:
   max: 270
   current: 270
   baseRegenPerGameHour: 6
-  bowCost: 27
+  bowCost: 0
   swordCost: 0
-  hoeCost: 1.5
+  hoeCost: 5
   wateringCost: 2
   axeCost: 1.5
   pickaxeCost: 1.5
@@ -429,12 +429,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StaminaBarUI, Assembly-CSharp
-        m_MethodName: Set01
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

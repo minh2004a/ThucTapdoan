@@ -180,7 +180,7 @@ public class PlayerUseWeapon : MonoBehaviour
         Vector2 center = rb.position + dir * fwd + new Vector2(0f, it.hitboxYOffset);
 
         var hits = Physics2D.OverlapCircleAll(center, rad, enemyMask);
-        foreach (var c in hits) c.GetComponentInParent<IDamageable>()?.TakeHit(it.Dame);
+        foreach (var c in hits) c.GetComponentInChildren<IDamageable>()?.TakeHit(it.Dame);
     }
     public void AttackEnd()
     {
