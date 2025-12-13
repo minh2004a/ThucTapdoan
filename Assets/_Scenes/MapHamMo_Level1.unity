@@ -13910,12 +13910,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orePrefabs:
   - prefab: {fileID: 3053998438437349097, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-    weight: 2
+    weight: 1
   - prefab: {fileID: 1559559962467882664, guid: e5f6aba8df473954abb4e7cf057d5f88, type: 3}
     weight: 1
   - prefab: {fileID: 7221371334771708803, guid: e1b5357a35e553247b80dc6df9cba407, type: 3}
     weight: 1
-  targetOreCount: 40
+  - prefab: {fileID: 8063841340193447747, guid: a36cd9eee280e5a48918c8562fcd6005, type: 3}
+    weight: 0.9
+  - prefab: {fileID: 844262554715805595, guid: d7fccb4239817094c8fd2fa6aa3b3f0b, type: 3}
+    weight: 0.8
+  - prefab: {fileID: 5732007671130028597, guid: 43f4d1237852a75469e4c10198066748, type: 3}
+    weight: 0.7
+  - prefab: {fileID: 7330568790602371156, guid: dc22c99ee80090d4a83a1011106279ae, type: 3}
+    weight: 0.6
+  - prefab: {fileID: 1596282025795511984, guid: 490735be5495a4c40b6659d758262801, type: 3}
+    weight: 0.5
+  - prefab: {fileID: 8156680892129984812, guid: f7cc3716fc28646429645e8f668c34ba, type: 3}
+    weight: 0.4
+  - prefab: {fileID: 8061309928768693262, guid: 833a40788e72dd84ab41e0a4989b1dd7, type: 3}
+    weight: 0.3
+  - prefab: {fileID: 6374753728317382258, guid: 488c7fcf7c0d0ef49a99b3825ce43703, type: 3}
+    weight: 0.2
+  - prefab: {fileID: 1721859184724594218, guid: da88832d3f69ee248b636d9a55c527cb, type: 3}
+    weight: 0.1
+  targetOreCount: 80
   spawnArea: {fileID: 1330330887}
 --- !u!4 &1330330886
 Transform:
@@ -14570,7 +14588,7 @@ Tilemap:
       - {fileID: 1200394891, guid: 51beb88c471ffee49974159e671e9c0f, type: 3}
       - {fileID: -76617676, guid: 51beb88c471ffee49974159e671e9c0f, type: 3}
       - {fileID: 332246888, guid: 51beb88c471ffee49974159e671e9c0f, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 0, z: 0}

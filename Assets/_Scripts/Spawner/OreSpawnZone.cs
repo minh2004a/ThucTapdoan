@@ -75,7 +75,7 @@ public class OreSpawnZone : MonoBehaviour
         Vector2 pos = GetRandomPointInsideEdge(spawnArea);
 
         // tránh spawn chồng
-        if (Physics2D.OverlapCircle(pos, 1f, LayerMask.GetMask("Ore")) != null)
+        if (Physics2D.OverlapCircle(pos, 0f, LayerMask.GetMask("Ore")) != null)
         {
             // thử lại
             SpawnOneOre();
