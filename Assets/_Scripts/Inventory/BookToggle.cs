@@ -1,11 +1,9 @@
-
 using UnityEngine;
 // Quản lý việc mở/đóng sách kho đồ
 public class BookToggle : MonoBehaviour
 {
     [SerializeField] GameObject bookPanel; // BookInventoryPanel
     [SerializeField] VendorShopUI vendorShopUI;
-    [SerializeField] VendorQuestUI vendorQuestUI;
     float previousTimeScale = 1f;
     bool pausedByBook = false;
     void Awake()
@@ -15,9 +13,8 @@ public class BookToggle : MonoBehaviour
 
     void Update()
     {
-        // không mở túi khi đang mở shop hoặc bảng quest
-        if ((vendorShopUI && vendorShopUI.IsVisible) ||
-            (vendorQuestUI && vendorQuestUI.IsVisible)) return;
+        // không mở túi khi đang mở shop
+        if (vendorShopUI && vendorShopUI.IsVisible) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             bool active = bookPanel.activeSelf;

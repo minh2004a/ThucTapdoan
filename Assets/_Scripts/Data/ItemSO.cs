@@ -1,6 +1,4 @@
 
-
-
 using UnityEngine;
 using UnityEngine.Serialization;
 // Dữ liệu ScriptableObject cho một loại vật phẩm trong trò chơi
@@ -27,7 +25,7 @@ public enum ToolType
     Scythe = 4,
     WateringCan = 5
 }
-public interface IDamageable { void TakeHit(int dmg); }
+public interface IDamageable { void TakeHit(int dmg); } // interface cho đối tượng có thể bị tấn công
 public interface IReapable
 {
     void Reap(int damage, Vector2 hitDir, PlayerInventory inv);
