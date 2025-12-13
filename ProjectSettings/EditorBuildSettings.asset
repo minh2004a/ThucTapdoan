@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/MapHamMo_Level3.unity
     guid: cab01022ec9557c43927cda1af164d23
+  - enabled: 1
+    path: Assets/_Scenes/MapHamMo_Level4.unity
+    guid: cf505cfbc1ead4e409c909e195e2480b
+  - enabled: 1
+    path: Assets/_Scenes/MapHamMo_Level5.unity
+    guid: c3dba95a48333a145917ba80ff015faa
   m_configObjects: {}
