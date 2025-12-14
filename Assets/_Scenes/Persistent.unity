@@ -11914,6 +11914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimeBox
       objectReference: {fileID: 0}
+    - target: {fileID: 1498124723813976827, guid: dd96f0adb41893d469160987247f17b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2663929055496126826, guid: dd96f0adb41893d469160987247f17b6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
