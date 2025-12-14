@@ -50321,7 +50321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &141101178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93582,67 +93582,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4573881418118081410, guid: bc89ccf62a9b1f145979ade643310949, type: 3}
   m_PrefabInstance: {fileID: 1190032604}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1208711847
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3053998438437349097, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_Name
-      value: DaDong01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -25.707579
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.4186585
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546415820302941424, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6507001636360427036, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-      propertyPath: id
-      value: d8c30e27-bda3-4873-8980-addd39271b37
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2bb375480372f474e928487a404cb55f, type: 3}
 --- !u!1 &1209920214
 GameObject:
   m_ObjectHideFlags: 0
@@ -106836,7 +106775,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 81e66d10a87d9aa41beb8ef9b227d0cd, type: 2}
     - target: {fileID: 575315856749524139, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
       propertyPath: useQuest
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 575315856749524139, guid: 0fa21c8c77f79ff41898a65caa9ca419, type: 3}
       propertyPath: thankYouText
@@ -108461,5 +108400,4 @@ SceneRoots:
   - {fileID: 1572692738}
   - {fileID: 2040953036}
   - {fileID: 1307473698}
-  - {fileID: 1208711847}
   - {fileID: 141101180}

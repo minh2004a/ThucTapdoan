@@ -31,6 +31,7 @@
   <Project Path="Unity.2D.Animation.Editor.csproj" />
   <Project Path="Unity.2D.SpriteShape.Editor.csproj" />
   <Project Path="Unity.VisualStudio.Editor.csproj" />
+  <Project Path="MCPForUnity.Editor.csproj" />
   <Project Path="PPv2URPConverters.csproj" />
   <Project Path="Unity.Rider.Editor.csproj" />
   <Project Path="Unity.InternalAPIEditorBridge.001.csproj" />
@@ -70,5 +71,6 @@
   <Project Path="Unity.RenderPipelines.Universal.Config.Runtime.csproj" />
   <Project Path="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" />
   <Project Path="Unity.RenderPipelines.Core.ShaderLibrary.csproj" />
+  <Project Path="MCPForUnity.Runtime.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
 </Solution>

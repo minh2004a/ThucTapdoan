@@ -72,6 +72,12 @@ public class ItemInfoUI : MonoBehaviour
                 if (item.dropChanceBonusPercent > 0)
                     sb.AppendLine($"• +{item.dropChanceBonusPercent}% may mắn");
 
+                if (item.damageReductionPercent > 0)
+                    sb.AppendLine($"• Giảm {item.damageReductionPercent}% sát thương nhận vào");
+
+                if (item.damageIncreasePercent > 0)
+                    sb.AppendLine($"• Tăng {item.damageIncreasePercent}% sát thương gây ra");
+
                 if (item.staminaMaxBonus > 0)
                     sb.AppendLine($"• +{item.staminaMaxBonus} thể lực tối đa");
 

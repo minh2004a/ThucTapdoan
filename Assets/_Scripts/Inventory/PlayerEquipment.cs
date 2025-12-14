@@ -118,4 +118,31 @@ public class PlayerEquipment : MonoBehaviour
 
         return 1f;
     }
+
+    /// <summary>
+    /// Lấy % giảm sát thương từ giáp (0-100)
+    /// </summary>
+    public float GetDamageReduction()
+    {
+        var armor = Get(EquipSlotType.Armor);
+        if (armor)
+        {
+            return Mathf.Clamp(armor.damageReductionPercent, 0f, 100f);
+        }
+        return 0f;
+    }
+
+    /// <summary>
+    /// Lấy multiplier tăng sát thương từ găng tay (1.0 = không bonus, 1.5 = +50% damage)
+    /// </summary>
+    public float GetDamageMultiplier()
+    {
+        var gloves = Get(EquipSlotType.Gloves);
+        if (gloves)
+        {
+            float bonusPercent = Mathf.Max(0f, gloves.damageIncreasePercent);
+            return 1f + bonusPercent * 0.01f;
+        }
+        return 1f;
+    }
 }
