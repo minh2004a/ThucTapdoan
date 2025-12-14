@@ -53,9 +53,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae7b8345534fc98418bb738f4ffa86df, type: 2}
   - {fileID: 11400000, guid: 880a0e5e4fcc0804b83f0006602488c5, type: 2}
   - {fileID: 11400000, guid: 050c25abc14719b4ab8bf18b6e477f8d, type: 2}
-<<<<<<< HEAD
   - {fileID: 11400000, guid: d63be62ab67d7db48883cec3ba334319, type: 2}
-=======
   - {fileID: 11400000, guid: 70b989bc1269e59479128d9ceecdb43d, type: 2}
   - {fileID: 11400000, guid: ac2d1adfb2b35b848804fe893c4451fe, type: 2}
->>>>>>> TrangBi/Giap_Gang

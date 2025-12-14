@@ -59837,7 +59837,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 9
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 31
       m_TileMatrixIndex: 3
       m_TileColorIndex: 8
       m_TileObjectToInstantiateIndex: 65535
@@ -65424,8 +65424,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 32
     m_Data: {fileID: -703214059, guid: 137acbf97ee98e1449448e782745d916, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 868835835, guid: 137acbf97ee98e1449448e782745d916, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 532
     m_Data: {fileID: 1739626206, guid: 137acbf97ee98e1449448e782745d916, type: 3}
   - m_RefCount: 0
@@ -65478,8 +65478,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 868835835, guid: 137acbf97ee98e1449448e782745d916, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1767541467, guid: 137acbf97ee98e1449448e782745d916, type: 3}
   m_TileMatrixArray:
@@ -87504,7 +87504,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4573881418118081410, guid: bc89ccf62a9b1f145979ade643310949, type: 3}
   m_PrefabInstance: {fileID: 1190032604}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1001 &1208711847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87566,7 +87565,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb375480372f474e928487a404cb55f, type: 3}
-=======
 --- !u!1 &1209920214
 GameObject:
   m_ObjectHideFlags: 0
@@ -87606,17 +87604,12 @@ Transform:
   m_GameObject: {fileID: 1209920214}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -24.55, y: 1.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 912271210}
-  - {fileID: 286012613}
-  - {fileID: 145867111}
-  - {fileID: 900353198}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> TrangBi/Giap_Gang
 --- !u!1001 &1211603698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101178,3 +101171,5 @@ SceneRoots:
   - {fileID: 2040953036}
   - {fileID: 1307473698}
   - {fileID: 141101180}
+  - {fileID: 1208711847}
+  - {fileID: 1209920216}
