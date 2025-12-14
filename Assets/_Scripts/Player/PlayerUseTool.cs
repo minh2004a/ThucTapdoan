@@ -595,7 +595,7 @@ public class PlayerUseTool : MonoBehaviour
             soil.TryTillCell(cell);
         }
     }
-
+    //  Animation Event: thực thi tác dụng của rựa
     void PerformAxeHit()
     {
         if (!activeTool) return;
