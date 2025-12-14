@@ -8,6 +8,7 @@ TagManager:
   - Arrow
   - PlayerBullet
   - HouseCam
+  - house
   layers:
   - Default
   - TransparentFX

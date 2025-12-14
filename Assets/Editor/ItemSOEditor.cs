@@ -34,6 +34,8 @@ public class ItemSOEditor : Editor
     SerializedProperty staminaRegenBonusProp;
     SerializedProperty backpackSlotBonusProp;
     SerializedProperty healthMaxBonusProp;
+    SerializedProperty damageReductionPercentProp;
+    SerializedProperty damageIncreasePercentProp;
     SerializedProperty displayNameProp;
     SerializedProperty baseDescriptionProp;
     void OnEnable()
@@ -69,6 +71,8 @@ public class ItemSOEditor : Editor
         staminaRegenBonusProp = serializedObject.FindProperty("staminaRegenBonus");
         backpackSlotBonusProp = serializedObject.FindProperty("backpackSlotBonus");
         healthMaxBonusProp = serializedObject.FindProperty("healthMaxBonus");
+        damageReductionPercentProp = serializedObject.FindProperty("damageReductionPercent");
+        damageIncreasePercentProp = serializedObject.FindProperty("damageIncreasePercent");
     }
 
     public override void OnInspectorGUI()
@@ -208,24 +212,42 @@ public class ItemSOEditor : Editor
         EditorGUILayout.HelpBox("Trang bị (mũ/áo/giày...) là item đơn, không stack.", MessageType.Info);
 
         EditorGUILayout.PropertyField(equipSlotProp); // chọn slot: Hat, Armor,...
-        if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Hat)
+
+        var equipSlot = (EquipSlotType)equipSlotProp.enumValueIndex;
+
+        if (equipSlot == EquipSlotType.Hat)
         {
             EditorGUILayout.PropertyField(dropChanceBonusPercentProp, new GUIContent("Drop Chance Bonus %"));
         }
-        if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Backpack)
+
+        if (equipSlot == EquipSlotType.Armor)
+        {
+            EditorGUILayout.PropertyField(damageReductionPercentProp, new GUIContent("Damage Reduction %"));
+            EditorGUILayout.HelpBox("% giảm sát thương nhận vào (50 = giảm 50% damage). Ví dụ: giáp 50% → nhận 100 damage → chỉ mất 50 HP", MessageType.Info);
+        }
+
+        if (equipSlot == EquipSlotType.Gloves)
+        {
+            EditorGUILayout.PropertyField(damageIncreasePercentProp, new GUIContent("Damage Increase %"));
+            EditorGUILayout.HelpBox("% tăng sát thương gây ra (20 = tăng 20% damage). Ví dụ: găng 20%, vũ khí 8 damage → gây 10 damage (8 × 1.2 = 9.6 → 10)", MessageType.Info);
+        }
+
+        if (equipSlot == EquipSlotType.Backpack)
         {
             EditorGUILayout.PropertyField(backpackSlotBonusProp, new GUIContent("Backpack Slot Bonus"));
         }
 
-        if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Boots)
+        if (equipSlot == EquipSlotType.Boots)
         {
             EditorGUILayout.PropertyField(staminaMaxBonusProp, new GUIContent("Stamina Max Bonus"));
             EditorGUILayout.PropertyField(staminaRegenBonusProp, new GUIContent("Stamina Regen Bonus (per game hour)"));
         }
-        if ((EquipSlotType)equipSlotProp.enumValueIndex == EquipSlotType.Pants)
+
+        if (equipSlot == EquipSlotType.Pants)
         {
             EditorGUILayout.PropertyField(healthMaxBonusProp, new GUIContent("Health Max Bonus"));
         }
+
         DrawPriceFields();
     }
         // cho phép chỉnh giá bán

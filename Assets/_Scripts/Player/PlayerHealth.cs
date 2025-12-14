@@ -8,15 +8,25 @@ public class PlayerHealth : MonoBehaviour
     public int hp;
      int baseMaxHP;
     public UnityEvent<float> OnHpPercent; // giá trị 0..1
+    [SerializeField] PlayerEquipment equipment;
 
      void Awake()
         {
             baseMaxHP = Mathf.Max(1, maxHP);
             maxHP = baseMaxHP;
             hp = maxHP;
+            if (!equipment) equipment = GetComponent<PlayerEquipment>();
             OnHpPercent?.Invoke(1f);
         }
     public void TakeDamage(int dmg){
+        // Áp dụng giảm sát thương từ giáp
+        if (equipment)
+        {
+            float reduction = equipment.GetDamageReduction(); // % giảm damage (0-100)
+            float multiplier = 1f - (reduction / 100f); // chuyển thành multiplier (1.0 = full damage, 0.5 = giảm 50%)
+            dmg = Mathf.RoundToInt(dmg * multiplier);
+        }
+
         hp = Mathf.Max(0, hp - dmg);
         DamagePopup.Create(transform.position + Vector3.up * 0.5f, dmg, DamagePopup.PopupType.EnemyDamage);
         OnHpPercent?.Invoke((float)hp / maxHP);

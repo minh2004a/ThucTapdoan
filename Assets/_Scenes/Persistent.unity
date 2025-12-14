@@ -1195,6 +1195,7 @@ MonoBehaviour:
   timeMgr: {fileID: 1425422339}
   hp: {fileID: 1080744793}
   stamina: {fileID: 1080744791}
+  wallet: {fileID: 1080744810}
   player: {fileID: 158480009}
   fade: {fileID: 1444200541}
   toDisable: []
@@ -11801,22 +11802,14 @@ PrefabInstance:
       propertyPath: sleep
       value: 
       objectReference: {fileID: 152460042}
+    - target: {fileID: 1183494575016665960, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
+      propertyPath: sleep
+      value: 
+      objectReference: {fileID: 152460042}
     - target: {fileID: 2944587308785528253, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
       propertyPath: OnHpPercent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 207379505}
-    - target: {fileID: 3930916954447435895, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
-      propertyPath: health
-      value: 
-      objectReference: {fileID: 1080744793}
-    - target: {fileID: 3930916954447435895, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
-      propertyPath: stamina
-      value: 
-      objectReference: {fileID: 1080744791}
-    - target: {fileID: 3930916954447435895, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 647645683}
     - target: {fileID: 5156360149349521347, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
       propertyPath: m_LookAt
       value: 
@@ -11825,10 +11818,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6288386847750319070, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b98495fc92316914880c47936f79d79a, type: 2}
     - target: {fileID: 7739987294089070663, guid: 09881725e0a451a44a07e39d23b3d97f, type: 3}
       propertyPath: m_Camera
       value: 

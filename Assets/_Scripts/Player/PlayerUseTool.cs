@@ -6,7 +6,7 @@ using UnityEngine;
 
 /// <summary>
 /// Cho phép người chơi sử dụng các công cụ (ví dụ: cuốc đất) bằng chuột.
-/// Hỗ trợ cuốc trong bán kính 1 ô xung quanh người chơi và giữ nguyên hướng nhìn hiện tại (không xoay theo chuột).
+/// Hỗ trợ cuốc trong bán kính 1 ô xung quanh người chơi và tự động xoay theo hướng chuột khi dùng công cụ.
 /// </summary>
 [RequireComponent(typeof(PlayerInventory))]
 public class PlayerUseTool : MonoBehaviour
@@ -116,7 +116,6 @@ public class PlayerUseTool : MonoBehaviour
         // Đang vung tool thì cứ khóa hướng mỗi frame
         if (toolLocked)
         {
-            UpdateFacingWhileLocked();
             ApplyFacing(); // ApplyFacing() đã gọi FaceDirection(activeFacing)
         }
     }
@@ -214,7 +213,7 @@ public class PlayerUseTool : MonoBehaviour
                 }
 
                 targetCell = playerCell + delta;
-                facing = facingFallback;
+                facing = DetermineFacingFromDelta(worldDelta);
                 rangeTiles = 1;
                 hitPoint = soil.CellToWorld(targetCell);
                 hasHitPoint = true;
@@ -229,7 +228,7 @@ public class PlayerUseTool : MonoBehaviour
                 if (delta == Vector2Int.zero)
                 {
                     targetCell = playerCell;
-                    facing = facingFallback;
+                    facing = DetermineFacingFromDelta(worldDelta);
                     hitPoint = soil.CellToWorld(targetCell);
                     hasHitPoint = true;
                     return true;
@@ -242,7 +241,7 @@ public class PlayerUseTool : MonoBehaviour
                 }
 
                 targetCell = playerCell + delta;
-                facing = facingFallback;
+                facing = DetermineFacingFromDelta(worldDelta);
                 hitPoint = soil.CellToWorld(targetCell);
                 hasHitPoint = true;
                 return true;
@@ -250,7 +249,7 @@ public class PlayerUseTool : MonoBehaviour
             case ToolType.Pickaxe:
             case ToolType.Scythe:
             {
-                facing = facingFallback;
+                facing = DetermineFacingFromDelta(worldDelta);
 
                 float hitRange = ComputeHitboxReach(item);
                 Vector2 clamped = Vector2.ClampMagnitude(worldDelta, hitRange);
@@ -273,7 +272,7 @@ public class PlayerUseTool : MonoBehaviour
                     return false;
                 }
 
-                facing = facingFallback;
+                facing = DetermineFacingFromDelta(worldDelta);
                 return true;
         }
     }
@@ -305,6 +304,22 @@ public class PlayerUseTool : MonoBehaviour
         }
 
         return new Vector2Int(fx, fy);
+    }
+
+    Vector2 DetermineFacingFromDelta(Vector2 worldDelta)
+    {
+        if (worldDelta.sqrMagnitude > 0.0001f)
+        {
+            // Ưu tiên hướng dọc hoặc ngang dựa trên độ lớn của delta
+            if (Mathf.Abs(worldDelta.y) >= Mathf.Abs(worldDelta.x))
+            {
+                return worldDelta.y >= 0f ? Vector2.up : Vector2.down;
+            }
+            return worldDelta.x >= 0f ? Vector2.right : Vector2.left;
+        }
+
+        // Nếu chuột ở ngay vị trí player, dùng hướng hiện tại
+        return DetermineFallbackFacing();
     }
 
     Vector2 DetermineFallbackFacing()
@@ -424,17 +439,6 @@ public class PlayerUseTool : MonoBehaviour
     void ApplyFacing()
     {
         FaceDirection(activeFacing);
-    }
-
-    void UpdateFacingWhileLocked()
-    {
-        if (!controller) return;
-
-        Vector2 pending = controller.PendingFacing4();
-        if (pending.sqrMagnitude > 0.0001f)
-        {
-            activeFacing = pending;
-        }
     }
 
     void TriggerToolAnimation(ToolType type)
@@ -591,7 +595,7 @@ public class PlayerUseTool : MonoBehaviour
             soil.TryTillCell(cell);
         }
     }
-
+    //  Animation Event: thực thi tác dụng của rựa
     void PerformAxeHit()
     {
         if (!activeTool) return;
