@@ -10,6 +10,7 @@ public class SleepManager : MonoBehaviour
     [SerializeField] TimeManager timeMgr;
     [SerializeField] PlayerHealth hp;
     [SerializeField] PlayerStamina stamina;
+    [SerializeField] PlayerWallet wallet;
     [SerializeField] GameObject player;
     [SerializeField] CanvasGroup fade;
     
@@ -50,6 +51,14 @@ public class SleepManager : MonoBehaviour
         _transitioning = true;
         StopAllCoroutines();
         StartCoroutine(CoSleep(forceToHouse: true));
+    }
+
+    public void DeathNow()
+    {
+        if (_transitioning) return;
+        _transitioning = true;
+        StopAllCoroutines();
+        StartCoroutine(CoDeath());
     }
     static readonly HashSet<string> kKeep = new HashSet<string>{
     "Persistent", "DontDestroyOnLoad", "House"  // các scene giữ lại khi ngất
@@ -140,6 +149,79 @@ public class SleepManager : MonoBehaviour
         watcher?.ResetHandled();
         _transitioning = false;
     }
+    IEnumerator CoDeath()
+    {
+        // 1) Khoá điều khiển và fade lên đen
+        foreach (var m in toDisable) if (m) m.enabled = false;
+        yield return Fade(1f, 0.35f);
+        suppressBedPromptOnce = true;
+
+        // 2) Trừ 500 tiền (death penalty)
+        if (wallet != null)
+        {
+            int penalty = 500;
+            if (wallet.Money < penalty)
+            {
+                wallet.SetMoney(0);
+            }
+            else
+            {
+                wallet.AddMoney(-penalty);
+            }
+        }
+
+        // 3) Gỡ mọi scene không phải Persistent/House
+        var toUnload = new List<Scene>();
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            var s = SceneManager.GetSceneAt(i);
+            if (!s.isLoaded) continue;
+            if (s.name != "Persistent" && s.name != "House") toUnload.Add(s);
+        }
+        foreach (var s in toUnload)
+            yield return SceneManager.UnloadSceneAsync(s);
+
+        // 4) Đảm bảo House đã được nạp và đặt Active
+        var house = SceneManager.GetSceneByName("House");
+        if (!house.isLoaded)
+        {
+            var op = SceneManager.LoadSceneAsync("House", LoadSceneMode.Additive);
+            while (!op.isDone) yield return null;
+            house = SceneManager.GetSceneByName("House");
+        }
+        SceneManager.SetActiveScene(house);
+
+        // 5) Teleport về giường, tua thời gian sang ngày mới
+        ResolveBedSpawn();
+        if (player && bedSpawn) player.transform.position = bedSpawn.position;
+
+        // Tua đến sáng hôm sau (6:00 AM)
+        timeMgr.SleepToNextMorning();
+
+        // Phục hồi HP đầy
+        if (hp != null)
+        {
+            hp.SetPercent(1f); // Phục hồi 100% HP
+        }
+
+        // Phục hồi Stamina đầy
+        if (stamina != null)
+        {
+            stamina.SetPercent(1f); // Phục hồi 100% Stamina
+        }
+
+        OnSaveRequested?.Invoke();
+
+        // 6) Fade xuống trong và MỞ KHÓA
+        yield return Fade(0f, 0.35f);
+        foreach (var m in toDisable) if (m) m.enabled = true;
+
+        var deathWatcher = player.GetComponent<DeathWatcher>();
+        deathWatcher?.ResetHandled();
+
+        _transitioning = false;
+    }
+
     IEnumerator Fade(float target, float dur){
         if (!fade) yield break;
         fade.gameObject.SetActive(true);

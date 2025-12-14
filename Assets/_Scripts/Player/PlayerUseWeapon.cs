@@ -8,8 +8,9 @@ public class PlayerUseWeapon : MonoBehaviour
     [SerializeField] PlayerStamina stamina;
     [SerializeField] Transform arrowMuzzle;
     [SerializeField] PlayerInventory inv;
+    [SerializeField] PlayerEquipment equipment;
     [SerializeField] float exhaustedActionTimeMult = 1.6f;      // thời gian dài hơn
-    [SerializeField, Range(0.1f,1f)] float exhaustedAnimSpeedMult = 0.7f; // anim chậm lại  
+    [SerializeField, Range(0.1f,1f)] float exhaustedAnimSpeedMult = 0.7f; // anim chậm lại
     [SerializeField] PlayerController controller;
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer sprite;
@@ -34,8 +35,9 @@ public class PlayerUseWeapon : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (!sprite) sprite = GetComponentInChildren<SpriteRenderer>(); 
+        if (!sprite) sprite = GetComponentInChildren<SpriteRenderer>();
         if (!inv) inv = GetComponent<PlayerInventory>();
+        if (!equipment) equipment = GetComponent<PlayerEquipment>();
     }
     void Update(){
     if (cd > 0) cd -= Time.deltaTime;
@@ -130,18 +132,26 @@ public class PlayerUseWeapon : MonoBehaviour
     }
 
     public void ShootArrow(){
-    var it = inv?.CurrentItem; 
+    var it = inv?.CurrentItem;
     if (it == null || it.weaponType != WeaponType.Bow) return;
 
     Vector2 dir = bowLocked ? bowDirLocked : AimDirToMouse();   // <— SỬA
     // KHÔNG cập nhật lại bowFacing theo chuột ở đây
+
+    // Tính damage với bonus từ găng tay
+    int arrowDamage = it.Dame;
+    if (equipment)
+    {
+        float multiplier = equipment.GetDamageMultiplier(); // 1.0 = no bonus, 1.2 = +20%
+        arrowDamage = Mathf.RoundToInt(arrowDamage * multiplier);
+    }
 
     Vector2 spawn = arrowMuzzle ? (Vector2)arrowMuzzle.position : (Vector2)transform.position;
     var go = Instantiate(it.projectilePrefab, spawn, Quaternion.identity);
     go.transform.right = dir;
 
     var proj = go.GetComponent<ArrowProjectile>() ?? go.AddComponent<ArrowProjectile>();
-    proj.Init(it.Dame, dir, it.projectileSpeed, enemyMask, blockMask,
+    proj.Init(arrowDamage, dir, it.projectileSpeed, enemyMask, blockMask,
           life: 3f, maxDist: it.projectileMaxDistance, hitVFXPrefab: it.projectileHitVFX);
     var sr = go.GetComponent<SpriteRenderer>();
     if (sr && sprite){
@@ -179,8 +189,16 @@ public class PlayerUseWeapon : MonoBehaviour
 
         Vector2 center = rb.position + dir * fwd + new Vector2(0f, it.hitboxYOffset);
 
+        // Tính damage với bonus từ găng tay
+        int baseDamage = it.Dame;
+        if (equipment)
+        {
+            float multiplier = equipment.GetDamageMultiplier(); // 1.0 = no bonus, 1.2 = +20%
+            baseDamage = Mathf.RoundToInt(baseDamage * multiplier);
+        }
+
         var hits = Physics2D.OverlapCircleAll(center, rad, enemyMask);
-        foreach (var c in hits) c.GetComponentInChildren<IDamageable>()?.TakeHit(it.Dame);
+        foreach (var c in hits) c.GetComponentInChildren<IDamageable>()?.TakeHit(baseDamage);
     }
     public void AttackEnd()
     {
