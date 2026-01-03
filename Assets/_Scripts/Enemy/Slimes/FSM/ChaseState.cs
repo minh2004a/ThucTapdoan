@@ -25,11 +25,26 @@ public class ChaseState : SlimeState
     {
         base.Update();
 
+        if (controller.aiData.targets.Count == 0 || controller.aiData.currentTarget == null)
+        {
+            controller.ChangeState(new WanderState(controller));
+            return;
+        }
         // Lấy hướng đã được ContextSolver tính
         Vector2 moveDir = controller.contextSolver.GetDirectionToMove(
             controller.aiData.currentBehaviours,
             controller.aiData
         );
+
+        float dis = Vector2.Distance(controller.body.position, controller.player.position);
+
+        // Trong attack range VÀ cooldown hết → Attack ngay
+        if (dis <= 2f && Time.time - controller.lastAttackTime >= controller.attackCooldown)
+        {
+            controller.moveDirection = Vector2.zero; // Dừng lại trước khi attack
+            controller.ChangeState(new AttackState(controller));
+            return;
+        }
 
         controller.moveDirection = moveDir * speed;
 
@@ -37,23 +52,6 @@ public class ChaseState : SlimeState
         controller.animator.SetFloat("Horizontal", moveDir.x);
         controller.animator.SetFloat("Vertical", moveDir.y);
         controller.spriter.flipX = moveDir.x > 0;
-
-        // Check distance để chuyển state
-        float dis = Vector2.Distance(controller.body.position, controller.player.position);
-
-        if (dis <= 2f)
-        {
-            if (Time.time - controller.lastAttackTime >= controller.attackCooldown)
-            {
-                controller.ChangeState(new AttackState(controller));
-            }
-            return;
-        }
-
-        if (dis > 5f)
-        {
-            controller.ChangeState(new IdleState(controller));
-        }
     }
 
     public override void Exit()

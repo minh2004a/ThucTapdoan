@@ -4,7 +4,7 @@ using UnityEngine;
 public class WanderState : SlimeState
 {
     private Vector2 wanderTarget;
-    private float speed = 40f;
+    private float speed = 1f;
     private float reachThreshold = 0.1f;
 
     // Idle stop time
@@ -43,7 +43,7 @@ public class WanderState : SlimeState
             controller.aiData
         );
 
-        controller.moveDirection = dir;
+        controller.moveDirection = dir * speed;
 
         controller.animator.SetFloat("Speed", dir.magnitude);
     }

@@ -138,6 +138,9 @@ public class DeepSeekChatController : MonoBehaviour
             
             // Sử dụng .Trim() để loại bỏ khoảng trắng và Key OpenRouter
             www.SetRequestHeader("Authorization", "Bearer " + deepSeekApiKey.Trim());
+
+            www.SetRequestHeader("HTTP-Referer", "https://langlocan-game");
+            www.SetRequestHeader("X-Title", "Lang Loc An NPC Chat");
             
             yield return www.SendWebRequest();
 

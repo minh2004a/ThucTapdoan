@@ -28,6 +28,11 @@ public class SeekBehaviour : SteeringBehaviour
             return (danger, interest);
         }
 
+        if (aiData.currentTarget == null || !aiData.targets.Contains(aiData.currentTarget))
+        {
+            reachedLastTarget = true; // force reset
+        }
+
         // Nếu vừa reset chọn target gần nhất
         if (reachedLastTarget)
         {
@@ -53,6 +58,11 @@ public class SeekBehaviour : SteeringBehaviour
             }
 
             aiData.currentTarget = closestTarget;
+
+            if (aiData.currentTarget == null)
+            {
+                return (danger, interest);
+            }
         }
 
         // Cached position target

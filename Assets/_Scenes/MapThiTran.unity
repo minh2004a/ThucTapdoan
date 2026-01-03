@@ -70975,7 +70975,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "Nh\u1EADp c\xE2u h\u1ECFi..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ffe79192fe7daa44d89adddebedb0504, type: 2}
   m_sharedMaterial: {fileID: 479878090534430079, guid: ffe79192fe7daa44d89adddebedb0504, type: 2}
@@ -86823,6 +86823,10 @@ PrefabInstance:
       propertyPath: responseText
       value: 
       objectReference: {fileID: 2027456051}
+    - target: {fileID: 3409784861549266725, guid: ae70e4199507b444cbbf88bc2902c153, type: 3}
+      propertyPath: deepSeekApiKey
+      value: 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
+      objectReference: {fileID: 0}
     - target: {fileID: 7115880369133754037, guid: ae70e4199507b444cbbf88bc2902c153, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.4166307

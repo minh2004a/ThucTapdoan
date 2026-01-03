@@ -102,7 +102,7 @@ MonoBehaviour:
   responseText: {fileID: 0}
   sendButton: {fileID: 0}
   chatUIRoot: {fileID: 0}
-  deepSeekApiKey: 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
+  deepSeekApiKey: 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
 --- !u!61 &4821436561214638344
 BoxCollider2D:
   m_ObjectHideFlags: 0

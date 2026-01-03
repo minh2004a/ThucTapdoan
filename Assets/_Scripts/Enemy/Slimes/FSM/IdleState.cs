@@ -5,7 +5,7 @@ using UnityEngine;
 // Idle có thể chuyển sang Wander hoặc Chase tùy vào điều kiện
 public class IdleState : SlimeState
 {
-    private float idleTime;
+    private float idleTimer;
     private float timer;
 
     // Constructor
@@ -16,7 +16,7 @@ public class IdleState : SlimeState
         base.Enter();
 
         timer = 0f;
-        idleTime = Random.Range(1f, 2f);
+        idleTimer = Random.Range(1f, 2f);
 
         controller.moveDirection = Vector2.zero;
 
@@ -30,6 +30,20 @@ public class IdleState : SlimeState
     {
         base.Update();
 
+        // Nếu có target → Chase
+        if (controller.aiData.currentTarget != null)
+        {
+            controller.ChangeState(new ChaseState(controller));
+            return;
+        }
+
+         // Sau X giây Idle → Wander
+        idleTimer += Time.deltaTime;
+        if (idleTimer >= timer)
+        {
+            controller.ChangeState(new WanderState(controller));
+        }
+
         timer += Time.deltaTime;
 
         // Chuyển sang Attack nếu player trong tầm
@@ -39,7 +53,7 @@ public class IdleState : SlimeState
         }
 
         // Chuyển sang Wander
-        if (timer >= idleTime)
+        if (timer >= idleTimer)
         {
             controller.ChangeState(new WanderState(controller));
         }
